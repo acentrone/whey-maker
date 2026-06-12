@@ -1,0 +1,6 @@
+# Old medspa-funnel export — local reference only, not part of this repo
+gracious-poincare-db38e2/
+
+.vercel
+.DS_Store
+node_modules

@@ -1,0 +1,5 @@
+# Never upload the old medspa-funnel export to Vercel
+gracious-poincare-db38e2
+.git
+.gitignore
+.DS_Store

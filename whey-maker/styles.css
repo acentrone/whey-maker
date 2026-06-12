@@ -1,0 +1,264 @@
+/* Whey Maker — PDP production styles
+   Brand tokens pulled from the bag: hot pink, electric teal, deep ink.
+   Typography pairs a condensed display (Barlow Condensed) with a grotesk body (Inter).
+*/
+
+:root {
+  --ink: #0e0e10;
+  --ink-2: #1f1f22;
+  --ink-3: #4a4a50;
+  --ink-4: #8a8a90;
+  --line: #e4e0d7;
+  --line-2: #d2cdc1;
+  --paper: #faf7f0;
+  --paper-2: #f2ede0;
+  --paper-3: #e8e2d3;
+  --pink: #00c6e0;
+  --pink-2: #00a8c0;
+  --teal: #00c6e0;
+  --teal-2: #00a8c0;
+  --yellow: #ffd400;
+  --success: #0a8457;
+
+  --radius: 4px;
+  --radius-lg: 8px;
+}
+
+* { box-sizing: border-box; }
+
+.wm {
+  font-family: 'Inter', -apple-system, 'Helvetica Neue', Arial, sans-serif;
+  color: var(--ink);
+  background: var(--paper);
+  -webkit-font-smoothing: antialiased;
+  line-height: 1.5;
+  font-feature-settings: 'ss01', 'cv11';
+}
+
+.wm .display {
+  font-family: Impact, 'Haettenschweiler', 'Arial Narrow Bold', 'Barlow Condensed', 'Oswald', 'Helvetica Neue', Arial, sans-serif;
+  font-weight: 800;
+  letter-spacing: -0.005em;
+  line-height: 0.92;
+  text-transform: uppercase;
+}
+.wm .mono {
+  font-family: 'JetBrains Mono', 'IBM Plex Mono', 'Courier New', monospace;
+}
+.wm .eyebrow {
+  font-family: 'JetBrains Mono', 'IBM Plex Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+  font-weight: 500;
+}
+
+/* ---------- Buttons ---------- */
+.wm .btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 14px 22px;
+  font-family: Impact, 'Haettenschweiler', 'Arial Narrow Bold', 'Barlow Condensed', sans-serif;
+  font-size: 16px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  border: 1.5px solid var(--ink);
+  background: var(--paper);
+  color: var(--ink);
+  cursor: pointer;
+  border-radius: var(--radius);
+  transition: all .15s ease;
+}
+.wm .btn:hover { background: var(--ink); color: var(--paper); }
+.wm .btn:active { transform: translateY(1px); }
+.wm .btn-primary {
+  background: var(--ink);
+  color: #fff;
+  border-color: var(--ink);
+}
+.wm .btn-primary:hover { background: var(--pink); border-color: var(--pink); }
+.wm .btn-pink {
+  background: var(--pink);
+  color: #fff;
+  border-color: var(--pink);
+  box-shadow: 0 4px 14px rgba(0, 198, 224, 0.25);
+}
+.wm .btn-pink:hover { background: var(--pink-2); border-color: var(--pink-2); box-shadow: 0 6px 20px rgba(0, 198, 224, 0.35); color: #fff; }
+.wm .btn-lg {
+  padding: 18px 24px;
+  font-size: 18px;
+}
+
+/* ---------- Chips / badges ---------- */
+.wm .chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 5px 10px;
+  border: 1px solid var(--ink);
+  border-radius: 100px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  background: var(--paper);
+}
+.wm .chip-dark {
+  background: var(--ink);
+  color: #fff;
+  border-color: var(--ink);
+}
+.wm .chip-pink {
+  background: var(--pink);
+  color: #fff;
+  border-color: var(--pink);
+}
+
+/* ---------- Cards ---------- */
+.wm .card {
+  background: var(--paper);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+}
+
+/* Scroll containment for artboards */
+.pdp-scroll {
+  overflow-y: auto;
+  overflow-x: hidden;
+  height: 100%;
+  width: 100%;
+  background: var(--paper);
+  scrollbar-width: thin;
+}
+.pdp-scroll::-webkit-scrollbar { width: 6px; }
+.pdp-scroll::-webkit-scrollbar-thumb { background: var(--ink-4); border-radius: 3px; }
+
+/* ---------- Sections ---------- */
+.sec {
+  padding: 88px 64px;
+  border-bottom: 1px solid var(--line);
+}
+.sec-tight { padding: 56px 64px; }
+.sec-dark {
+  background: var(--ink);
+  color: var(--paper);
+}
+.sec-dark .eyebrow { color: var(--ink-4); }
+.sec-paper-2 { background: var(--paper-2); }
+
+/* ---------- Tickers ---------- */
+@keyframes ticker {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+.ticker {
+  display: flex;
+  width: max-content;
+  animation: ticker 40s linear infinite;
+}
+.ticker > * { padding: 0 28px; white-space: nowrap; }
+
+/* ---------- Underline scribble accent ---------- */
+.pink { color: var(--pink); }
+.teal { color: var(--teal); }
+.hl-pink {
+  background: linear-gradient(transparent 60%, rgba(0, 198, 224, 0.22) 60%);
+}
+.hl-teal {
+  background: linear-gradient(transparent 60%, rgba(0, 198, 224, 0.25) 60%);
+}
+
+/* ---------- Placeholder imagery (subtly striped) ---------- */
+.ph {
+  background: repeating-linear-gradient(
+    -45deg,
+    var(--paper-2),
+    var(--paper-2) 8px,
+    var(--paper-3) 8px,
+    var(--paper-3) 16px
+  );
+  border: 1px solid var(--line-2);
+  color: var(--ink-3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 4px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  text-align: center;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  padding: 12px;
+}
+.ph-dark {
+  background: repeating-linear-gradient(
+    -45deg,
+    #18181b,
+    #18181b 8px,
+    #222226 8px,
+    #222226 16px
+  );
+  border-color: #2a2a2e;
+  color: #6a6a70;
+}
+
+/* Tiny icon lockup for trust strip */
+.icn {
+  width: 14px;
+  height: 14px;
+  display: inline-block;
+  vertical-align: -2px;
+}
+
+/* ---------- Table ---------- */
+.compare {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 14px;
+}
+.compare th, .compare td {
+  padding: 18px 16px;
+  text-align: left;
+  border-bottom: 1px solid var(--line);
+}
+.compare thead th {
+  font-family: Impact, 'Haettenschweiler', 'Arial Narrow Bold', 'Barlow Condensed', sans-serif;
+  font-size: 18px;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  border-bottom: 2px solid var(--ink);
+  vertical-align: bottom;
+  padding-bottom: 14px;
+}
+.compare .us {
+  background: var(--ink);
+  color: #fff;
+}
+.compare .us th { color: #fff; }
+.compare tbody th {
+  font-weight: 500;
+  color: var(--ink-3);
+  width: 28%;
+  background: var(--paper-2);
+}
+.compare td { text-align: center; }
+.compare td.us-col {
+  background: rgba(0, 198, 224, 0.06);
+  font-weight: 700;
+  color: var(--ink);
+}
+.compare .check { color: var(--success); font-weight: 700; }
+.compare .x { color: var(--ink-4); }
+
+/* ---------- Stars ---------- */
+.stars {
+  color: var(--pink);
+  letter-spacing: 1px;
+  font-size: 14px;
+}

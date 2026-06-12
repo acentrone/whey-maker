@@ -1,0 +1,1196 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Whey Maker — Nevels Nutrition</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&family=Caveat:wght@500;700&family=Bungee&display=swap" rel="stylesheet">
+
+<style>
+  :root {
+    /* Bag-pulled palette */
+    --ink: #0e0e10;
+    --ink-2: #1a1a1d;
+    --paper: #fbf5ea;       /* cream from the bag bottom */
+    --paper-2: #f4e9d2;     /* warmer cream */
+    --pink: #ff2d7a;
+    --pink-2: #c4144d;
+    --pink-soft: #ffd4e4;
+    --blue: #00c6e0;
+    --blue-2: #0099b2;
+    --blue-deep: #1e4a8a;
+    --sky-pale: #d8e8f5;
+    --sky-mid: #9abdda;
+    --sky-deep: #4a6f96;
+    --yellow: #ffd400;
+    --yellow-2: #ffb800;
+    --muted: #6c6c6c;
+    --line: #e5e0d2;
+    --success: #1c7a4e;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; background: var(--paper); overflow-x: hidden; }
+  body {
+    font-family: 'Inter', -apple-system, 'Helvetica Neue', Arial, sans-serif;
+    color: var(--ink);
+    -webkit-font-smoothing: antialiased;
+    line-height: 1.5;
+  }
+  img { max-width: 100%; display: block; }
+
+  .display {
+    font-family: Impact, 'Haettenschweiler', 'Arial Narrow Bold', sans-serif;
+    font-weight: 400;
+    line-height: 0.92;
+    letter-spacing: -0.005em;
+    text-transform: uppercase;
+  }
+  .script {
+    font-family: 'Caveat', cursive;
+    font-weight: 700;
+    line-height: 1.05;
+    letter-spacing: 0.01em;
+  }
+  .mono {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+
+  /* ── Marquee ticker ──────────────────────────────────────────── */
+  .ticker {
+    background: var(--ink);
+    color: var(--paper);
+    padding: 10px 0;
+    overflow: hidden;
+    border-bottom: 3px solid var(--pink);
+  }
+  .ticker .row {
+    display: flex;
+    gap: 32px;
+    white-space: nowrap;
+    animation: ticker 28s linear infinite;
+    width: max-content;
+    font-family: Impact, sans-serif;
+    font-size: 18px;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+  }
+  .ticker .row span { display: inline-flex; align-items: center; gap: 32px; }
+  .ticker .row .pink { color: var(--pink); }
+  .ticker .row .blue { color: var(--blue); }
+  .ticker .row .yel { color: var(--yellow); }
+  @keyframes ticker {
+    from { transform: translateX(0); }
+    to   { transform: translateX(-50%); }
+  }
+
+  /* ── Nav ──────────────────────────────────────────────────────── */
+  .nav {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 18px 32px;
+    background: var(--paper);
+    border-bottom: 1px solid var(--line);
+    position: sticky; top: 0; z-index: 50;
+  }
+  @media (max-width: 760px) { .nav { padding: 14px 18px; } }
+  .nav .logo {
+    font-family: Impact, sans-serif;
+    font-size: 24px;
+    letter-spacing: 0.02em;
+    color: var(--ink);
+  }
+  .nav .logo .star { color: var(--pink); padding: 0 2px; }
+  .nav .links { display: flex; gap: 28px; }
+  .nav .links a {
+    font-size: 13px;
+    color: var(--ink);
+    text-decoration: none;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    text-transform: uppercase;
+    font-family: Impact, sans-serif;
+    transition: color .12s;
+  }
+  .nav .links a:hover { color: var(--pink); }
+  .nav .right { display: flex; gap: 14px; align-items: center; }
+  .cart-pill {
+    display: inline-flex; align-items: center; gap: 6px;
+    padding: 9px 16px;
+    background: var(--ink); color: var(--paper);
+    border-radius: 999px;
+    font-family: Impact, sans-serif;
+    font-size: 13px; letter-spacing: 0.04em; text-transform: uppercase;
+    cursor: pointer;
+    transition: background .15s;
+  }
+  .cart-pill:hover { background: var(--pink); }
+  @media (max-width: 900px) { .nav .links { display: none; } }
+
+  /* ── Button ──────────────────────────────────────────────────── */
+  .btn {
+    display: inline-flex; align-items: center; justify-content: center;
+    gap: 10px;
+    padding: 18px 28px;
+    background: var(--pink); color: #fff;
+    border: 3px solid var(--ink);
+    border-radius: 999px;
+    cursor: pointer;
+    font-family: Impact, sans-serif;
+    font-size: 18px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    box-shadow: 4px 4px 0 var(--ink);
+    transition: transform .12s, box-shadow .12s, background .15s;
+  }
+  .btn:hover { transform: translate(-2px, -2px); box-shadow: 6px 6px 0 var(--ink); background: var(--pink-2); }
+  .btn:active { transform: translate(0, 0); box-shadow: 2px 2px 0 var(--ink); }
+  .btn-lg { padding: 22px 36px; font-size: 20px; }
+  .btn-blue { background: var(--blue); }
+  .btn-blue:hover { background: var(--blue-2); }
+  .btn-ink { background: var(--ink); border-color: var(--paper); color: var(--paper); box-shadow: 4px 4px 0 var(--pink); }
+  .btn-ink:hover { background: var(--pink); border-color: var(--ink); box-shadow: 6px 6px 0 var(--ink); }
+  .btn-full { width: 100%; }
+
+  /* ── Hero ─────────────────────────────────────────────────────── */
+  .hero {
+    position: relative;
+    overflow: hidden;
+    background:
+      radial-gradient(ellipse 100% 55% at 50% 18%, rgba(255,212,0,0.55), transparent 60%),
+      radial-gradient(ellipse 90% 60% at 50% 50%, rgba(255,255,255,0.55), transparent 70%),
+      linear-gradient(180deg, #d8e8f5 0%, #f4e9d2 60%, #fbf5ea 100%);
+    border-bottom: 6px solid var(--ink);
+    padding: 80px 32px 0;
+  }
+  @media (max-width: 760px) { .hero { padding: 40px 20px 0; } }
+  .hero::before {
+    content: ''; position: absolute; inset: 0;
+    background-image:
+      radial-gradient(circle at 12% 30%, rgba(255,255,255,0.65) 0%, transparent 18%),
+      radial-gradient(circle at 78% 22%, rgba(255,255,255,0.55) 0%, transparent 22%),
+      radial-gradient(circle at 92% 65%, rgba(255,255,255,0.5) 0%, transparent 18%),
+      radial-gradient(circle at 22% 75%, rgba(255,255,255,0.45) 0%, transparent 16%);
+    pointer-events: none;
+  }
+
+  .hero-grid {
+    max-width: 1280px; margin: 0 auto;
+    display: grid; grid-template-columns: 1.05fr 1fr;
+    gap: 56px;
+    align-items: center;
+    position: relative;
+    z-index: 1;
+  }
+  @media (max-width: 980px) { .hero-grid { grid-template-columns: 1fr; gap: 32px; } }
+
+  .hero-mark {
+    font-family: Impact, sans-serif;
+    text-transform: uppercase;
+    font-size: 22px;
+    letter-spacing: 0.18em;
+    color: var(--ink);
+    display: inline-flex; align-items: center; gap: 12px;
+    margin-bottom: 22px;
+  }
+  .hero-mark::before, .hero-mark::after {
+    content: ''; width: 32px; height: 3px; background: var(--ink);
+  }
+  .hero h1 {
+    margin: 0;
+    font-size: clamp(72px, 11vw, 168px);
+    line-height: 0.86;
+  }
+  .hero h1 .whey {
+    color: var(--pink);
+    -webkit-text-stroke: 3px var(--ink);
+    text-shadow:
+      4px 4px 0 var(--ink),
+      8px 8px 0 var(--blue);
+    transform: rotate(-3deg) skewX(-6deg);
+    display: inline-block;
+  }
+  .hero h1 .maker {
+    color: var(--ink);
+    -webkit-text-stroke: 1px var(--ink);
+    display: block;
+    margin-top: 8px;
+  }
+  .hero-lede {
+    margin: 28px 0 22px;
+    font-size: 18px;
+    line-height: 1.55;
+    max-width: 480px;
+  }
+  .hero-lede b { color: var(--pink); background: var(--paper); padding: 0 4px; }
+
+  .hero-stats {
+    display: flex; gap: 14px; margin-bottom: 28px; flex-wrap: wrap;
+  }
+  .hero-stats .stat {
+    background: var(--paper); border: 3px solid var(--ink);
+    padding: 12px 18px;
+    border-radius: 14px;
+    box-shadow: 3px 3px 0 var(--pink);
+    font-family: Impact, sans-serif;
+    text-transform: uppercase;
+    display: flex; flex-direction: column; align-items: flex-start;
+    min-width: 96px;
+  }
+  .hero-stats .stat .n { font-size: 28px; color: var(--ink); line-height: 1; }
+  .hero-stats .stat .l { font-size: 11px; letter-spacing: 0.08em; color: var(--ink); margin-top: 4px; opacity: 0.7; }
+
+  .hero-badges {
+    display: flex; gap: 10px; flex-wrap: wrap;
+    margin-bottom: 32px;
+  }
+  .pill {
+    display: inline-flex; align-items: center; gap: 6px;
+    padding: 7px 14px;
+    border-radius: 999px;
+    border: 2px solid var(--ink);
+    background: var(--paper);
+    font-family: Impact, sans-serif;
+    font-size: 12px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--ink);
+  }
+  .pill.pink  { background: var(--pink); color: #fff; border-color: var(--ink); }
+  .pill.blue  { background: var(--blue); color: var(--ink); }
+  .pill.yel   { background: var(--yellow); color: var(--ink); }
+  .pill.ink   { background: var(--ink); color: var(--paper); border-color: var(--ink); }
+
+  .hero-buy {
+    background: var(--paper);
+    border: 3px solid var(--ink);
+    border-radius: 18px;
+    padding: 24px;
+    box-shadow: 8px 8px 0 var(--ink);
+    max-width: 460px;
+    margin-bottom: 56px;
+  }
+  .hero-buy .price-row {
+    display: flex; align-items: baseline; justify-content: space-between;
+    margin-bottom: 16px; padding-bottom: 16px;
+    border-bottom: 2px dashed var(--ink);
+  }
+  .hero-buy .price { font-family: Impact, sans-serif; font-size: 44px; color: var(--ink); line-height: 1; }
+  .hero-buy .per { font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink-2); }
+  .hero-buy .per .pink { color: var(--pink); font-weight: 700; }
+  .field-label { font-family: Impact, sans-serif; font-size: 12px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--ink); margin-bottom: 8px; display: flex; justify-content: space-between; }
+  .flavor-chips { display: flex; gap: 8px; margin-bottom: 14px; flex-wrap: wrap; }
+  .flavor-chips button {
+    display: inline-flex; align-items: center; gap: 8px;
+    padding: 8px 14px;
+    border: 2px solid var(--ink); background: var(--paper);
+    border-radius: 999px;
+    font: inherit; color: var(--ink); cursor: pointer;
+    font-family: Impact, sans-serif; font-size: 13px;
+    letter-spacing: 0.04em; text-transform: uppercase;
+    transition: all .12s;
+  }
+  .flavor-chips button:hover { background: var(--yellow); }
+  .flavor-chips button.on { background: var(--pink); color: #fff; }
+  .flavor-chips button .swatch { width: 14px; height: 14px; border-radius: 999px; border: 1px solid rgba(0,0,0,0.3); }
+
+  .qty-atc { display: flex; gap: 10px; align-items: stretch; }
+  .qty {
+    display: flex; align-items: center;
+    border: 2px solid var(--ink);
+    border-radius: 999px;
+    overflow: hidden;
+    background: var(--paper);
+  }
+  .qty button {
+    padding: 12px 14px; background: transparent; border: none; cursor: pointer;
+    font: inherit; color: inherit;
+  }
+  .qty span { padding: 0 12px; font-family: Impact, sans-serif; font-size: 18px; min-width: 24px; text-align: center; }
+
+  .hero-img-wrap {
+    position: relative;
+    aspect-ratio: 1 / 1;
+    max-width: 540px;
+    margin: 0 auto;
+  }
+  .hero-img-wrap img.bag {
+    width: 100%; height: 100%; object-fit: contain;
+    filter: drop-shadow(0 30px 40px rgba(0,0,0,0.25));
+    position: relative; z-index: 2;
+  }
+  .hero-img-wrap .splat {
+    position: absolute; inset: 6% -2% -4% -2%;
+    background: var(--pink);
+    border-radius: 50% 60% 55% 45% / 60% 55% 45% 60%;
+    z-index: 0; opacity: 0.5;
+    transform: rotate(-6deg);
+  }
+  .hero-img-wrap .splat-blue {
+    position: absolute; inset: -2% 4% 8% 8%;
+    background: var(--blue);
+    border-radius: 60% 45% 55% 50% / 45% 60% 55% 50%;
+    z-index: 1; opacity: 0.4;
+    transform: rotate(8deg);
+  }
+  .hero-img-wrap .scribble {
+    position: absolute; z-index: 3;
+    font-family: 'Caveat', cursive; font-weight: 700;
+    color: var(--ink);
+  }
+  .hero-img-wrap .scribble.s1 {
+    top: 2%; right: 4%;
+    font-size: 26px;
+    transform: rotate(8deg);
+    background: var(--yellow);
+    padding: 8px 14px;
+    border: 2px solid var(--ink);
+    border-radius: 999px;
+    box-shadow: 3px 3px 0 var(--ink);
+  }
+  .hero-img-wrap .scribble.s2 {
+    bottom: 4%; left: -2%;
+    font-size: 22px;
+    transform: rotate(-6deg);
+    background: var(--blue);
+    color: var(--ink);
+    padding: 6px 14px;
+    border: 2px solid var(--ink);
+    border-radius: 999px;
+    box-shadow: 3px 3px 0 var(--ink);
+  }
+
+  /* ── Wave divider ───────────────────────────────────────────── */
+  .wave-divider {
+    display: block;
+    width: 100%;
+    height: 60px;
+    color: var(--ink);
+  }
+
+  /* ── Marquee strip 2 (verse) ─────────────────────────────────── */
+  .verse-strip {
+    background: var(--pink);
+    border-top: 6px solid var(--ink);
+    border-bottom: 6px solid var(--ink);
+    color: #fff;
+    padding: 14px 0;
+    overflow: hidden;
+  }
+  .verse-strip .row {
+    display: flex; gap: 56px; white-space: nowrap;
+    animation: ticker 38s linear infinite;
+    width: max-content;
+    font-family: Impact, sans-serif;
+    font-size: 28px; letter-spacing: 0.04em; text-transform: uppercase;
+  }
+  .verse-strip .row .star { color: var(--yellow); margin: 0 12px; font-size: 32px; }
+
+  /* ── Sections ─────────────────────────────────────────────────── */
+  section.sec {
+    padding: 100px 32px;
+    border-bottom: 4px solid var(--ink);
+  }
+  @media (max-width: 760px) { section.sec { padding: 60px 20px; } }
+  section.sec .inner { max-width: 1280px; margin: 0 auto; }
+  section.sec h2 {
+    font-size: clamp(56px, 8vw, 120px);
+    margin: 0 0 24px;
+  }
+  section.sec p.lede {
+    font-size: 17px; line-height: 1.6; max-width: 600px; color: var(--ink-2);
+  }
+  section.sec .head {
+    display: flex; align-items: flex-end; justify-content: space-between;
+    gap: 32px; margin-bottom: 56px;
+  }
+  @media (max-width: 760px) { section.sec .head { flex-direction: column; align-items: flex-start; gap: 14px; margin-bottom: 36px; } }
+
+  .sec-cream { background: var(--paper); }
+  .sec-cream-2 { background: var(--paper-2); }
+  .sec-ink { background: var(--ink); color: var(--paper); }
+  .sec-ink p.lede { color: rgba(255,255,255,0.7); }
+  .sec-pink { background: var(--pink); color: #fff; }
+  .sec-sky {
+    background:
+      radial-gradient(ellipse 80% 60% at 50% 30%, rgba(255,212,0,0.4), transparent 60%),
+      linear-gradient(180deg, var(--sky-pale) 0%, var(--paper) 100%);
+  }
+
+  .hl-yel { background: var(--yellow); padding: 0 8px; box-shadow: -4px 4px 0 var(--ink); }
+  .hl-pink { background: var(--pink); color: #fff; padding: 0 8px; box-shadow: -4px 4px 0 var(--ink); }
+  .hl-blue { background: var(--blue); padding: 0 8px; box-shadow: -4px 4px 0 var(--ink); }
+  .pink { color: var(--pink); }
+  .blue { color: var(--blue); }
+
+  /* ── Meal in a shake ─────────────────────────────────────────── */
+  .meal {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 56px; align-items: center;
+  }
+  @media (max-width: 980px) { .meal { grid-template-columns: 1fr; gap: 32px; } }
+  .meal .photo {
+    border: 4px solid var(--ink);
+    border-radius: 24px;
+    overflow: hidden;
+    box-shadow: 12px 12px 0 var(--pink);
+    aspect-ratio: 4 / 5;
+    transform: rotate(-1.5deg);
+  }
+  .meal .photo img { width: 100%; height: 100%; object-fit: cover; }
+  .meal .stats {
+    display: grid; grid-template-columns: repeat(2, 1fr);
+    gap: 14px; margin-top: 28px;
+  }
+  .meal .stats .stat {
+    border: 3px solid var(--ink); border-radius: 16px;
+    background: var(--paper); padding: 18px;
+  }
+  .meal .stats .stat .n { font-family: Impact, sans-serif; font-size: 42px; line-height: 1; }
+  .meal .stats .stat .l { font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); margin-top: 6px; }
+  .meal .stats .stat:nth-child(1) .n { color: var(--pink); }
+  .meal .stats .stat:nth-child(2) .n { color: var(--blue-2); }
+  .meal .stats .stat:nth-child(3) .n { color: var(--ink); }
+  .meal .stats .stat:nth-child(4) .n { color: var(--yellow-2); }
+
+  /* ── Ingredients ─────────────────────────────────────────────── */
+  .ing-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px;
+  }
+  @media (max-width: 980px) { .ing-grid { grid-template-columns: repeat(2, 1fr); } }
+  @media (max-width: 600px) { .ing-grid { grid-template-columns: 1fr; } }
+  .ing-card {
+    border: 3px solid var(--ink); border-radius: 22px;
+    background: var(--paper); overflow: hidden;
+    transition: transform .15s, box-shadow .15s;
+  }
+  .ing-card:hover { transform: translate(-3px, -3px); box-shadow: 6px 6px 0 var(--ink); }
+  .ing-card .photo { aspect-ratio: 1/1; background: var(--paper-2); border-bottom: 3px solid var(--ink); }
+  .ing-card .photo img { width: 100%; height: 100%; object-fit: cover; }
+  .ing-card .body { padding: 18px 20px 22px; }
+  .ing-card .row1 { display: flex; justify-content: space-between; align-items: baseline; gap: 10px; }
+  .ing-card .name { font-family: Impact, sans-serif; font-size: 24px; line-height: 1.05; margin: 0; text-transform: uppercase; }
+  .ing-card .amt {
+    font-family: Impact, sans-serif;
+    background: var(--pink); color: #fff;
+    font-size: 14px; letter-spacing: 0.04em;
+    padding: 4px 10px; border-radius: 999px;
+    border: 2px solid var(--ink);
+    white-space: nowrap;
+  }
+  .ing-card .why { font-size: 13px; line-height: 1.5; margin: 10px 0 0; color: var(--ink-2); }
+
+  /* ── Comparison ──────────────────────────────────────────────── */
+  .compare {
+    position: relative;
+    display: grid;
+    grid-template-columns: 1.4fr 1fr 1fr 1fr 1fr;
+    border: 4px solid var(--ink);
+    border-radius: 22px;
+    overflow: hidden;
+    background: var(--paper);
+  }
+  .compare .us-bg {
+    position: absolute; top: 0; bottom: 0;
+    left: calc(1.4 / 5.4 * 100%);
+    width: calc(1 / 5.4 * 100%);
+    background: var(--pink);
+    z-index: 0;
+  }
+  .compare .cell {
+    position: relative; z-index: 1;
+    padding: 24px 16px;
+    font-size: 14px;
+    display: flex; align-items: center; justify-content: center;
+    text-align: center;
+    border-bottom: 2px solid var(--line);
+    line-height: 1.35;
+  }
+  .compare .cell.lbl { justify-content: flex-start; text-align: left; color: var(--ink); font-weight: 600; }
+  .compare .cell.head {
+    font-family: Impact, sans-serif;
+    font-size: 18px;
+    text-transform: uppercase;
+    padding: 28px 14px;
+    background: var(--ink);
+    color: var(--paper);
+  }
+  .compare .cell.head.us {
+    background: var(--pink); color: #fff;
+    box-shadow: inset 0 0 0 3px var(--ink);
+  }
+  .compare .cell.us {
+    color: #fff; font-weight: 700;
+    border-bottom-color: rgba(255,255,255,0.25);
+  }
+  .compare .cell:nth-last-child(-n+5) { border-bottom: 0; }
+  @media (max-width: 720px) {
+    .compare { grid-template-columns: 1.2fr 1fr 1fr; }
+    .compare .us-bg { left: calc(1.2 / 3.2 * 100%); width: calc(1 / 3.2 * 100%); }
+    .compare .cell:nth-child(5n+4),
+    .compare .cell:nth-child(5n+5) { display: none; }
+    .compare .cell { padding: 18px 12px; font-size: 12px; }
+    .compare .cell.head { padding: 22px 12px; font-size: 14px; }
+  }
+
+  /* ── Math ─────────────────────────────────────────────────────── */
+  .math-grid {
+    display: grid;
+    grid-template-columns: 1fr auto 1fr auto 1fr auto 1fr;
+    gap: 14px; align-items: center;
+  }
+  @media (max-width: 1080px) {
+    .math-grid { grid-template-columns: 1fr; }
+    .math-grid .op { font-size: 36px !important; transform: rotate(0deg) !important; }
+  }
+  .math-grid .card {
+    border: 3px solid var(--paper);
+    background: var(--ink);
+    border-radius: 16px;
+    padding: 24px 20px;
+  }
+  .math-grid .card .lbl { font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: rgba(255,255,255,0.55); }
+  .math-grid .card .num { font-family: Impact, sans-serif; font-size: 58px; line-height: 1; margin-top: 10px; }
+  .math-grid .card .u { font-family: 'JetBrains Mono', monospace; font-size: 11px; color: rgba(255,255,255,0.6); margin-top: 6px; letter-spacing: 0.06em; text-transform: uppercase; }
+  .math-grid .op {
+    font-family: Impact, sans-serif; font-size: 48px;
+    color: var(--yellow); text-align: center; transform: rotate(-4deg);
+  }
+  .math-foot {
+    margin-top: 28px;
+    font-family: 'JetBrains Mono', monospace; font-size: 11px;
+    color: rgba(255,255,255,0.5); letter-spacing: 0.06em; text-transform: uppercase;
+  }
+
+  /* ── Athletes ─────────────────────────────────────────────────── */
+  .athletes-grid {
+    display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px;
+  }
+  @media (max-width: 980px) { .athletes-grid { grid-template-columns: repeat(2, 1fr); } }
+  .athletes-grid .card {
+    border: 3px solid var(--ink);
+    border-radius: 18px;
+    overflow: hidden;
+    background: var(--paper);
+    box-shadow: 4px 4px 0 var(--ink);
+    transition: transform .15s, box-shadow .15s;
+  }
+  .athletes-grid .card:hover { transform: translate(-2px, -2px); box-shadow: 6px 6px 0 var(--pink); }
+  .athletes-grid .card img { width: 100%; aspect-ratio: 4/5; object-fit: cover; display: block; }
+  .athletes-grid .card .cap {
+    padding: 12px 14px;
+    display: flex; justify-content: space-between; gap: 8px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px; letter-spacing: 0.06em; text-transform: uppercase;
+    color: var(--muted);
+    border-top: 2px solid var(--ink);
+  }
+  .athletes-grid .card .cap .v { color: var(--pink); font-weight: 700; }
+
+  /* ── Founder ─────────────────────────────────────────────────── */
+  .founder {
+    display: grid; grid-template-columns: 1fr 1.1fr; gap: 56px; align-items: center;
+  }
+  @media (max-width: 980px) { .founder { grid-template-columns: 1fr; gap: 32px; } }
+  .founder .portrait {
+    aspect-ratio: 4/5;
+    background: var(--ink); color: rgba(255,255,255,0.4);
+    border: 3px solid var(--ink); border-radius: 24px;
+    box-shadow: 12px 12px 0 var(--blue);
+    transform: rotate(1.5deg);
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'JetBrains Mono', monospace; font-size: 11px;
+    letter-spacing: 0.16em; text-transform: uppercase;
+    text-align: center; padding: 24px;
+  }
+  .founder .credits {
+    display: flex; gap: 32px; margin-top: 28px; padding-top: 28px;
+    border-top: 3px dashed var(--ink);
+  }
+  .founder .credits .num { font-family: Impact, sans-serif; font-size: 40px; color: var(--pink); line-height: 1; }
+  .founder .credits .lbl { font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); margin-top: 4px; }
+
+  /* ── FAQ ─────────────────────────────────────────────────────── */
+  .faq { max-width: 880px; margin: 0 auto; }
+  .faq h2 { text-align: center; margin-bottom: 40px; }
+  .faq-item {
+    border-bottom: 2px solid var(--ink);
+  }
+  .faq-item:first-child { border-top: 2px solid var(--ink); }
+  .faq-item button {
+    width: 100%;
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 22px 0;
+    background: transparent; border: none; cursor: pointer;
+    text-align: left;
+    font: inherit; color: inherit;
+  }
+  .faq-item button .q {
+    font-family: Impact, sans-serif;
+    font-size: 22px;
+    text-transform: uppercase;
+    letter-spacing: 0.01em;
+    transition: color .12s;
+  }
+  .faq-item button:hover .q { color: var(--pink); }
+  .faq-item button .pm {
+    width: 36px; height: 36px;
+    background: var(--pink); color: #fff;
+    border: 2px solid var(--ink); border-radius: 999px;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+    transition: transform .15s;
+  }
+  .faq-item.open button .pm { transform: rotate(45deg); }
+  .faq-item .a {
+    padding: 0 0 22px;
+    font-size: 15px; line-height: 1.6; color: var(--ink-2);
+    max-width: 720px;
+  }
+
+  /* ── Reviews ─────────────────────────────────────────────────── */
+  .reviews {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 18px;
+  }
+  @media (max-width: 760px) { .reviews { grid-template-columns: 1fr; } }
+  .reviews .card {
+    border: 3px solid var(--ink); border-radius: 18px;
+    background: var(--paper);
+    padding: 22px 24px;
+    box-shadow: 4px 4px 0 var(--ink);
+  }
+  .reviews .card .head {
+    display: flex; justify-content: space-between; align-items: center;
+    margin-bottom: 12px;
+  }
+  .reviews .stars { color: var(--pink); }
+  .reviews .when { font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); }
+  .reviews .t { font-family: Impact, sans-serif; font-size: 24px; text-transform: uppercase; margin: 0 0 8px; }
+  .reviews .b { font-size: 14px; line-height: 1.6; color: var(--ink-2); }
+  .reviews .meta {
+    margin-top: 14px; padding-top: 12px;
+    border-top: 2px dashed var(--ink);
+    display: flex; align-items: center; gap: 10px;
+    font-family: 'JetBrains Mono', monospace; font-size: 11px;
+    color: var(--ink-2);
+  }
+  .reviews .avatar {
+    width: 30px; height: 30px;
+    background: var(--pink); color: #fff;
+    border: 2px solid var(--ink); border-radius: 999px;
+    font-family: Impact, sans-serif; font-size: 12px;
+    display: inline-flex; align-items: center; justify-content: center;
+  }
+
+  /* ── Final CTA ───────────────────────────────────────────────── */
+  .final {
+    text-align: center;
+    padding: 140px 32px;
+    background:
+      radial-gradient(ellipse 70% 50% at 50% 0%, rgba(255,212,0,0.5), transparent 60%),
+      linear-gradient(180deg, var(--sky-pale), var(--paper-2));
+    border-bottom: 4px solid var(--ink);
+  }
+  @media (max-width: 760px) { .final { padding: 80px 20px; } }
+  .final h2 {
+    font-size: clamp(80px, 14vw, 200px);
+    margin: 0 0 18px;
+  }
+  .final .ribbon {
+    display: inline-block;
+    background: var(--ink); color: var(--paper);
+    font-family: Impact, sans-serif;
+    font-size: 18px; letter-spacing: 0.18em; text-transform: uppercase;
+    padding: 8px 24px;
+    border-radius: 999px;
+    margin-bottom: 28px;
+    transform: rotate(-2deg);
+  }
+  .final p { font-size: 17px; max-width: 540px; margin: 0 auto 36px; color: var(--ink-2); }
+
+  /* ── Footer ──────────────────────────────────────────────────── */
+  .footer {
+    background: var(--ink); color: var(--paper);
+    padding: 80px 32px 32px;
+  }
+  @media (max-width: 760px) { .footer { padding: 56px 20px 24px; } }
+  .footer .cols {
+    max-width: 1280px; margin: 0 auto;
+    display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 40px;
+    margin-bottom: 48px;
+  }
+  @media (max-width: 760px) { .footer .cols { grid-template-columns: 1fr; gap: 32px; } }
+  .footer .brand .display { font-size: 56px; line-height: 0.92; }
+  .footer .brand .display .star { color: var(--pink); }
+  .footer .brand p { color: rgba(255,255,255,0.55); margin-top: 14px; max-width: 320px; font-size: 14px; line-height: 1.6; }
+  .footer .col h4 { font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: rgba(255,255,255,0.5); font-weight: 500; margin: 0 0 14px; }
+  .footer .col a { display: block; color: rgba(255,255,255,0.8); font-size: 14px; padding: 4px 0; text-decoration: none; }
+  .footer .col a:hover { color: var(--pink); }
+  .footer .legal {
+    max-width: 1280px; margin: 0 auto;
+    border-top: 1px solid rgba(255,255,255,0.15); padding-top: 22px;
+    display: flex; justify-content: space-between; gap: 16px;
+    flex-wrap: wrap;
+    font-family: 'JetBrains Mono', monospace; font-size: 11px;
+    letter-spacing: 0.1em; text-transform: uppercase;
+    color: rgba(255,255,255,0.45);
+  }
+</style>
+
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+</head>
+<body>
+<div id="root"></div>
+
+<script type="text/babel">
+const ASSETS = '/whey-maker/assets';
+
+const FLAVORS = [
+  { name: 'Vanilla Buttercream', short: 'Vanilla', color: '#f7e8c8' },
+];
+
+const INGREDIENTS = [
+  { k: 'whey', img: `${ASSETS}/ingredients/wheyisolate.jpg`, n: 'Grass-fed Whey Isolate', amt: '45 g', why: '90% protein, lowest-lactose form. Rare in mass gainers — most brands cheap out with concentrate.' },
+  { k: 'cluster', img: `${ASSETS}/ingredients/clusterdex.jpg`, n: 'Cluster Dextrin', amt: '140 g', why: 'Japanese-patented branched carb. No sugar spike. Steady two-hour energy release.' },
+  { k: 'sweetpotato', img: `${ASSETS}/ingredients/sweetpotato.jpg`, n: 'Organic Sweet Potato', amt: '40 g', why: 'Real whole-food carb — not maltodextrin filler. Vitamin A, potassium, fiber.' },
+  { k: 'casein', img: `${ASSETS}/ingredients/casein.jpg`, n: 'Micellar Casein', amt: '8 g', why: 'Slow-release protein. Keeps amino acids elevated 6–8 hours after the shake.' },
+  { k: 'collagen', img: `${ASSETS}/ingredients/beef-collagen.jpg`, n: 'Beef Collagen', amt: '7 g', why: 'Joints, tendons, connective tissue — critical for young athletes in growth spurts.' },
+  { k: 'cocoa', img: `${ASSETS}/ingredients/cocovanilla.jpg`, n: 'Cocoa / Vanilla', amt: '—', why: 'Real flavor from real food. No sucralose, no acesulfame-K, no Yellow #5.' },
+];
+
+const COMPARE_COLS = ['', 'Whey Maker', 'Serious Mass', 'Transparent Labs', 'Huel Black'];
+const COMPARE_ROWS = [
+  ['Calories / serving', '1,250', '1,250', '750', '400'],
+  ['Protein', '60 g', '50 g', '30 g', '40 g'],
+  ['Carb source', 'Cluster + sweet potato', 'Maltodextrin', 'Oats + MCT', 'Tapioca'],
+  ['Grass-fed whey isolate', 'yes', 'no', 'yes', 'no'],
+  ['Artificial flavors / colors', 'no', 'yes', 'no', 'no'],
+  ['Cluster dextrin', 'yes', 'no', 'no', 'no'],
+  ['Built for athletes 11+', 'yes', 'no', 'no', 'no'],
+  ['Price / meal', '$3.75', '$2.10', '$4.80', '$3.90'],
+];
+
+const ATHLETES = [
+  { src: `${ASSETS}/athletes/austin-alexander.jpg`, sport: 'Football · 2025 · 4★', meta: '215 → 247 lbs' },
+  { src: `${ASSETS}/athletes/ej-walker.jpg`, sport: 'South Carolina signee', meta: '211 → 245 lbs' },
+  { src: `${ASSETS}/athletes/cam-thomas.jpg`, sport: 'Football · LB · 2026', meta: '205 → 217 lbs' },
+  { src: `${ASSETS}/athletes/nevels-fitness.jpg`, sport: 'Nevels Fitness', meta: '214 → 242 lbs' },
+];
+
+const FAQS = [
+  ['Is this safe for my 13-year-old?', 'Yes. Food-first formula, no stimulants, no proprietary blends, no banned substances. Consult your pediatrician before starting any supplement.'],
+  ['When and how should they take it?', 'One shake per day, post-training or between meals. Mix with 16 oz of whole milk or water. The goal is addition, not replacement.'],
+  ['Will they just get fat?', 'Paired with training, no. The 60 g protein + cluster dextrin drives muscle synthesis and replenishes glycogen — not just fat gain. Athletes in our test group gained lean mass at roughly a 3:1 ratio.'],
+  ['Can I mix it with milk?', 'Yes, and we recommend it. 4 scoops + 16 oz whole milk ≈ 1,550 calories and 70 g protein.'],
+  ['What if the flavor is off?', '30-day full-bag guarantee. Send it back (even half-empty) for a full refund.'],
+  ['Is it third-party tested?', 'Every batch. Heavy metals, pesticides, and protein content verified by Eurofins Labs. NSF Certified for Sport on every lot.'],
+  ['Where do you ship?', 'All 50 US states. Orders ship within 24 hours from our Austin warehouse; 1–2 day delivery to most TX, OK, AR, LA, NM addresses.'],
+];
+
+const REVIEWS = [
+  { n: 'Marissa C.', when: '2 wks ago', t: 'My kid finally hit 160', b: "Couldn't break 140 as a freshman wrestler. Three months on Whey Maker + real lunches and he's at 162 — his coach asked what changed.", stars: 5, tag: 'Verified buyer' },
+  { n: 'Tony R.', when: '1 mo ago', t: 'Actually tastes like vanilla', b: "I've been through every mass gainer on the market. This one doesn't taste like chalk and Splenda. Mixes clean.", stars: 5, tag: 'Repeat customer' },
+  { n: 'Kimberly D.', when: '1 mo ago', t: 'Worth the price for real ingredients', b: '$120 for actually-clean ingredients is the right trade for my son. I was tired of giving up on what was in the cheap stuff.', stars: 5, tag: 'Parent' },
+  { n: 'Chris W.', when: '2 mo ago', t: 'Ships fast, settles clean', b: "Ordered Tuesday, here Thursday. Doesn't foam up overnight in the fridge. Only knock: want a chocolate-peanut-butter flavor.", stars: 4, tag: 'Verified buyer' },
+];
+
+/* ── Icons ───────────────────────────────────────────────────── */
+const Star = ({ filled = true, size = 14 }) => (
+  <svg width={size} height={size} viewBox="0 0 16 16" fill={filled ? 'currentColor' : 'none'} stroke="currentColor" strokeWidth="1.2">
+    <path d="M8 1.5l2 4.2 4.6.6-3.3 3.2.8 4.6L8 11.9l-4.1 2.2.8-4.6L1.4 6.3l4.6-.6z" />
+  </svg>
+);
+const Stars = ({ n = 5, size = 14 }) => (
+  <span className="stars" style={{ display: 'inline-flex', gap: 2 }}>
+    {Array.from({ length: 5 }).map((_, i) => <Star key={i} filled={i < n} size={size} />)}
+  </span>
+);
+const Cart = ({ size = 18 }) => (
+  <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
+    <path d="M3 4h2l2.5 11h11l2-8H6" /><circle cx="9" cy="20" r="1.2" /><circle cx="17" cy="20" r="1.2" />
+  </svg>
+);
+
+const CheckCircle = ({ inverted = false }) => (
+  <svg width="30" height="30" viewBox="0 0 30 30" aria-label="yes">
+    <circle cx="15" cy="15" r="13" fill={inverted ? '#fff' : '#ff2d7a'} stroke="#0e0e10" strokeWidth="2" />
+    <path d="M9 15 l4 4 l8-8" fill="none" stroke={inverted ? '#0e0e10' : '#fff'} strokeWidth="2.6" strokeLinecap="round" strokeLinejoin="round" />
+  </svg>
+);
+const XCircle = ({ inverted = false }) => (
+  <svg width="30" height="30" viewBox="0 0 30 30" aria-label="no">
+    <circle cx="15" cy="15" r="13" fill="#fff" stroke="#0e0e10" strokeWidth="2" />
+    <path d="M10 10 l10 10 M20 10 l-10 10" stroke="#0e0e10" strokeWidth="2.2" strokeLinecap="round" />
+  </svg>
+);
+
+const WaveDivider = ({ fill = 'var(--paper)', flip = false }) => (
+  <svg className="wave-divider" preserveAspectRatio="none" viewBox="0 0 1440 60" style={{ transform: flip ? 'scaleY(-1)' : 'none' }}>
+    <path d="M0,30 C240,55 480,5 720,30 C960,55 1200,5 1440,30 L1440,60 L0,60 Z" fill={fill} />
+  </svg>
+);
+
+function App() {
+  const [flavor, setFlavor] = React.useState(FLAVORS[0].name);
+  const [qty, setQty] = React.useState(1);
+  const [openFaq, setOpenFaq] = React.useState(-1);
+
+  const price = 120;
+
+  const cell = (v, isUs = false) => {
+    if (v === 'yes') return <CheckCircle inverted={isUs} />;
+    if (v === 'no')  return <XCircle inverted={isUs} />;
+    return v;
+  };
+
+  return (
+    <>
+      {/* TICKER */}
+      <div className="ticker">
+        <div className="row">
+          {Array.from({ length: 2 }).map((_, k) => (
+            <span key={k}>
+              <span className="pink">★</span> Real food. Real ingredients.
+              <span className="blue">★</span> Built by an athletic trainer.
+              <span className="yel">★</span> NSF Certified for Sport.
+              <span className="pink">★</span> $3.75 per meal.
+              <span className="blue">★</span> Free shipping over $100.
+              <span className="yel">★</span> Even at the bottom, just look up.
+            </span>
+          ))}
+        </div>
+      </div>
+
+      {/* NAV */}
+      <nav className="nav">
+        <div className="logo">NEVELS<span className="star">★</span>NUTRITION</div>
+        <div className="links">
+          <a>Shop</a><a>Science</a><a>Athletes</a><a>Faith</a><a>FAQ</a>
+        </div>
+        <div className="right">
+          <span className="cart-pill"><Cart size={14}/> Cart · 0</span>
+        </div>
+      </nav>
+
+      {/* HERO */}
+      <section className="hero">
+        <div className="hero-grid">
+          <div>
+            <div className="hero-mark">Real Food Mass Gainer</div>
+            <h1 className="display">
+              <span className="whey">Whey</span>
+              <span className="maker">Maker</span>
+            </h1>
+            <p className="hero-lede">
+              A complete meal in a shake. <b>1,250 calories. 60 g protein. 238 g carbs.</b> Built by an athletic trainer for athletes who actually want to put weight on.
+            </p>
+
+            <div className="hero-stats">
+              <div className="stat"><div className="n">1,250</div><div className="l">Calories</div></div>
+              <div className="stat"><div className="n">60 G</div><div className="l">Protein</div></div>
+              <div className="stat"><div className="n">238 G</div><div className="l">Carbs</div></div>
+            </div>
+
+            <div className="hero-badges">
+              <span className="pill pink">Grass-fed</span>
+              <span className="pill blue">Non-GMO</span>
+              <span className="pill yel">Gluten free</span>
+              <span className="pill">Soy free</span>
+              <span className="pill ink">NSF Certified</span>
+            </div>
+
+            <div className="hero-buy">
+              <div className="price-row">
+                <div>
+                  <div className="price">${price}.00</div>
+                  <div className="per" style={{ marginTop: 4 }}>32 meals per bag · <span className="pink">$3.75 / meal</span></div>
+                </div>
+                <div className="pill ink">12 lb</div>
+              </div>
+
+              <div className="field-label">
+                <span>Flavor</span>
+                <span style={{ fontFamily: 'JetBrains Mono, monospace', textTransform: 'none', letterSpacing: 0 }}>{flavor}</span>
+              </div>
+              <div className="flavor-chips">
+                {FLAVORS.map(f => (
+                  <button key={f.name} className={flavor === f.name ? 'on' : ''} onClick={() => setFlavor(f.name)}>
+                    <span className="swatch" style={{ background: f.color }} />
+                    <span>{f.short}</span>
+                  </button>
+                ))}
+              </div>
+
+              <div className="qty-atc">
+                <div className="qty">
+                  <button onClick={() => setQty(Math.max(1, qty - 1))}>−</button>
+                  <span>{qty}</span>
+                  <button onClick={() => setQty(qty + 1)}>+</button>
+                </div>
+                <button className="btn btn-lg btn-full" style={{ flex: 1 }}>
+                  Add to cart — ${(price * qty).toFixed(2)}
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <div className="hero-img-wrap">
+            <div className="splat" />
+            <div className="splat-blue" />
+            <img className="bag" src={`${ASSETS}/bold/bag-hero.jpg`} alt="Whey Maker — Vanilla Buttercream 12 lb bag" />
+            <div className="scribble s1">New drop</div>
+            <div className="scribble s2">Made in TX</div>
+          </div>
+        </div>
+      </section>
+
+      {/* VERSE STRIP */}
+      <div className="verse-strip">
+        <div className="row">
+          {Array.from({ length: 2 }).map((_, k) => (
+            <span key={k} style={{ display: 'inline-flex', alignItems: 'center' }}>
+              Even at the bottom <span className="star">★</span>
+              Just look up <span className="star">★</span>
+              John 14:6 <span className="star">★</span>
+              Live for the King <span className="star">★</span>
+              Real food, real ingredients <span className="star">★</span>
+            </span>
+          ))}
+        </div>
+      </div>
+
+      {/* MEAL */}
+      <section className="sec sec-cream">
+        <div className="inner meal">
+          <div>
+            <h2 className="display">A meal<br/>in a <span className="hl-pink">shake</span>.</h2>
+            <p className="lede">Most "protein shakes" leave an athlete still 800 calories short of where they need to be. Whey Maker is built as a full meal — real whole-food carbs, four protein sources, zero junk.</p>
+            <div className="stats">
+              {[['1,250', 'Calories'], ['60 g', 'Protein'], ['238 g', 'Carbs'], ['12 g', 'Fat']].map(([n, l]) => (
+                <div key={l} className="stat">
+                  <div className="n">{n}</div>
+                  <div className="l">{l}</div>
+                </div>
+              ))}
+            </div>
+          </div>
+          <div className="photo">
+            <img src={`${ASSETS}/lifestyle/protein-in-kitchen.jpg`} alt="Whey Maker shake on a kitchen counter" />
+          </div>
+        </div>
+      </section>
+
+      {/* INGREDIENTS */}
+      <section className="sec sec-cream-2">
+        <div className="inner">
+          <div className="head">
+            <div>
+              <h2 className="display">High-quality<br/><span className="hl-blue">ingredients</span>.</h2>
+            </div>
+            <p className="lede">What you put in your body matters. We tell you exactly what's in this bag — and where it came from. Six ingredients. No proprietary blends.</p>
+          </div>
+
+          <div className="ing-grid">
+            {INGREDIENTS.map(ing => (
+              <div key={ing.k} className="ing-card">
+                <div className="photo"><img src={ing.img} alt={ing.n} loading="lazy" /></div>
+                <div className="body">
+                  <div className="row1">
+                    <h3 className="name">{ing.n}</h3>
+                    <span className="amt">{ing.amt}</span>
+                  </div>
+                  <p className="why">{ing.why}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* COMPARISON */}
+      <section className="sec sec-cream">
+        <div className="inner">
+          <div className="head">
+            <div>
+              <h2 className="display">How we<br/><span className="hl-yel">stack up</span>.</h2>
+            </div>
+            <p className="lede">Head-to-head on the four specs that matter when you're trying to actually put weight on an athlete.</p>
+          </div>
+          <div className="compare">
+            <div className="us-bg" aria-hidden="true" />
+            {COMPARE_COLS.map((c, i) => (
+              <div key={`h${i}`} className={`cell head ${i === 1 ? 'us' : ''} ${i === 0 ? 'lbl' : ''}`}>{c}</div>
+            ))}
+            {COMPARE_ROWS.flatMap((r, ri) => [
+              <div key={`r${ri}-lbl`} className="cell lbl">{r[0]}</div>,
+              ...r.slice(1).map((v, ci) => {
+                const isUs = ci === 0;
+                return <div key={`r${ri}-c${ci}`} className={`cell ${isUs ? 'us' : ''}`}>{cell(v, isUs)}</div>;
+              }),
+            ])}
+          </div>
+        </div>
+      </section>
+
+      {/* MATH */}
+      <section className="sec sec-ink">
+        <div className="inner">
+          <div className="head">
+            <div>
+              <h2 className="display" style={{ color: 'var(--paper)' }}>Gaining is<br/>a <span className="hl-pink">math problem</span>.</h2>
+            </div>
+            <p className="lede">"Just eat more" isn't a plan. Here's what one shake per day looks like on paper.</p>
+          </div>
+          <div className="math-grid">
+            {[
+              ['Maintenance', '3,000', 'cal / day', '+'],
+              ['Whey Maker', '1,250', 'cal / day', '×', 'var(--pink)'],
+              ['Seven days', '7', 'days', '='],
+              ['Weekly gain', '~2.5', 'lb / week', null, 'var(--yellow)'],
+            ].map((item, i) => (
+              <React.Fragment key={i}>
+                <div className="card">
+                  <div className="lbl">{item[0]}</div>
+                  <div className="num" style={{ color: item[4] || 'var(--paper)' }}>{item[1]}</div>
+                  <div className="u">{item[2]}</div>
+                </div>
+                {item[3] && <div className="op">{item[3]}</div>}
+              </React.Fragment>
+            ))}
+          </div>
+          <div className="math-foot">* 3,500 cal surplus ≈ 1 lb gained · varies with training load</div>
+        </div>
+      </section>
+
+      {/* ATHLETES */}
+      <section className="sec sec-cream">
+        <div className="inner">
+          <div className="head">
+            <div>
+              <h2 className="display">Used by athletes.<br/>Trusted by <span className="hl-blue">parents</span>.</h2>
+            </div>
+            <p className="lede">Before-and-afters from Jordan's gym. Real kids, real timeframes, real food on the side.</p>
+          </div>
+          <div className="athletes-grid">
+            {ATHLETES.map((a, i) => (
+              <div key={i} className="card">
+                <img src={a.src} alt="" loading="lazy" />
+                <div className="cap">
+                  <span>{a.sport}</span>
+                  <span className="v">{a.meta}</span>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* FOUNDER */}
+      <section className="sec sec-cream-2">
+        <div className="inner founder">
+          <div className="portrait">Founder portrait<br/>Jordan Nevels</div>
+          <div>
+            <h2 className="display">"Nothing on the shelf was <span className="hl-yel">good enough</span> for my kids."</h2>
+            <p className="lede">Jordan Nevels spent a decade as an athletic trainer watching middle schoolers try to gain weight on shakes full of maltodextrin, sucralose, and Yellow #5. So he built the one he wished existed.</p>
+            <div className="credits">
+              <div><div className="num">10 yr</div><div className="lbl">Training</div></div>
+              <div><div className="num">400+</div><div className="lbl">Athletes coached</div></div>
+              <div><div className="num">TX</div><div className="lbl">Made &amp; shipped</div></div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* FAQ */}
+      <section className="sec sec-cream">
+        <div className="inner faq">
+          <h2 className="display">Ask anything.</h2>
+          {FAQS.map(([q, a], i) => (
+            <div key={i} className={`faq-item ${openFaq === i ? 'open' : ''}`}>
+              <button onClick={() => setOpenFaq(openFaq === i ? -1 : i)}>
+                <span className="q">{q}</span>
+                <span className="pm">+</span>
+              </button>
+              {openFaq === i && <div className="a">{a}</div>}
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* REVIEWS */}
+      <section className="sec sec-cream-2">
+        <div className="inner">
+          <div className="head">
+            <div>
+              <h2 className="display">Reviews.</h2>
+            </div>
+            <p className="lede">What parents and athletes are saying.</p>
+          </div>
+          <div className="reviews">
+            {REVIEWS.map((r, i) => (
+              <div key={i} className="card">
+                <div className="head" style={{ marginBottom: 12 }}>
+                  <Stars n={r.stars} />
+                  <span className="when">{r.when}</span>
+                </div>
+                <h3 className="t">{r.t}</h3>
+                <p className="b">{r.b}</p>
+                <div className="meta">
+                  <span className="avatar">{r.n.split(' ').map(p => p[0]).slice(0, 2).join('')}</span>
+                  <span style={{ fontFamily: 'Inter, sans-serif', letterSpacing: 0, textTransform: 'none', fontWeight: 600 }}>{r.n}</span>
+                  <span style={{ marginLeft: 'auto' }}>{r.tag}</span>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* FINAL CTA */}
+      <section className="final">
+        <div className="ribbon">Live for the King</div>
+        <h2 className="display">Start <span className="hl-pink">gaining</span>.</h2>
+        <p>32 real meals. $3.75 each. Ships in 1–2 days from Texas. Cancel whenever.</p>
+        <button className="btn btn-lg">Add to cart — $120.00</button>
+      </section>
+
+      {/* FOOTER */}
+      <footer className="footer">
+        <div className="cols">
+          <div className="brand">
+            <div className="display">NEVELS<span className="star">★</span><br/>NUTRITION</div>
+            <p>Real food. Real ingredients. Built in Texas for athletes who show up. John 14:6.</p>
+          </div>
+          <div className="col">
+            <h4>Shop</h4>
+            <a>Whey Maker</a><a>Whey Maker Light (soon)</a><a>Stacks</a><a>Apparel</a>
+          </div>
+          <div className="col">
+            <h4>Learn</h4>
+            <a>How to gain weight</a><a>Ingredient sourcing</a><a>Athletes</a><a>FAQ</a>
+          </div>
+          <div className="col">
+            <h4>Company</h4>
+            <a>About Jordan</a><a>Contact</a><a>Wholesale</a><a>Press</a>
+          </div>
+        </div>
+        <div className="legal">
+          <div>© 2026 Nevels Nutrition, LLC</div>
+          <div>Shipping · Returns · Privacy · Terms</div>
+        </div>
+      </footer>
+    </>
+  );
+}
+
+ReactDOM.createRoot(document.getElementById('root')).render(<App />);
+</script>
+</body>
+</html>

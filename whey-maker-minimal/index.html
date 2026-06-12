@@ -1,0 +1,1402 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Whey Maker — Nevels Nutrition</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&family=Caveat:wght@500;700&display=swap" rel="stylesheet">
+
+<style>
+  :root {
+    --paper: #ffffff;
+    --paper-2: #f8f8f7;
+    --card: #ffffff;
+    --ink: #0e0e10;
+    --ink-2: #2a2a2a;
+    --muted: #6c6c6c;
+    --muted-2: #9a9a96;
+    --line: #ececec;
+    --line-2: #dcdcdc;
+    --dark: #0a0a0a;
+
+    --pink: #ff2d7a;
+    --pink-2: #c4144d;
+    --pink-soft: rgba(255,45,122,0.10);
+    --blue: #00b8e6;
+    --blue-2: #008cb0;
+    --blue-soft: rgba(0,184,230,0.10);
+
+    --success: #1c7a4e;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; background: var(--paper); scroll-behavior: smooth; overflow-x: hidden; }
+  body {
+    font-family: 'Inter', -apple-system, 'Helvetica Neue', Arial, sans-serif;
+    color: var(--ink); -webkit-font-smoothing: antialiased;
+    line-height: 1.6;
+  }
+  img { max-width: 100%; display: block; }
+  a { color: inherit; text-decoration: none; }
+  a:hover { color: var(--blue-2); }
+
+  .display {
+    font-family: Impact, 'Haettenschweiler', 'Arial Narrow Bold', sans-serif;
+    font-weight: 400; line-height: 0.94; letter-spacing: -0.005em;
+    text-transform: uppercase;
+  }
+  .mono {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    color: var(--muted);
+  }
+  .eyebrow {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    color: var(--muted); display: inline-block;
+  }
+  .pink { color: var(--pink); }
+  .blue { color: var(--blue); }
+  .pink-bg { background: var(--pink); color: #fff; }
+  .blue-bg { background: var(--blue); color: #fff; }
+
+  .bound { max-width: 1280px; margin: 0 auto; padding-left: 32px; padding-right: 32px; }
+  @media (max-width: 760px) { .bound { padding-left: 20px; padding-right: 20px; } }
+
+  /* ── Buttons ──────────────────────────────────────────────────── */
+  .btn {
+    display: inline-flex; align-items: center; justify-content: center;
+    gap: 8px; padding: 18px 28px;
+    background: var(--pink); color: #fff;
+    border: 1.5px solid var(--pink);
+    border-radius: 999px; cursor: pointer;
+    font-family: 'Inter', sans-serif;
+    font-size: 15px; font-weight: 600;
+    transition: all .18s ease;
+  }
+  .btn:hover { background: var(--pink-2); border-color: var(--pink-2); }
+  .btn-lg { padding: 22px 36px; font-size: 16px; }
+  .btn-blue { background: var(--blue); border-color: var(--blue); }
+  .btn-blue:hover { background: var(--blue-2); border-color: var(--blue-2); }
+  .btn-outline { background: transparent; color: var(--ink); border-color: var(--ink); }
+  .btn-outline:hover { background: var(--ink); color: #fff; border-color: var(--ink); }
+  .btn-light { background: #fff; color: var(--ink); border-color: #fff; }
+  .btn-light:hover { background: var(--pink); color: #fff; border-color: var(--pink); }
+  .btn-full { width: 100%; }
+
+  /* ── Nav ─────────────────────────────────────────────────────── */
+  .nav {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 22px 32px;
+    border-bottom: 1px solid var(--line);
+    background: var(--paper);
+    position: sticky; top: 0; z-index: 50;
+  }
+  @media (max-width: 760px) { .nav { padding: 16px 20px; } }
+  .nav .logo {
+    font-family: Impact, sans-serif; font-size: 22px; letter-spacing: 0.02em;
+  }
+  .nav .logo .pink { color: var(--pink); }
+  .nav .links { display: flex; gap: 32px; }
+  .nav .links a { font-size: 13px; color: var(--ink-2); font-weight: 500; }
+  .nav .right { display: flex; align-items: center; gap: 18px; }
+  .cart-pill {
+    display: inline-flex; align-items: center; gap: 6px;
+    padding: 8px 14px; border: 1px solid var(--ink);
+    border-radius: 999px; font-size: 12px; font-weight: 600;
+    cursor: pointer; transition: all .15s;
+  }
+  .cart-pill:hover { background: var(--pink); border-color: var(--pink); color: #fff; }
+  @media (max-width: 900px) { .nav .links { display: none; } }
+
+  .breadcrumb { padding: 18px 32px 6px; max-width: 1280px; margin: 0 auto; }
+  @media (max-width: 760px) { .breadcrumb { padding: 14px 20px 4px; } }
+
+  /* ── Hero ─────────────────────────────────────────────────────── */
+  .hero {
+    display: grid;
+    grid-template-columns: 100px 1fr 480px;
+    gap: 40px;
+    max-width: 1280px; margin: 0 auto;
+    padding: 24px 32px 80px;
+    align-items: flex-start;
+  }
+
+  .hero .thumbs {
+    display: flex; flex-direction: column; gap: 10px;
+    position: sticky; top: 110px;
+  }
+  .hero .thumbs .thumb {
+    width: 88px; height: 88px;
+    border: 1px solid var(--line); border-radius: 8px;
+    padding: 6px; background: var(--card);
+    cursor: pointer; display: flex; align-items: center; justify-content: center;
+    overflow: hidden; transition: border-color .15s;
+  }
+  .hero .thumbs .thumb.active { border-color: var(--pink); border-width: 2px; }
+  .hero .thumbs .thumb img { width: 100%; height: 100%; object-fit: cover; }
+  .hero .thumbs .thumb.contain img { object-fit: contain; }
+
+  .hero .gallery .main {
+    background: var(--paper);
+    border-radius: 12px;
+    aspect-ratio: 1/1;
+    display: flex; align-items: center; justify-content: center;
+    position: relative; overflow: hidden;
+  }
+  .hero .gallery .main img.contain { width: 80%; height: 80%; object-fit: contain; }
+  .hero .gallery .main img.cover { width: 100%; height: 100%; object-fit: cover; }
+
+  /* Buy box */
+  .hero .buy h1 {
+    font-size: clamp(56px, 7vw, 88px);
+    margin: 14px 0 18px;
+  }
+  .hero .buy h1 .pink { color: var(--pink); }
+  .hero .buy h1 .blue { color: var(--blue); }
+
+  /* Macro stat blocks — three solid colored tiles, reused in the
+     hero buy box and the "A meal in a shake" section. */
+  .macro-tiles {
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px;
+    margin: 0 0 22px;
+  }
+  .macro-tiles .tile {
+    padding: 22px 14px;
+    border-radius: 12px;
+    text-align: center;
+    color: #fff;
+  }
+  .macro-tiles .tile:nth-child(1) { background: var(--pink); }
+  .macro-tiles .tile:nth-child(2) { background: var(--blue); }
+  .macro-tiles .tile:nth-child(3) { background: var(--ink); }
+  .macro-tiles .tile .n {
+    font-family: Impact, sans-serif;
+    font-size: clamp(32px, 4vw, 52px);
+    line-height: 0.95;
+    color: #fff;
+    white-space: nowrap;
+  }
+  .macro-tiles .tile .l {
+    font-family: 'Inter', sans-serif; font-size: 13px;
+    color: rgba(255,255,255,0.85);
+    margin-top: 8px; font-weight: 500;
+  }
+  /* Larger variant for the meal section (more room to breathe).
+     Cap the clamp so "238 g" / "60 g" stay on one line inside each
+     tile's column. */
+  .macro-tiles.macro-tiles-lg .tile { padding: 28px 14px; }
+  .macro-tiles.macro-tiles-lg .tile .n {
+    font-size: clamp(36px, 4.2vw, 60px);
+  }
+  .macro-tiles.macro-tiles-lg .tile .l { font-size: 14px; margin-top: 10px; }
+
+  .hero .buy .lede {
+    font-size: 15px; color: var(--ink-2); line-height: 1.55;
+    margin: 0 0 18px; max-width: 460px;
+  }
+  .hero .buy .lede b { color: var(--ink); font-weight: 700; }
+
+  .stars { display: inline-flex; gap: 2px; color: var(--pink); align-items: center; }
+  .review-line { display: flex; align-items: center; gap: 10px; font-size: 13px; color: var(--muted); margin-bottom: 22px; }
+  .review-line u { color: var(--blue-2); cursor: pointer; }
+
+  .field { margin-bottom: 16px; }
+  .field .label { display: flex; justify-content: space-between; margin-bottom: 10px; }
+  .field .label .name { color: var(--muted); font-size: 13px; }
+
+  .flavor-row { display: flex; gap: 10px; }
+  .flavor-chip {
+    flex: 1;
+    border: 1px solid var(--line); background: var(--card);
+    border-radius: 999px; padding: 10px 14px;
+    display: flex; align-items: center; gap: 10px;
+    cursor: pointer; font: inherit; color: inherit;
+    transition: border-color .12s;
+  }
+  .flavor-chip:hover { border-color: var(--ink); }
+  .flavor-chip.selected { border: 1.5px solid var(--pink); background: var(--pink-soft); }
+  .flavor-chip .swatch { width: 22px; height: 22px; border-radius: 50%; border: 1px solid rgba(0,0,0,0.12); flex-shrink: 0; }
+  .flavor-chip span { font-size: 13px; font-weight: 500; }
+
+  .price-block {
+    display: flex; justify-content: space-between; align-items: baseline;
+    padding: 16px 18px;
+    border: 1px solid var(--line);
+    border-radius: 12px; background: var(--card);
+    margin-bottom: 14px;
+  }
+  .price-block .display { font-size: 34px; }
+  .price-block .desc { color: var(--muted); font-size: 12px; }
+
+  .qty-atc { display: flex; gap: 10px; margin-bottom: 14px; }
+  .qty {
+    display: flex; align-items: center;
+    border: 1.5px solid var(--ink); border-radius: 999px; overflow: hidden;
+  }
+  .qty button { padding: 14px 16px; background: transparent; border: none; cursor: pointer; font: inherit; color: inherit; }
+  .qty span { padding: 0 12px; font-weight: 600; min-width: 24px; text-align: center; }
+
+  .per-meal {
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 14px 0;
+    border-top: 1px solid var(--line); border-bottom: 1px solid var(--line);
+    margin-bottom: 16px;
+  }
+  .per-meal .display { font-size: 28px; color: var(--pink); }
+  .per-meal .display small { font-size: 13px; color: var(--muted); font-family: inherit; }
+
+  .trust-bullets { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; font-size: 12px; color: var(--ink-2); }
+  .trust-bullets > div { display: flex; align-items: center; gap: 8px; }
+  .trust-bullets svg { color: var(--blue); }
+
+  /* ── Mobile hero — after desktop rules so cascade order works ── */
+  @media (max-width: 1080px) {
+    .hero {
+      grid-template-columns: 56px 1fr;
+      grid-template-areas:
+        "thumbs image"
+        "buy    buy"
+        "nsf    nsf";
+      gap: 10px; padding: 12px 16px 48px;
+    }
+    .hero .thumbs {
+      grid-area: thumbs;
+      display: flex; flex-direction: column; gap: 6px;
+      position: static; top: auto;
+      align-self: stretch; min-height: 0;
+    }
+    .hero .thumbs .thumb {
+      flex: 1 1 0; min-height: 0;
+      width: 100%; height: auto;
+      padding: 3px;
+    }
+    .hero .gallery { display: contents; }
+    .hero .gallery .main {
+      grid-area: image;
+      max-width: none; margin: 0; width: 100%;
+      aspect-ratio: 1 / 1; touch-action: pan-y; cursor: grab;
+    }
+    .hero .buy { grid-area: buy; margin-top: 12px; }
+  }
+
+  /* ── Black transparency bar (faith + claims marquee) ────────── */
+  .strip {
+    background: var(--ink); color: var(--paper);
+    overflow: hidden; padding: 16px 0;
+    border-top: 1px solid var(--ink); border-bottom: 1px solid var(--ink);
+  }
+  .strip .row {
+    display: flex; gap: 56px; white-space: nowrap;
+    animation: ticker 36s linear infinite;
+    width: max-content;
+    font-family: 'Inter', sans-serif;
+    font-size: 15px; font-weight: 500;
+  }
+  .strip .row > span { display: inline-flex; align-items: center; gap: 56px; }
+  .strip .row .pink { color: var(--pink); }
+  .strip .row .blue { color: var(--blue); }
+  .strip .row .dot { color: var(--paper); opacity: 0.4; }
+  /* Star icon in the ticker — SVG keeps a consistent size across systems
+     (the previous unicode ★ rendered at different sizes via font fallback). */
+  .strip .row .star { display: inline-flex; align-items: center; line-height: 1; }
+  .strip .row .star svg { display: block; }
+  @keyframes ticker {
+    from { transform: translateX(0); }
+    to   { transform: translateX(-50%); }
+  }
+
+  /* ── Sections ────────────────────────────────────────────────── */
+  .section { padding: 120px 0; }
+  @media (max-width: 760px) { .section { padding: 72px 0; } }
+  .section.alt { background: var(--paper-2); }
+  .section.dark { background: var(--ink); color: var(--paper); }
+  .section.pink-bg { background: var(--pink); color: #fff; }
+  .section.blue-bg { background: var(--blue); color: #fff; }
+  .section.dark .eyebrow, .section.pink-bg .eyebrow, .section.blue-bg .eyebrow { color: rgba(255,255,255,0.7); }
+  .section .head { margin-bottom: 56px; max-width: 760px; }
+  .section .head h2 {
+    font-size: clamp(48px, 6vw, 88px); margin: 0 0 16px;
+  }
+  .section .head p { color: var(--muted); font-size: 16px; max-width: 560px; margin: 0; }
+  .section.dark .head p,
+  .section.pink-bg .head p,
+  .section.blue-bg .head p { color: rgba(255,255,255,0.78); }
+
+  /* ── NSF Section (blue) ─────────────────────────────────────── */
+  .nsf-section {
+    padding: 96px 0;
+    background: var(--blue);
+    color: #fff;
+    border-top: 1px solid rgba(0,0,0,0.1);
+  }
+  @media (max-width: 760px) { .nsf-section { padding: 64px 0; } }
+  .nsf-section .inner {
+    display: grid; grid-template-columns: 1fr 1.4fr; gap: 56px;
+    align-items: center;
+  }
+  @media (max-width: 880px) { .nsf-section .inner { grid-template-columns: 1fr; gap: 32px; } }
+  .nsf-section .badge {
+    background: #fff;
+    border-radius: 18px;
+    padding: 32px;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .nsf-section .badge img { width: 100%; max-width: 320px; height: auto; }
+  .nsf-section .call {
+    font-family: 'Inter', sans-serif; font-size: 13px;
+    color: rgba(255,255,255,0.9); font-weight: 500;
+    background: rgba(0,0,0,0.18);
+    padding: 8px 16px; border-radius: 999px;
+    display: inline-block; margin-bottom: 18px;
+  }
+  .nsf-section h2 {
+    font-family: Impact, sans-serif; font-weight: 400;
+    font-size: clamp(40px, 5.5vw, 76px);
+    line-height: 1.0;
+    margin: 0 0 18px; text-transform: uppercase; color: #fff;
+  }
+  .nsf-section p { font-size: 16px; max-width: 560px; color: rgba(255,255,255,0.92); line-height: 1.6; }
+  .nsf-section .check-list {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 10px;
+    margin-top: 22px;
+  }
+  @media (max-width: 600px) { .nsf-section .check-list { grid-template-columns: 1fr; } }
+  .nsf-section .check-list div {
+    display: flex; align-items: center; gap: 10px;
+    font-family: 'Inter', sans-serif; font-size: 15px; font-weight: 500;
+  }
+  .nsf-section .check-list .pip {
+    width: 22px; height: 22px; border-radius: 999px;
+    background: #fff; color: var(--blue);
+    display: inline-flex; align-items: center; justify-content: center;
+    flex-shrink: 0; font-size: 14px;
+  }
+
+  /* ── Meal in a shake — food composition section ─────────────── */
+  .meal-section { background: var(--paper); }
+  .meal {
+    display: grid; grid-template-columns: 1fr 1.2fr; gap: 56px; align-items: center;
+  }
+  @media (max-width: 980px) { .meal { grid-template-columns: 1fr; gap: 40px; } }
+  .meal h2 { font-size: clamp(56px, 7vw, 96px); margin: 0 0 18px; }
+  .meal .lede { font-size: 17px; color: var(--ink-2); line-height: 1.65; max-width: 440px; }
+  .meal .lede b { color: var(--ink); }
+  /* Meal section macros reuse .macro-tiles with .macro-tiles-lg modifier */
+  .meal .macro-tiles { margin-top: 32px; margin-bottom: 0; }
+
+  /* Labeled-shake diagram — image sits clean against the section
+     with the same rounded corners as the other cards on the page. */
+  .shake-diagram {
+    display: flex; align-items: center; justify-content: center;
+  }
+  .shake-diagram img {
+    width: 100%; height: auto;
+    border-radius: 20px;
+    display: block;
+  }
+
+  /* ── Rolls Royce ingredients section ─────────────────────────── */
+  .ings { background: var(--paper-2); }
+
+  /* Compact ingredient tiles */
+  .ing-block { margin-top: 32px; }
+  .ing-block:first-of-type { margin-top: 0; }
+  .ing-block-head {
+    display: flex; justify-content: space-between; align-items: baseline;
+    gap: 16px;
+    padding-bottom: 14px; margin-bottom: 18px;
+    border-bottom: 1px solid var(--line);
+  }
+  .ing-block-head .h {
+    font-family: Impact, 'Haettenschweiler', 'Arial Narrow Bold', sans-serif;
+    font-weight: 400;
+    font-size: clamp(28px, 3.4vw, 44px);
+    line-height: 0.94;
+    letter-spacing: -0.005em;
+    text-transform: uppercase;
+    color: var(--ink);
+  }
+  .ing-block-head .h .pink { color: var(--pink); }
+  .ing-block-head .h .blue { color: var(--blue); }
+  .ing-block-head .t { font-size: 14px; color: var(--muted); white-space: nowrap; }
+  .ing-block-head .t .pink { color: var(--pink); font-weight: 700; }
+  .ing-block-head .t .blue { color: var(--blue); font-weight: 700; }
+  .ing-tiles {
+    display: grid; grid-template-columns: repeat(5, 1fr); gap: 10px;
+  }
+  @media (max-width: 980px) { .ing-tiles { grid-template-columns: repeat(3, 1fr); } }
+  @media (max-width: 560px) { .ing-tiles { grid-template-columns: repeat(2, 1fr); } }
+  .ing-tile {
+    background: var(--paper); border: 1px solid var(--line);
+    border-radius: 12px; overflow: hidden;
+    display: flex; flex-direction: column;
+  }
+  .ing-tile .ph { position: relative; aspect-ratio: 1; background: #f4ede1; overflow: hidden; }
+  .ing-tile .ph img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .ing-tile .ph .tm {
+    position: absolute; top: 8px; left: 8px;
+    font-family: 'Inter', sans-serif; font-weight: 600; font-size: 10px;
+    background: var(--ink); color: #fff;
+    padding: 3px 7px; border-radius: 4px;
+  }
+  .ing-tile .ph .tm.pink { background: var(--pink); }
+  .ing-tile .ph .tm.blue { background: var(--blue); }
+  .ing-tile .body { padding: 10px 12px 12px; flex: 1; display: flex; flex-direction: column; }
+  .ing-tile .n { font-family: 'Inter', sans-serif; font-weight: 600; font-size: 13px; line-height: 1.25; color: var(--ink); }
+  .ing-tile .a { font-family: 'Inter', sans-serif; font-weight: 700; font-size: 12px; color: var(--pink); margin-top: 4px; }
+  .ing-tile .a.blue { color: var(--blue); }
+  .ing-tile .sub { margin-top: 6px; font-size: 11px; color: var(--muted); line-height: 1.4; }
+
+  /* NuFlow one-liner */
+  .nuflow-note {
+    margin-top: 24px;
+    padding: 16px 20px;
+    background: var(--paper); border: 1px solid var(--line);
+    border-radius: 12px;
+    font-size: 14px; line-height: 1.55; color: var(--ink-2);
+  }
+  .nuflow-note b { color: var(--pink); }
+
+  /* Tighter "No" pills band */
+  .no-band {
+    display: flex; flex-wrap: wrap; gap: 8px;
+    margin-top: 20px;
+  }
+  .no-band .pill-no {
+    background: var(--paper); border: 1px solid var(--line);
+    border-radius: 999px;
+    padding: 8px 14px;
+    font-family: 'Inter', sans-serif; font-size: 13px; font-weight: 500;
+    color: var(--ink-2);
+  }
+  .no-band .pill-no .x { color: var(--pink); margin-right: 6px; }
+
+  /* ── Comparison ──────────────────────────────────────────────── */
+  .compare {
+    position: relative; display: grid;
+    grid-template-columns: 1.6fr 1fr 1fr 1fr 1fr;
+  }
+  .compare .us-bg {
+    position: absolute; top: 0; bottom: 0;
+    left: calc(1.6 / 5.6 * 100%); width: calc(1 / 5.6 * 100%);
+    background: var(--pink); border-radius: 20px;
+    z-index: 0; pointer-events: none;
+  }
+  .compare .cell {
+    position: relative; z-index: 1;
+    padding: 28px 20px; font-size: 14px;
+    display: flex; align-items: center; justify-content: center;
+    text-align: center; line-height: 1.4;
+    border-bottom: 1px solid var(--line); background: transparent;
+    color: var(--ink);
+  }
+  .compare .cell.lbl { justify-content: flex-start; text-align: left; color: var(--ink); font-weight: 500; }
+  .compare .cell.head {
+    font-family: 'Inter', sans-serif; font-size: 15px; font-weight: 600;
+    padding: 32px 18px;
+    color: var(--ink);
+  }
+  .compare .cell.us { color: #fff; font-weight: 700; border-bottom: 1px solid rgba(255,255,255,0.20); }
+  .compare .cell.head.us { border-bottom: 1px solid rgba(255,255,255,0.28); }
+  .compare .cell:nth-last-child(-n+5) { border-bottom: 0; }
+  @media (max-width: 720px) {
+    .compare { grid-template-columns: 1.4fr 1fr 1fr; }
+    .compare .us-bg { left: calc(1.4 / 3.4 * 100%); width: calc(1 / 3.4 * 100%); }
+    .compare .cell:nth-child(5n+4),
+    .compare .cell:nth-child(5n+5) { display: none; }
+    .compare .cell:nth-last-child(-n+5) { border-bottom: 1px solid var(--line); }
+    .compare .cell:nth-last-child(-n+3) { border-bottom: 0; }
+    .compare .cell { padding: 22px 14px; font-size: 12px; }
+    .compare .cell.head { padding: 24px 14px; font-size: 13px; }
+  }
+
+  /* ── Math section ────────────────────────────────────────────── */
+  .math-grid {
+    display: grid;
+    grid-template-columns: 1fr auto 1fr auto 1fr;
+    gap: 14px; align-items: center;
+  }
+  @media (max-width: 980px) {
+    .math-grid { grid-template-columns: 1fr; }
+    .math-grid .op { font-size: 28px !important; }
+  }
+  .math-grid .card {
+    border: 1px solid #2a2a2a; background: #141414;
+    border-radius: 14px; padding: 28px 22px;
+  }
+  .math-grid .card .num { font-family: Impact, sans-serif; font-size: 60px; line-height: 1; margin-top: 10px; }
+  .math-grid .card .lbl { font-family: 'Inter', sans-serif; font-size: 13px; color: rgba(255,255,255,0.65); font-weight: 500; }
+  .math-grid .card .u { font-family: 'Inter', sans-serif; font-size: 12px; color: rgba(255,255,255,0.55); margin-top: 6px; }
+  .math-grid .op { font-family: Impact, sans-serif; font-size: 40px; color: rgba(255,255,255,0.4); text-align: center; }
+  .math-payoff {
+    margin-top: 48px;
+    padding-top: 48px;
+    border-top: 1px solid rgba(255,255,255,0.12);
+    text-align: center;
+  }
+  .math-payoff .display {
+    font-size: clamp(40px, 5.5vw, 72px); margin: 0 0 12px; color: #fff;
+  }
+  .math-payoff .display .pink { color: var(--pink); }
+  .math-payoff .display .blue { color: var(--blue); }
+  .math-payoff p { color: rgba(255,255,255,0.7); font-size: 15px; max-width: 580px; margin: 0 auto; }
+
+  /* ── Athletes ───────────────────────────────────────────────── */
+  .athletes { display: grid; grid-template-columns: repeat(4,1fr); gap: 14px; }
+  @media (max-width: 880px) { .athletes { grid-template-columns: repeat(2,1fr); } }
+  .athletes .card {
+    border: 1px solid var(--line); border-radius: 12px;
+    overflow: hidden; background: var(--card);
+  }
+  .athletes .card img { width: 100%; aspect-ratio: 4/5; object-fit: cover; display: block; }
+  .athletes .card .cap {
+    padding: 14px 16px;
+    display: flex; justify-content: space-between; gap: 8px;
+    font-family: 'Inter', sans-serif; font-size: 12px;
+    color: var(--muted);
+  }
+  .athletes .card .cap .v { color: var(--pink); font-weight: 700; }
+
+  /* ── Founder ────────────────────────────────────────────────── */
+  .founder {
+    display: grid; grid-template-columns: 1fr 1.2fr; gap: 64px; align-items: center;
+  }
+  @media (max-width: 980px) { .founder { grid-template-columns: 1fr; gap: 40px; } }
+  .founder .portrait {
+    aspect-ratio: 4/5; background: var(--paper-2);
+    border: 1px solid var(--line); border-radius: 16px;
+    overflow: hidden; display: flex; align-items: center; justify-content: center;
+    color: var(--muted); padding: 24px;
+    font-family: 'Inter', sans-serif; font-size: 14px; text-align: center;
+  }
+  .founder h2 { font-size: clamp(40px, 5vw, 64px); margin: 0 0 20px; }
+  .founder h2 .pink { color: var(--pink); }
+  .founder h2 .blue { color: var(--blue); }
+  .founder .credits {
+    margin-top: 32px; padding-top: 24px;
+    border-top: 1px solid var(--line);
+    display: flex; flex-wrap: wrap; gap: 40px;
+  }
+  .founder .credits .display { font-size: 32px; }
+  .founder .credits .display.pink { color: var(--pink); }
+  .founder .credits .display.blue { color: var(--blue); }
+  .founder-quote {
+    margin-top: 20px;
+    font-family: 'Caveat', cursive;
+    font-size: 26px; color: var(--pink); line-height: 1.2;
+  }
+
+  /* ── Faith mission section (pink) ───────────────────────────── */
+  .mission { background: var(--pink); color: #fff; padding: 100px 0; }
+  @media (max-width: 760px) { .mission { padding: 64px 0; } }
+  .mission .inner {
+    display: grid; grid-template-columns: 1.2fr 1fr;
+    gap: 56px; align-items: center;
+  }
+  @media (max-width: 880px) { .mission .inner { grid-template-columns: 1fr; gap: 32px; } }
+  .mission .ribbon {
+    display: inline-block;
+    background: rgba(0,0,0,0.20);
+    font-family: 'Inter', sans-serif; font-size: 13px; font-weight: 500;
+    padding: 8px 16px; border-radius: 999px;
+    margin-bottom: 18px;
+  }
+  .mission h2 {
+    font-family: Impact, sans-serif; font-weight: 400;
+    font-size: clamp(44px, 6vw, 76px); line-height: 1.0;
+    margin: 0 0 22px; text-transform: uppercase; color: #fff;
+  }
+  .mission p { font-size: 16px; line-height: 1.65; max-width: 540px; }
+  .mission .verse {
+    font-family: 'Caveat', cursive; font-size: 32px;
+    margin-top: 22px; opacity: 0.95;
+  }
+  .mission-side {
+    border: 2px dashed rgba(255,255,255,0.4); border-radius: 18px;
+    padding: 32px; text-align: center;
+  }
+  .mission-side .big {
+    font-family: 'Caveat', cursive; font-weight: 700;
+    font-size: clamp(28px, 3.4vw, 42px);
+    line-height: 1.18; margin: 0 0 18px;
+    color: #fff;
+  }
+  .mission-side .lil {
+    font-family: 'Inter', sans-serif; font-size: 14px;
+    opacity: 0.85; font-weight: 500;
+  }
+
+  /* ── FAQ ─────────────────────────────────────────────────────── */
+  .faq h2 { font-size: clamp(48px, 6vw, 88px); margin: 0 0 48px; text-align: center; }
+  .faq-list { max-width: 880px; margin: 0 auto; }
+  .faq-item { border-bottom: 1px solid var(--line); }
+  .faq-item:first-child { border-top: 1px solid var(--line); }
+  .faq-item button {
+    width: 100%; display: flex; justify-content: space-between; align-items: center;
+    padding: 22px 0; background: transparent; border: none; cursor: pointer;
+    text-align: left; font: inherit; color: inherit;
+  }
+  .faq-item button:hover .q { color: var(--pink); }
+  .faq-item button .q { font-size: 17px; font-weight: 500; transition: color .15s; }
+  .faq-item button .pm { width: 24px; height: 24px; color: var(--blue); display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+  .faq-item .a { padding: 0 0 22px; font-size: 15px; color: var(--ink-2); line-height: 1.6; max-width: 720px; }
+
+  /* ── Results (renamed from Reviews) ────────────────────────── */
+  .reviews-grid { display: grid; grid-template-columns: 1fr 2fr; gap: 64px; }
+  @media (max-width: 880px) { .reviews-grid { grid-template-columns: 1fr; gap: 40px; } }
+  .reviews-grid .summary h2 { font-size: clamp(40px, 5vw, 64px); margin: 0 0 16px; }
+  .reviews-grid .summary h2 .pink { color: var(--pink); }
+  .review-distribution { margin-top: 12px; }
+  .review-distribution .bar-row {
+    display: flex; align-items: center; gap: 10px; margin-bottom: 6px;
+    font-family: 'JetBrains Mono', monospace; font-size: 12px;
+  }
+  .review-distribution .bar { flex: 1; height: 6px; background: var(--line); border-radius: 999px; overflow: hidden; }
+  .review-distribution .bar > div { height: 100%; background: var(--pink); }
+
+  .review-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+  @media (max-width: 760px) { .review-cards { grid-template-columns: 1fr; } }
+  .review-cards .card {
+    background: var(--card); border: 1px solid var(--line);
+    border-radius: 14px; padding: 24px;
+  }
+  .review-cards .card .display { font-size: 22px; margin: 10px 0 8px; }
+  .review-cards .card .body { font-size: 14px; color: var(--ink-2); line-height: 1.55; }
+  .review-cards .card .meta {
+    margin-top: 16px; padding-top: 14px;
+    border-top: 1px dashed var(--line);
+    display: flex; justify-content: space-between; align-items: center;
+    font-family: 'Inter', sans-serif; font-size: 12px; color: var(--muted);
+  }
+  .avatar {
+    width: 32px; height: 32px; border-radius: 50%;
+    background: var(--pink-soft); color: var(--pink-2);
+    font-family: Impact, sans-serif; font-size: 13px;
+    display: inline-flex; align-items: center; justify-content: center;
+    margin-right: 8px;
+  }
+  .review-cards .card .meta .who {
+    display: flex; align-items: center; color: var(--ink-2);
+    font-family: 'Inter', sans-serif; font-size: 13px;
+    letter-spacing: 0; text-transform: none;
+  }
+  .parent-video {
+    margin-top: 32px;
+    display: grid; grid-template-columns: 1fr 1fr; gap: 18px;
+  }
+  @media (max-width: 760px) { .parent-video { grid-template-columns: 1fr; } }
+  .parent-video .vid {
+    aspect-ratio: 9 / 16;
+    border-radius: 14px;
+    background: var(--ink);
+    position: relative; overflow: hidden;
+  }
+  .parent-video .vid iframe {
+    position: absolute; inset: 0;
+    width: 100%; height: 100%; border: 0;
+  }
+
+  /* ── Final CTA ───────────────────────────────────────────────── */
+  .cta {
+    background: var(--ink); color: var(--paper);
+    text-align: center; padding: 140px 32px;
+  }
+  @media (max-width: 760px) { .cta { padding: 80px 24px; } }
+  .cta h2 { font-size: clamp(64px, 10vw, 144px); margin: 0 0 18px; color: #fff; }
+  .cta h2 .pink { color: var(--pink); }
+  .cta h2 .blue { color: var(--blue); }
+  .cta p { color: rgba(255,255,255,0.7); max-width: 520px; margin: 0 auto 36px; }
+  .cta .verse {
+    font-family: 'Caveat', cursive; font-size: 26px; color: var(--pink);
+    margin-bottom: 28px;
+  }
+
+  /* ── Footer ──────────────────────────────────────────────────── */
+  .footer {
+    background: var(--ink); color: var(--paper);
+    padding: 80px 32px 32px;
+  }
+  @media (max-width: 760px) { .footer { padding: 56px 20px 24px; } }
+  .footer .cols {
+    max-width: 1280px; margin: 0 auto;
+    display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 48px;
+    margin-bottom: 56px;
+  }
+  @media (max-width: 760px) { .footer .cols { grid-template-columns: 1fr; gap: 32px; } }
+  .footer .brand .display { font-size: 56px; line-height: 0.92; }
+  .footer .brand .display .pink { color: var(--pink); }
+  .footer .brand p { color: var(--muted-2); margin-top: 14px; max-width: 320px; font-size: 14px; }
+  .footer .brand .verse {
+    font-family: 'Caveat', cursive; font-size: 22px; color: var(--pink);
+    margin-top: 12px;
+  }
+  .footer .col h4 { font-family: 'Inter', sans-serif; font-size: 13px; color: var(--muted-2); font-weight: 600; margin: 0 0 14px; }
+  .footer .col a { display: block; color: #d4d4d8; font-size: 14px; padding: 4px 0; }
+  .footer .col a:hover { color: var(--pink); }
+  .footer .legal {
+    max-width: 1280px; margin: 0 auto;
+    border-top: 1px solid #2a2a2a; padding-top: 24px;
+    display: flex; justify-content: space-between; gap: 16px;
+    flex-wrap: wrap;
+    font-family: 'Inter', sans-serif; font-size: 13px; color: var(--muted-2);
+  }
+</style>
+
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+</head>
+<body>
+<div id="root"></div>
+
+<script type="text/babel">
+const ASSETS = '/whey-maker/assets';
+
+/* ── Icons ───────────────────────────────────────────────────── */
+const Icon = {
+  Star: ({filled=true, size=14}) => (
+    <svg width={size} height={size} viewBox="0 0 16 16" fill={filled?'currentColor':'none'} stroke="currentColor" strokeWidth="1.2">
+      <path d="M8 1.5l2 4.2 4.6.6-3.3 3.2.8 4.6L8 11.9l-4.1 2.2.8-4.6L1.4 6.3l4.6-.6z"/>
+    </svg>
+  ),
+  Cart: ({size=20}) => (
+    <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
+      <path d="M3 4h2l2.5 11h11l2-8H6"/><circle cx="9" cy="20" r="1.2"/><circle cx="17" cy="20" r="1.2"/>
+    </svg>
+  ),
+  Search: ({size=20}) => (
+    <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round"><circle cx="11" cy="11" r="6.5"/><path d="M20 20l-4-4"/></svg>
+  ),
+  Plus: ({size=18}) => (<svg width={size} height={size} viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round"><path d="M8 3v10M3 8h10"/></svg>),
+  Minus: ({size=18}) => (<svg width={size} height={size} viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round"><path d="M3 8h10"/></svg>),
+  Leaf: ({size=16}) => (<svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round"><path d="M20 4c-9 0-14 5-14 12 0 2 .5 3 1 4"/><path d="M20 4c0 7-4 13-13 15"/></svg>),
+  Flask: ({size=16}) => (<svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round"><path d="M9 3h6M10 3v6l-5 9a2 2 0 002 3h10a2 2 0 002-3l-5-9V3"/><path d="M7.5 14h9"/></svg>),
+  Shield: ({size=16}) => (<svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round"><path d="M12 3l8 3v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6z"/><path d="M8.5 12l2.5 2.5L15.5 10"/></svg>),
+  Truck: ({size=16}) => (<svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round"><path d="M2 6h12v10H2zM14 10h5l3 3v3h-8"/><circle cx="6" cy="17" r="1.5"/><circle cx="18" cy="17" r="1.5"/></svg>),
+  Play: ({size=18}) => (<svg width={size} height={size} viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>),
+};
+
+const Stars = ({n=5, size=14}) => (
+  <span className="stars">{Array.from({length:5}).map((_,i)=>(<Icon.Star key={i} filled={i<n} size={size}/>))}</span>
+);
+
+const CheckCircle = ({inverted=false}) => (
+  <svg width="28" height="28" viewBox="0 0 28 28" aria-label="yes">
+    <circle cx="14" cy="14" r="13" fill={inverted ? '#fff' : '#ff2d7a'}/>
+    <path d="M8 14l4 4 8-8" fill="none" stroke={inverted ? '#ff2d7a' : '#fff'} strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round"/>
+  </svg>
+);
+const XCircle = ({inverted=false}) => (
+  <svg width="28" height="28" viewBox="0 0 28 28" aria-label="no">
+    <circle cx="14" cy="14" r="13" fill="none" stroke={inverted ? 'rgba(255,255,255,0.7)' : '#cfcfcf'} strokeWidth="1.5"/>
+    <path d="M9 9l10 10M19 9l-10 10" stroke={inverted ? 'rgba(255,255,255,0.9)' : '#bcbcbc'} strokeWidth="1.8" strokeLinecap="round"/>
+  </svg>
+);
+
+/* ── Data ────────────────────────────────────────────────────── */
+const FLAVORS = [
+  { name: 'Vanilla Buttercream', short: 'Vanilla', color: '#f7e8c8' },
+  // Add future flavors here.
+];
+
+const PROTEINS = [
+  { n: 'Whey Isolate', amt: '30 g', img: `${ASSETS}/ingredients/wheyisolate.jpg` },
+  { n: 'Micellar Casein', amt: '20 g', img: `${ASSETS}/ingredients/casein.jpg` },
+  { n: 'Beef Collagen', amt: '10 g', img: `${ASSETS}/ingredients/beef-collagen.jpg` },
+];
+const CARBS = [
+  { n: 'Brown Rice Maltodextrin', amt: '200 g', img: `${ASSETS}/ingredients/maltodextrin.jpg` },
+  { n: 'Cluster Dextrin', tm: 'pink', amt: '20 g', img: `${ASSETS}/ingredients/clusterdex.jpg` },
+  { n: 'Sweet Potato', amt: '20 g', img: `${ASSETS}/ingredients/sweetpotato.jpg` },
+  { n: 'Oat Flour', amt: '10 g', img: `${ASSETS}/ingredients/oat-flour.jpg` },
+  { n: 'ModCarb', tm: 'blue', amt: '10 g', img: `${ASSETS}/ingredients/modcarb.jpg`, sub: 'Oat bran · Amaranth · Quinoa · Buckwheat · Millet · Chia' },
+];
+const FRUITS = { n: 'VitaBerry', tm: 'pink', amt: '1 g', img: `${ASSETS}/ingredients/vitaberry.jpg`, sub: 'Strawberry · Raspberry · Blueberry · Tart cherry · Elderberry · Cranberry' };
+const VEGGIES = { n: 'VitaVeggie', tm: 'blue', amt: '1 g', img: `${ASSETS}/ingredients/vitaveggie.jpg`, sub: 'Broccoli · Sprouts · Tomato · Carrot · Spinach · Kale' };
+const FUNCTIONAL = [
+  { n: 'Tart Cherry', amt: '250 mg', img: `${ASSETS}/ingredients/tart-cherry-powder.jpg` },
+  { n: 'Protease',    amt: '50 mg',  img: `${ASSETS}/ingredients/protease.jpg` },
+  { n: 'Amylase',     amt: '50 mg',  img: `${ASSETS}/ingredients/amylase.jpg` },
+];
+
+const NO_LIST = [
+  'No Sucralose',
+  'No Artificial Sweeteners',
+  'No Soy',
+  'Gluten-Free',
+  'No Silicone Dioxide',
+  'Zero Junk',
+];
+
+const COMPARE_COLS = ['', 'Whey Maker', 'Serious Mass', 'Transparent Labs', 'Huel Black'];
+const COMPARE_ROWS = [
+  ['Calories / serving', '1,250', '1,250', '750', '400'],
+  ['Protein', '60 g', '50 g', '30 g', '40 g'],
+  ['Grass-fed protein sources', 'yes', 'no', 'yes', 'no'],
+  ['Organic carb sources', 'yes', 'no', 'no', 'no'],
+  ['Cluster dextrin', 'yes', 'no', 'no', 'no'],
+  ['Organic ModCarb (6 whole grains)', 'yes', 'no', 'no', 'no'],
+  ['Organic fruit & vegetable blend', 'yes', 'no', 'no', 'no'],
+  ['Sucralose', 'no', 'yes', 'no', 'no'],
+  ['NSF Certified for Sport', 'yes', 'no', 'no', 'no'],
+  ['Built for athletes 11+', 'yes', 'no', 'no', 'no'],
+  ['Price / meal', '$3.75', '$2.10', '$4.80', '$3.90'],
+];
+
+const ATHLETES = [
+  { src: `${ASSETS}/athletes/austin-alexander.jpg`, sport: 'Football · 2025 · 4★', meta: '215 → 247 lbs' },
+  { src: `${ASSETS}/athletes/ej-walker.jpg`, sport: 'South Carolina signee', meta: '211 → 245 lbs' },
+  { src: `${ASSETS}/athletes/cam-thomas.jpg`, sport: 'Football · LB · 2026', meta: '205 → 217 lbs' },
+  { src: `${ASSETS}/athletes/nevels-fitness.jpg`, sport: 'Nevels Fitness', meta: '214 → 242 lbs' },
+];
+
+const FAQS = [
+  ['Is this safe for my 13-year-old?', 'Yes. Whey Maker is formulated to be a food-first mass gainer — protein and carb sources are the same whole foods your kid already eats, just concentrated and convenient. No stimulants, no proprietary blends, no banned substances. NSF Certified for Sport tested on every batch. That said: consult your pediatrician before any supplement.'],
+  ['When and how should they take it?', 'One shake per day, typically post-training or between meals. Mix with 16 oz of whole milk or water. The goal is addition, not replacement — extra calories on top of real meals.'],
+  ['Will they just get fat?', 'Paired with training, no. The 60 g of multi-phase protein and organic carb blend are dosed to drive muscle synthesis and replenish glycogen, not just spike body fat. Athletes in the test group gained lean mass at roughly a 3:1 ratio.'],
+  ['Can I mix it with milk?', 'Yes — we recommend it. 4 scoops + 16 oz whole milk ≈ 1,550 calories and 70 g protein.'],
+  ['What if the flavor is off?', '30-day full-bag guarantee. Send it back (even half-empty) for a full refund.'],
+  ['How does the subscription work?', 'Ships every 30, 45, or 60 days — your pick. Skip, pause, or cancel anytime. No minimums.'],
+  ['Is it third-party tested?', 'Every batch. Heavy metals, pesticides, and protein content are verified by Eurofins Labs. NSF Certified for Sport — safe for collegiate and professional athletes.'],
+];
+
+const REVIEWS = [
+  { n: 'Marissa C.', when: '2 wks ago', t: 'My kid finally hit 160', b: "He's a freshman wrestler who couldn't break 140. Three months on Whey Maker + real lunches and he's at 162 — his coach asked what changed.", stars: 5, tag: 'Verified buyer' },
+  { n: 'Tony R.',     when: '1 mo ago',  t: 'Actually tastes like vanilla', b: "I've been through every mass gainer on the market. This one doesn't taste like chalk and Splenda. Mixes clean in the shaker.", stars: 5, tag: 'Repeat customer' },
+  { n: 'Kimberly D.', when: '1 mo ago',  t: 'Worth every penny for real food', b: 'Paying $30 for Serious Mass and giving up on what was in it. $120 for actually-clean ingredients is the right trade for my son.', stars: 5, tag: 'Parent' },
+  { n: 'Chris W.',    when: '2 mo ago',  t: 'Ships fast, settles clean', b: "Ordered Tuesday, here Thursday. Doesn't foam up overnight in the fridge. Only knock: want a chocolate-peanut-butter flavor.", stars: 4, tag: 'Verified buyer' },
+];
+
+function MinimalPDP() {
+  const [flavor, setFlavor] = React.useState(FLAVORS[0].name);
+  const [qty, setQty] = React.useState(1);
+  const [openFaq, setOpenFaq] = React.useState(0);
+  const [thumb, setThumb] = React.useState(0);
+
+  const price = 120;
+
+  // Real product photography — every angle of the actual bag.
+  const thumbs = [
+    { src: `${ASSETS}/bag-vanilla.png`,        contain: true,  alt: 'Front of bag' },
+    { src: `${ASSETS}/product/back.jpg`,                       alt: 'Back label' },
+    { src: `${ASSETS}/product/side-a.jpg`,                     alt: 'Whey Maker side — John 14:6' },
+    { src: `${ASSETS}/product/side-b.jpg`,                     alt: 'Warning side — But Jesus still does' },
+    { src: `${ASSETS}/product/bottom.jpg`,                     alt: 'Bottom — Even at the bottom, just look up' },
+    { src: `${ASSETS}/product/nfp.jpg`,                        alt: 'Nutrition Facts + Ingredients' },
+  ];
+  const current = thumbs[thumb];
+
+  // Swipe — cycle the main image.
+  const touchStart = React.useRef(null);
+  const onTouchStart = (e) => { touchStart.current = e.touches[0].clientX; };
+  const onTouchEnd = (e) => {
+    if (touchStart.current === null) return;
+    const dx = e.changedTouches[0].clientX - touchStart.current;
+    touchStart.current = null;
+    if (Math.abs(dx) < 40) return;
+    if (dx < 0 && thumb < thumbs.length - 1) setThumb(thumb + 1);
+    if (dx > 0 && thumb > 0) setThumb(thumb - 1);
+  };
+
+  const cell = (v, inverted = false) => {
+    if (v === 'yes') return <CheckCircle inverted={inverted} />;
+    if (v === 'no')  return <XCircle inverted={inverted} />;
+    return v;
+  };
+
+  return (
+    <>
+      <nav className="nav">
+        <div className="logo">NEVELS<span className="pink">.</span>NUTRITION</div>
+        <div className="links">
+          <a>Shop</a><a>Science</a><a>Athletes</a><a>Mission</a><a>FAQ</a>
+        </div>
+        <div className="right">
+          <Icon.Search/>
+          <span style={{fontSize:13}}>Account</span>
+          <span className="cart-pill"><Icon.Cart size={16}/> Cart · 0</span>
+        </div>
+      </nav>
+
+      <div className="breadcrumb mono">Shop / Mass Gainers / <span style={{color:'var(--ink)'}}>Whey Maker</span></div>
+
+      {/* HERO */}
+      <section className="hero">
+        <div className="thumbs">
+          {thumbs.map((t, i) => (
+            <div key={i} className={`thumb ${t.contain?'contain':''} ${thumb===i?'active':''}`} onClick={()=>setThumb(i)}>
+              <img src={t.src} alt={t.alt}/>
+            </div>
+          ))}
+        </div>
+
+        <div className="gallery">
+          <div className="main" onTouchStart={onTouchStart} onTouchEnd={onTouchEnd}>
+            <img className={current.contain ? 'contain' : 'cover'} src={current.src} alt={current.alt} draggable={false}/>
+          </div>
+        </div>
+
+        <div className="buy">
+          <h1 className="display">
+            <span className="pink">Whey</span> <span className="blue">Maker</span>
+          </h1>
+
+          <div className="macro-tiles">
+            <div className="tile"><div className="n">1,250</div><div className="l">Calories</div></div>
+            <div className="tile"><div className="n">60{' '}g</div><div className="l">Protein</div></div>
+            <div className="tile"><div className="n">238{' '}g</div><div className="l">Organic Carbs</div></div>
+          </div>
+
+          <p className="lede">
+            <b>Built for athletes by one of the top sports performance experts in the country.</b> A complete meal in a shake — real organic whole-food carbs, three-phase protein, full transparency.
+          </p>
+
+          <div className="review-line">
+            <Stars n={5}/> <u>Verified reviews</u>
+          </div>
+
+          <div className="field">
+            <div className="label"><span className="eyebrow">Flavor</span><span className="name">{flavor}</span></div>
+            <div className="flavor-row">
+              {FLAVORS.map(f => (
+                <button key={f.name} className={`flavor-chip ${flavor===f.name?'selected':''}`} onClick={()=>setFlavor(f.name)}>
+                  <span className="swatch" style={{background:f.color}}/>
+                  <span>{f.short}</span>
+                </button>
+              ))}
+            </div>
+          </div>
+
+          <div className="price-block">
+            <div>
+              <div className="display">${price}.00</div>
+              <div className="desc">One-time purchase · 16 servings per bag</div>
+            </div>
+            <div style={{textAlign:'right'}}>
+              <div className="mono" style={{color:'var(--blue-2)',fontSize:12}}>$7.50 / serving</div>
+            </div>
+          </div>
+
+          <div className="qty-atc">
+            <div className="qty">
+              <button onClick={()=>setQty(Math.max(1,qty-1))}><Icon.Minus/></button>
+              <span>{qty}</span>
+              <button onClick={()=>setQty(qty+1)}><Icon.Plus/></button>
+            </div>
+            <button className="btn btn-lg" style={{flex:1}}>Add to cart — ${(price*qty).toFixed(2)}</button>
+          </div>
+
+          <div className="trust-bullets">
+            <div><Icon.Truck/> Ships in 1–2 days</div>
+            <div><Icon.Shield/> 30-day returns</div>
+            <div><Icon.Flask/> NSF Certified for Sport</div>
+            <div><Icon.Leaf/> No artificial anything</div>
+          </div>
+        </div>
+      </section>
+
+      {/* BLACK TRANSPARENCY STRIP */}
+      <div className="strip">
+        <div className="row">
+          {Array.from({length:2}).map((_, k) => (
+            <span key={k}>
+              <span className="pink star"><Icon.Star size={12}/></span> Grass-Fed Whey Isolate &amp; Beef Collagen
+              <span className="dot">·</span> Non-GMO Casein
+              <span className="blue star"><Icon.Star size={12}/></span> NSF Certified for Sport
+              <span className="dot">·</span> Zero sucralose, soy, artificial flavors
+              <span className="pink star"><Icon.Star size={12}/></span> Full transparency. Real food. Real ingredients. Full dosages.
+              <span className="dot">·</span> "I am the way." — John 14:6
+            </span>
+          ))}
+        </div>
+      </div>
+
+      {/* MEAL IN A SHAKE */}
+      <section className="meal-section">
+        <div className="bound" style={{paddingTop:120, paddingBottom:120}}>
+          <div className="meal">
+            <div>
+              <h2 className="display"><span className="pink">A meal</span><br/><span className="blue">in a shake</span>.</h2>
+              <p className="lede">Most "protein shakes" leave an athlete 800 calories short. Whey Maker is built as a full meal — <b>five organic carb sources, three protein phases, organic fruits, organic vegetables, and digestive enzymes.</b> Everything an athlete needs to gain lean mass, in one bag.</p>
+              <div className="macro-tiles macro-tiles-lg">
+                <div className="tile"><div className="n">1,250</div><div className="l">Calories</div></div>
+                <div className="tile"><div className="n">60 g</div><div className="l">Protein</div></div>
+                <div className="tile"><div className="n">238 g</div><div className="l">Organic Carbs</div></div>
+              </div>
+            </div>
+            <div className="shake-diagram">
+              <img
+                src={`${ASSETS}/lifestyle/shake-stack.jpg`}
+                alt="A tall glass packed top-to-bottom with every Whey Maker ingredient — vanilla beans, whey isolate, micellar casein, beef collagen, cluster dextrin, brown rice, sweet potato, oats, organic berries, organic vegetables, chia — labeled on the right as Vanilla Buttercream"
+                loading="lazy"
+              />
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* NSF DEDICATED SECTION */}
+      <section className="nsf-section">
+        <div className="bound inner">
+          <div className="badge">
+            <img src={`${ASSETS}/nsf-badge.png`} alt="NSF Certified for Sport"/>
+          </div>
+          <div>
+            <span className="call">Calling all college &amp; pro athletes · Strength &amp; dietary coaches</span>
+            <h2>Safe for collegiate &amp; professional athletes.</h2>
+            <p>NSF Certified for Sport is the gold standard. Every Whey Maker batch is independently screened against 280+ banned substances, verified for label accuracy, and audited for contaminants — the same protocol the NFL, MLB, NHL, NBA, and PGA require their athletes to look for.</p>
+            <div className="check-list">
+              <div><span className="pip">✓</span> Banned-substance tested</div>
+              <div><span className="pip">✓</span> Label accuracy audited</div>
+              <div><span className="pip">✓</span> Contaminant-free verified</div>
+              <div><span className="pip">✓</span> Every batch, no exceptions</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ROLLS ROYCE INGREDIENTS — compact tile grid */}
+      <section className="section ings">
+        <div className="bound">
+          <div className="head">
+            <h2 className="display"><span className="pink">Rolls Royce-level</span> <span className="blue">premium ingredients</span>.</h2>
+            <p>Every ingredient, every milligram. Real food. Full dosages.</p>
+          </div>
+
+          {/* PROTEINS */}
+          <div className="ing-block">
+            <div className="ing-block-head">
+              <div className="h">Multi-phase <span className="blue">protein</span> blend</div>
+              <div className="t"><span className="blue">60 g</span> per serving</div>
+            </div>
+            <div className="ing-tiles">
+              {PROTEINS.map(p => (
+                <div key={p.n} className="ing-tile">
+                  <div className="ph"><img src={p.img} alt={p.n}/></div>
+                  <div className="body">
+                    <div className="n">{p.n}</div>
+                    <div className="a blue">{p.amt}</div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* CARBS */}
+          <div className="ing-block">
+            <div className="ing-block-head">
+              <div className="h">Organic <span className="pink">carb</span> sources</div>
+              <div className="t"><span className="pink">260 g</span> per serving</div>
+            </div>
+            <div className="ing-tiles">
+              {CARBS.map(c => (
+                <div key={c.n} className="ing-tile">
+                  <div className="ph">
+                    <img src={c.img} alt={c.n}/>
+                    {c.tm && <span className={`tm ${c.tm}`}>®</span>}
+                  </div>
+                  <div className="body">
+                    <div className="n">{c.n}</div>
+                    <div className="a">{c.amt}</div>
+                    {c.sub && <div className="sub">{c.sub}</div>}
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* PRODUCE (fruits + vegetables side by side) */}
+          <div className="ing-block">
+            <div className="ing-block-head">
+              <div className="h">Organic <span className="pink">fruit</span> &amp; <span className="blue">vegetable</span> blends</div>
+              <div className="t">12 real fruits &amp; vegetables</div>
+            </div>
+            <div className="ing-tiles" style={{gridTemplateColumns:'repeat(2, 1fr)'}}>
+              <div className="ing-tile">
+                <div className="ph">
+                  <img src={FRUITS.img} alt={FRUITS.n}/>
+                  <span className="tm pink">®</span>
+                </div>
+                <div className="body">
+                  <div className="n">{FRUITS.n}</div>
+                  <div className="a">{FRUITS.amt}</div>
+                  <div className="sub">{FRUITS.sub}</div>
+                </div>
+              </div>
+              <div className="ing-tile">
+                <div className="ph">
+                  <img src={VEGGIES.img} alt={VEGGIES.n}/>
+                  <span className="tm blue">®</span>
+                </div>
+                <div className="body">
+                  <div className="n">{VEGGIES.n}</div>
+                  <div className="a blue">{VEGGIES.amt}</div>
+                  <div className="sub">{VEGGIES.sub}</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* FUNCTIONAL */}
+          <div className="ing-block">
+            <div className="ing-block-head">
+              <div className="h">Digestive &amp; recovery</div>
+              <div className="t">2 enzymes + tart cherry</div>
+            </div>
+            <div className="ing-tiles" style={{gridTemplateColumns:'repeat(3, 1fr)'}}>
+              {FUNCTIONAL.map(f => (
+                <div key={f.n} className="ing-tile">
+                  <div className="ph"><img src={f.img} alt={f.n}/></div>
+                  <div className="body">
+                    <div className="n">{f.n}</div>
+                    <div className="a">{f.amt}</div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* NuFlow one-liner */}
+          <div className="nuflow-note">
+            <b>NuFlow®</b> instead of silicone dioxide — premium anti-caking from organic rice hulls. Most brands cheap out on the anti-caking agent. We didn't.
+          </div>
+
+          {/* "No" list */}
+          <div className="no-band">
+            {NO_LIST.map(n => (
+              <div key={n} className="pill-no"><span className="x">✕</span> {n.replace(/^No /, '')}</div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* COMPARISON */}
+      <section className="section">
+        <div className="bound">
+          <div className="head">
+            <h2 className="display"><span className="pink">How we</span> <span className="blue">stack up</span>.</h2>
+            <p>Head-to-head against every other mass gainer trying to put weight on an athlete.</p>
+          </div>
+          <div className="compare">
+            <div className="us-bg" aria-hidden="true"></div>
+            {COMPARE_COLS.map((c, i) => (
+              <div key={`h${i}`} className={`cell head ${i===1?'us':''} ${i===0?'lbl':''}`}>{c}</div>
+            ))}
+            {COMPARE_ROWS.flatMap((r, ri) => [
+              <div key={`r${ri}-lbl`} className="cell lbl">{r[0]}</div>,
+              ...r.slice(1).map((v, ci) => {
+                const isUs = ci === 0;
+                return <div key={`r${ri}-c${ci}`} className={`cell ${isUs?'us':''}`}>{cell(v, isUs)}</div>;
+              })
+            ])}
+          </div>
+        </div>
+      </section>
+
+      {/* MATH SECTION — dark */}
+      <section className="section dark">
+        <div className="bound">
+          <div className="head">
+            <h2 className="display" style={{color:'var(--paper)'}}>Gaining weight is<br/>a <span className="pink">math problem</span>.</h2>
+            <p>"Just eat more" isn't a plan. Here's what one shake per day looks like over a month — and what 16 years of training kids tells us happens.</p>
+          </div>
+          <div className="math-grid">
+            {[
+              ['Whey Maker', '1,250', 'cal / day', '×', 'var(--pink)'],
+              ['Thirty days', '30', 'days', '='],
+              ['Surplus', '37,500', 'cal / month', null, 'var(--blue)'],
+            ].map((item, i) => (
+              <React.Fragment key={i}>
+                <div className="card">
+                  <div className="lbl">{item[0]}</div>
+                  <div className="num" style={{color:item[4]||'var(--paper)'}}>{item[1]}</div>
+                  <div className="u">{item[2]}</div>
+                </div>
+                {item[3] && <div className="op">{item[3]}</div>}
+              </React.Fragment>
+            ))}
+          </div>
+          <div className="math-payoff">
+            <h3 className="display"><span className="pink">7–10 lbs</span> of <span className="blue">lean mass</span> per month.</h3>
+            <p>From 16 years of training experience watching kids actually gain weight. Pair Whey Maker with real meals and a real lifting plan — that's what the typical athlete in our program is putting on.</p>
+          </div>
+        </div>
+      </section>
+
+      {/* ATHLETES */}
+      <section className="section">
+        <div className="bound">
+          <div className="head" style={{display:'flex',justifyContent:'space-between',alignItems:'flex-end',gap:32,maxWidth:'none'}}>
+            <div>
+              <h2 className="display"><span className="pink">Used by athletes.</span><br/><span className="blue">Trusted by parents.</span></h2>
+            </div>
+            <p style={{maxWidth:300}}>Before-and-afters from Jordan's gym. Real kids, real timeframes, real food on the side.</p>
+          </div>
+          <div className="athletes">
+            {ATHLETES.map((a, i) => (
+              <div key={i} className="card">
+                <img src={a.src} alt="" loading="lazy"/>
+                <div className="cap"><span>{a.sport}</span><span className="v">{a.meta}</span></div>
+              </div>
+            ))}
+          </div>
+
+          <div className="parent-video">
+            <div className="vid">
+              <iframe
+                src="https://player.vimeo.com/video/1195668846?dnt=1&title=0&byline=0&portrait=0"
+                allow="autoplay; fullscreen; picture-in-picture"
+                allowFullScreen
+                title="Parent testimonial"
+              />
+            </div>
+            <div className="vid">
+              <iframe
+                src="https://player.vimeo.com/video/1195668848?dnt=1&title=0&byline=0&portrait=0"
+                allow="autoplay; fullscreen; picture-in-picture"
+                allowFullScreen
+                title="Parent testimonial"
+              />
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* FOUNDER */}
+      <section className="section alt">
+        <div className="bound founder">
+          <div className="portrait">Founder portrait<br/>Jordan Nevels</div>
+          <div>
+            <h2 className="display">"I made this because <span className="pink">nothing on the shelf</span> was <span className="blue">good enough</span> for my kids."</h2>
+            <p style={{color:'var(--muted)',fontSize:16,maxWidth:560}}>Jordan Nevels spent <b style={{color:'var(--ink)'}}>16 years</b> as an athletic trainer and strength coach watching middle schoolers, high schoolers, and college athletes try to gain weight on shakes full of maltodextrin, sucralose, and Yellow #5. So he built the one he wished existed.</p>
+            <div className="founder-quote">"Gain mass lean. Keep it clean. Live for the King."</div>
+            <div className="credits">
+              <div><div className="display pink">16 yr</div><div className="eyebrow" style={{marginTop:4}}>Athletic training</div></div>
+              <div><div className="display blue">400+</div><div className="eyebrow" style={{marginTop:4}}>Athletes coached</div></div>
+              <div><div className="display">Pro+NCAA</div><div className="eyebrow" style={{marginTop:4}}>Strength &amp; performance</div></div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* FAITH MISSION (pink) */}
+      <section className="mission">
+        <div className="bound inner">
+          <div>
+            <span className="ribbon">The Whey · The Way</span>
+            <h2>Built on a verse.<br/>Carried by a mission.</h2>
+            <p>The front of the bag is the Red Sea parting — God making a way where there was no way. Whey Maker exists to fuel athletes who want to gain mass without compromising what goes in their body, and to point people back to the One who makes a way.</p>
+            <p>That's why "Live for the King" is printed inside every bag.</p>
+            <div className="verse">"I am the way, the truth, and the life." — John 14:6</div>
+          </div>
+          <div className="mission-side">
+            <div className="big">"Jesus saith unto him, I am the way, the truth, and the life: no man cometh unto the Father, but by me."</div>
+            <div className="lil">— John 14:6</div>
+          </div>
+        </div>
+      </section>
+
+      {/* FAQ */}
+      <section className="section faq">
+        <div className="bound">
+          <h2 className="display"><span className="pink">Frequently</span> <span className="blue">asked questions</span>.</h2>
+          <div className="faq-list">
+            {FAQS.map(([q,a], i) => (
+              <div key={i} className="faq-item">
+                <button onClick={()=>setOpenFaq(openFaq===i?-1:i)}>
+                  <span className="q">{q}</span>
+                  <span className="pm">{openFaq===i ? <Icon.Minus/> : <Icon.Plus/>}</span>
+                </button>
+                {openFaq===i && <div className="a">{a}</div>}
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* RESULTS (renamed from Reviews) */}
+      <section className="section alt">
+        <div className="bound reviews-grid">
+          <div className="summary">
+            <h2 className="display"><span className="pink">Results.</span></h2>
+            <p style={{color:'var(--muted)', fontSize:14, lineHeight:1.6, maxWidth:320}}>What parents and athletes are saying after switching.</p>
+            <Stars n={5} size={20}/>
+            <div className="review-distribution">
+              {[[5,216],[4,24],[3,5],[2,2],[1,1]].map(([s,c]) => (
+                <div key={s} className="bar-row">
+                  <span style={{width:16}}>{s}★</span>
+                  <div className="bar"><div style={{width: (c/248*100)+'%'}}/></div>
+                  <span style={{width:30,textAlign:'right',color:'var(--muted)'}}>{c}</span>
+                </div>
+              ))}
+            </div>
+            <button className="btn btn-outline btn-full" style={{marginTop:16}}>Share your results</button>
+          </div>
+
+          <div className="review-cards">
+            {REVIEWS.map((r, i) => (
+              <div key={i} className="card">
+                <div style={{display:'flex',justifyContent:'space-between',alignItems:'center'}}>
+                  <Stars n={r.stars}/>
+                  <span className="mono" style={{fontSize:10}}>{r.when}</span>
+                </div>
+                <div className="display">{r.t}</div>
+                <div className="body">{r.b}</div>
+                <div className="meta">
+                  <span className="who">
+                    <span className="avatar">{r.n.split(' ').map(p=>p[0]).slice(0,2).join('')}</span>
+                    {r.n}
+                  </span>
+                  <span>{r.tag}</span>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* FINAL CTA */}
+      <section className="cta">
+        <div className="verse">— Gain mass lean. Keep it clean. Live for the King.</div>
+        <h2 className="display"><span className="pink">Start</span> <span className="blue">gaining</span>.</h2>
+        <p>16 servings of real food per bag. Three proteins. Five organic carb sources. Twelve real fruits &amp; vegetables. NSF Certified for Sport.</p>
+        <button className="btn btn-light btn-lg">Add to cart — $120.00</button>
+      </section>
+
+      {/* FOOTER */}
+      <footer className="footer">
+        <div className="cols">
+          <div className="brand">
+            <div className="display">NEVELS<span className="pink">.</span><br/>NUTRITION</div>
+            <p>Real food. Real ingredients. Full dosages. Built for athletes who show up.</p>
+            <div className="verse">"I am the way." — John 14:6</div>
+          </div>
+          <div className="col">
+            <h4>Shop</h4>
+            <a>Whey Maker</a><a>Whey Maker Light (soon)</a><a>Stacks</a><a>Apparel</a>
+          </div>
+          <div className="col">
+            <h4>Learn</h4>
+            <a>How to gain weight</a><a>Ingredient sourcing</a><a>Athletes</a><a>FAQ</a>
+          </div>
+          <div className="col">
+            <h4>Company</h4>
+            <a>About Jordan</a><a>Mission</a><a>Contact</a><a>Wholesale</a>
+          </div>
+        </div>
+        <div className="legal">
+          <div>© 2026 Nevels Nutrition, LLC</div>
+          <div>Shipping · Returns · Privacy · Terms</div>
+        </div>
+      </footer>
+    </>
+  );
+}
+
+ReactDOM.createRoot(document.getElementById('root')).render(<MinimalPDP/>);
+</script>
+</body>
+</html>
