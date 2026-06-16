@@ -751,8 +751,8 @@
   }
 
   /* ── Official logo (nav + footer) ───────────────────────────── */
-  .nav .logo-img { height: 46px; width: auto; display: block; }
-  @media (max-width: 760px) { .nav .logo-img { height: 38px; } }
+  .nav .logo-img { height: 66px; width: auto; display: block; }
+  @media (max-width: 760px) { .nav .logo-img { height: 50px; } }
   .footer .brand .logo-img { height: 96px; width: auto; display: block; margin-bottom: 16px; }
 
   /* ── Zoomable product-photo lightbox ────────────────────────── */
@@ -767,16 +767,17 @@
   .lightbox {
     position: fixed; inset: 0; z-index: 200;
     background: rgba(8,8,8,0.95);
-    display: flex; align-items: center; justify-content: center;
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    padding: 72px 16px 28px;
     -webkit-user-select: none; user-select: none;
   }
   .lb-stage {
-    width: 90vw; height: 84vh;
+    flex: 1 1 auto; min-height: 0; width: 100%;
     display: flex; align-items: center; justify-content: center;
     overflow: hidden;
   }
   .lb-stage img {
-    max-width: 90vw; max-height: 84vh;
+    max-width: 90vw; max-height: calc(100vh - 230px);
     object-fit: contain;
     cursor: zoom-in; transition: transform .25s ease;
     touch-action: pinch-zoom;
@@ -803,12 +804,12 @@
   .lb-nav.prev { left: 18px; }
   .lb-nav.next { right: 18px; }
   .lb-hint {
-    position: absolute; bottom: 96px; left: 0; right: 0; text-align: center;
+    margin-top: 22px; flex: 0 0 auto; text-align: center;
     color: rgba(255,255,255,0.65); font-family: 'Inter', sans-serif;
     font-size: 12px; pointer-events: none;
   }
   .lb-thumbs {
-    position: absolute; bottom: 22px; left: 0; right: 0;
+    margin-top: 30px; flex: 0 0 auto;
     display: flex; gap: 8px; justify-content: center; flex-wrap: wrap; padding: 0 16px;
   }
   .lb-thumbs .lb-thumb {
@@ -900,7 +901,7 @@ const Icon = {
   Shield: ({size=16}) => (<svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round"><path d="M12 3l8 3v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6z"/><path d="M8.5 12l2.5 2.5L15.5 10"/></svg>),
   Truck: ({size=16}) => (<svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round"><path d="M2 6h12v10H2zM14 10h5l3 3v3h-8"/><circle cx="6" cy="17" r="1.5"/><circle cx="18" cy="17" r="1.5"/></svg>),
   Play: ({size=18}) => (<svg width={size} height={size} viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>),
-  Cross: ({size=13}) => (<svg width={size} height={size} viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M6.4 0h3.2v6.4H16v3.2H9.6V16H6.4V9.6H0V6.4h6.4z"/></svg>),
+  Cross: ({size=14}) => (<svg width={size} height={size} viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M6.7 1h2.6v3.6H13V7H9.3v8H6.7V7H3V4.6h3.7z"/></svg>),
   ZoomIn: ({size=14}) => (<svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><circle cx="10.5" cy="10.5" r="6.5"/><path d="M20 20l-4.2-4.2M10.5 7.5v6M7.5 10.5h6"/></svg>),
 };
 
@@ -1446,7 +1447,7 @@ function MinimalPDP() {
       <section className="mission">
         <div className="bound">
           <div className="whey-way">
-            <h2>The Whey + The Way</h2>
+            <h2>The Whey +<br/>The Way</h2>
             <p>That’s why “LIVE FOR THE KING” is printed at the top of every bag.</p>
             <div className="verse">"I am the way, the truth, and the life." — John 14:6</div>
           </div>
