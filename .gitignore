@@ -4,3 +4,6 @@ gracious-poincare-db38e2/
 .vercel
 .DS_Store
 node_modules
+
+# Local dev tooling (preview launch config)
+.claude/

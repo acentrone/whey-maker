@@ -84,6 +84,8 @@
   .btn-outline:hover { background: var(--ink); color: #fff; border-color: var(--ink); }
   .btn-light { background: #fff; color: var(--ink); border-color: #fff; }
   .btn-light:hover { background: var(--pink); color: #fff; border-color: var(--pink); }
+  .btn-dark { background: var(--ink); border-color: var(--ink); color: #fff; }
+  .btn-dark:hover { background: #000; border-color: #000; }
   .btn-full { width: 100%; }
 
   /* ── Nav ─────────────────────────────────────────────────────── */
@@ -151,11 +153,10 @@
 
   /* Buy box */
   .hero .buy h1 {
-    font-size: clamp(56px, 7vw, 88px);
+    font-size: clamp(66px, 8.6vw, 108px);
     margin: 14px 0 18px;
+    color: var(--ink);
   }
-  .hero .buy h1 .pink { color: var(--pink); }
-  .hero .buy h1 .blue { color: var(--blue); }
 
   /* Macro stat blocks — three solid colored tiles, reused in the
      hero buy box and the "A meal in a shake" section. */
@@ -164,34 +165,33 @@
     margin: 0 0 22px;
   }
   .macro-tiles .tile {
-    padding: 22px 14px;
+    padding: 20px 10px 18px;
     border-radius: 12px;
     text-align: center;
+    background: var(--ink);
     color: #fff;
+    display: flex; flex-direction: column; justify-content: center;
   }
-  .macro-tiles .tile:nth-child(1) { background: var(--pink); }
-  .macro-tiles .tile:nth-child(2) { background: var(--blue); }
-  .macro-tiles .tile:nth-child(3) { background: var(--ink); }
   .macro-tiles .tile .n {
     font-family: Impact, sans-serif;
-    font-size: clamp(32px, 4vw, 52px);
-    line-height: 0.95;
-    color: #fff;
+    font-size: clamp(42px, 6.4vw, 66px);
+    line-height: 0.9;
+    color: var(--pink);
     white-space: nowrap;
   }
   .macro-tiles .tile .l {
     font-family: 'Inter', sans-serif; font-size: 13px;
-    color: rgba(255,255,255,0.85);
-    margin-top: 8px; font-weight: 500;
+    color: var(--pink);
+    margin-top: 8px; font-weight: 600;
   }
-  /* Larger variant for the meal section (more room to breathe).
-     Cap the clamp so "238 g" / "60 g" stay on one line inside each
-     tile's column. */
-  .macro-tiles.macro-tiles-lg .tile { padding: 28px 14px; }
+  /* Larger variant for the meal section — numbers fill the black box
+     and jump off the page. Cap the clamp so "238 g" / "60 g" stay on
+     one line inside each tile's column. */
+  .macro-tiles.macro-tiles-lg .tile { padding: 36px 12px; }
   .macro-tiles.macro-tiles-lg .tile .n {
-    font-size: clamp(36px, 4.2vw, 60px);
+    font-size: clamp(56px, 7.4vw, 96px);
   }
-  .macro-tiles.macro-tiles-lg .tile .l { font-size: 14px; margin-top: 10px; }
+  .macro-tiles.macro-tiles-lg .tile .l { font-size: 15px; margin-top: 12px; }
 
   .hero .buy .lede {
     font-size: 15px; color: var(--ink-2); line-height: 1.55;
@@ -217,7 +217,8 @@
     transition: border-color .12s;
   }
   .flavor-chip:hover { border-color: var(--ink); }
-  .flavor-chip.selected { border: 1.5px solid var(--pink); background: var(--pink-soft); }
+  .flavor-chip.selected { border: 1.5px solid var(--ink); background: var(--ink); }
+  .flavor-chip.selected span { color: #fff; }
   .flavor-chip .swatch { width: 22px; height: 22px; border-radius: 50%; border: 1px solid rgba(0,0,0,0.12); flex-shrink: 0; }
   .flavor-chip span { font-size: 13px; font-weight: 500; }
 
@@ -328,9 +329,9 @@
   /* ── NSF Section (blue) ─────────────────────────────────────── */
   .nsf-section {
     padding: 96px 0;
-    background: var(--blue);
+    background: var(--ink);
     color: #fff;
-    border-top: 1px solid rgba(0,0,0,0.1);
+    border-top: 1px solid rgba(255,255,255,0.08);
   }
   @media (max-width: 760px) { .nsf-section { padding: 64px 0; } }
   .nsf-section .inner {
@@ -482,7 +483,7 @@
   .compare .us-bg {
     position: absolute; top: 0; bottom: 0;
     left: calc(1.6 / 5.6 * 100%); width: calc(1 / 5.6 * 100%);
-    background: var(--pink); border-radius: 20px;
+    background: var(--ink); border-radius: 20px;
     z-index: 0; pointer-events: none;
   }
   .compare .cell {
@@ -554,11 +555,12 @@
   .athletes .card img { width: 100%; aspect-ratio: 4/5; object-fit: cover; display: block; }
   .athletes .card .cap {
     padding: 14px 16px;
-    display: flex; justify-content: space-between; gap: 8px;
+    display: flex; flex-direction: column; gap: 4px;
     font-family: 'Inter', sans-serif; font-size: 12px;
     color: var(--muted);
   }
-  .athletes .card .cap .v { color: var(--pink); font-weight: 700; }
+  .athletes .card .cap .nm { font-weight: 700; font-size: 14px; color: var(--ink); }
+  .athletes .card .cap .v { color: var(--pink); font-weight: 600; }
 
   /* ── Founder ────────────────────────────────────────────────── */
   .founder {
@@ -571,6 +573,10 @@
     overflow: hidden; display: flex; align-items: center; justify-content: center;
     color: var(--muted); padding: 24px;
     font-family: 'Inter', sans-serif; font-size: 14px; text-align: center;
+  }
+  .founder .portrait img {
+    width: 100%; height: 100%; object-fit: cover;
+    object-position: center 32%; padding: 0;
   }
   .founder h2 { font-size: clamp(40px, 5vw, 64px); margin: 0 0 20px; }
   .founder h2 .pink { color: var(--pink); }
@@ -586,7 +592,7 @@
   .founder-quote {
     margin-top: 20px;
     font-family: 'Caveat', cursive;
-    font-size: 26px; color: var(--pink); line-height: 1.2;
+    font-size: 28px; color: var(--ink); line-height: 1.2;
   }
 
   /* ── Faith mission section (pink) ───────────────────────────── */
@@ -743,6 +749,123 @@
     flex-wrap: wrap;
     font-family: 'Inter', sans-serif; font-size: 13px; color: var(--muted-2);
   }
+
+  /* ── Official logo (nav + footer) ───────────────────────────── */
+  .nav .logo-img { height: 46px; width: auto; display: block; }
+  @media (max-width: 760px) { .nav .logo-img { height: 38px; } }
+  .footer .brand .logo-img { height: 96px; width: auto; display: block; margin-bottom: 16px; }
+
+  /* ── Zoomable product-photo lightbox ────────────────────────── */
+  .hero .gallery .main { cursor: zoom-in; }
+  .zoom-hint {
+    position: absolute; bottom: 14px; right: 14px; z-index: 2;
+    display: inline-flex; align-items: center; gap: 6px;
+    background: rgba(14,14,16,0.82); color: #fff;
+    font-family: 'Inter', sans-serif; font-size: 12px; font-weight: 600;
+    padding: 7px 12px; border-radius: 999px; pointer-events: none;
+  }
+  .lightbox {
+    position: fixed; inset: 0; z-index: 200;
+    background: rgba(8,8,8,0.95);
+    display: flex; align-items: center; justify-content: center;
+    -webkit-user-select: none; user-select: none;
+  }
+  .lb-stage {
+    width: 90vw; height: 84vh;
+    display: flex; align-items: center; justify-content: center;
+    overflow: hidden;
+  }
+  .lb-stage img {
+    max-width: 90vw; max-height: 84vh;
+    object-fit: contain;
+    cursor: zoom-in; transition: transform .25s ease;
+    touch-action: pinch-zoom;
+  }
+  .lb-stage img.zoomed { transform: scale(2.8); cursor: zoom-out; transition: transform .12s ease; }
+  .lb-close {
+    position: absolute; top: 18px; right: 22px; z-index: 3;
+    width: 46px; height: 46px; border-radius: 999px;
+    background: rgba(255,255,255,0.12); border: none; cursor: pointer;
+    color: #fff; font-size: 26px; line-height: 1;
+    display: flex; align-items: center; justify-content: center;
+    transition: background .15s;
+  }
+  .lb-close:hover { background: rgba(255,255,255,0.25); }
+  .lb-nav {
+    position: absolute; top: 50%; transform: translateY(-50%); z-index: 3;
+    width: 52px; height: 52px; border-radius: 999px;
+    background: rgba(255,255,255,0.10); border: none; cursor: pointer;
+    color: #fff; font-size: 30px; line-height: 1;
+    display: flex; align-items: center; justify-content: center;
+    transition: background .15s;
+  }
+  .lb-nav:hover { background: rgba(255,255,255,0.24); }
+  .lb-nav.prev { left: 18px; }
+  .lb-nav.next { right: 18px; }
+  .lb-hint {
+    position: absolute; bottom: 96px; left: 0; right: 0; text-align: center;
+    color: rgba(255,255,255,0.65); font-family: 'Inter', sans-serif;
+    font-size: 12px; pointer-events: none;
+  }
+  .lb-thumbs {
+    position: absolute; bottom: 22px; left: 0; right: 0;
+    display: flex; gap: 8px; justify-content: center; flex-wrap: wrap; padding: 0 16px;
+  }
+  .lb-thumbs .lb-thumb {
+    width: 56px; height: 56px; border-radius: 8px; overflow: hidden;
+    border: 1px solid rgba(255,255,255,0.25); padding: 3px; background: #fff;
+    cursor: pointer; flex-shrink: 0;
+  }
+  .lb-thumbs .lb-thumb.active { border-color: var(--pink); border-width: 2px; }
+  .lb-thumbs .lb-thumb img { width: 100%; height: 100%; object-fit: cover; }
+  @media (max-width: 600px) {
+    .lb-nav { width: 42px; height: 42px; font-size: 24px; }
+    .lb-thumbs .lb-thumb { width: 46px; height: 46px; }
+  }
+
+  /* ── "None of this in Whey Maker" block (replaces ✕ pills) ───── */
+  .none-block { margin-top: 40px; }
+  .none-block .none-head {
+    font-family: Impact, 'Haettenschweiler', 'Arial Narrow Bold', sans-serif;
+    font-weight: 400; text-transform: uppercase; line-height: 0.96;
+    font-size: clamp(34px, 4.6vw, 60px); margin: 0 0 24px; color: var(--ink);
+  }
+  .none-block .none-list {
+    list-style: none; margin: 0; padding: 0;
+    display: grid; grid-template-columns: 1fr 1fr; gap: 12px 32px; max-width: 760px;
+  }
+  @media (max-width: 600px) { .none-block .none-list { grid-template-columns: 1fr; } }
+  .none-block .none-list li {
+    display: flex; align-items: center; gap: 12px;
+    font-family: 'Inter', sans-serif; font-size: 16px; font-weight: 500; color: var(--ink-2);
+    padding-bottom: 12px; border-bottom: 1px solid var(--line);
+  }
+  .none-block .none-list li .x {
+    color: var(--pink); font-weight: 700; font-size: 18px; flex-shrink: 0;
+  }
+
+  /* ── The Whey + The Way (centered headline on pink) ─────────── */
+  .whey-way { text-align: center; max-width: 900px; margin: 0 auto; color: var(--ink); }
+  .whey-way h2 {
+    font-family: Impact, 'Haettenschweiler', 'Arial Narrow Bold', sans-serif;
+    font-weight: 400; text-transform: uppercase; line-height: 0.96;
+    font-size: clamp(52px, 8.4vw, 112px); margin: 0 0 22px; color: var(--ink);
+  }
+  .whey-way p {
+    font-size: 18px; font-weight: 600; color: var(--ink);
+    max-width: 620px; margin: 0 auto; line-height: 1.55;
+  }
+  .whey-way .verse {
+    font-family: 'Caveat', cursive; font-size: 32px;
+    margin-top: 24px; color: var(--ink);
+  }
+
+  /* ── Faith / claims marquee — cross separators ──────────────── */
+  .strip .row .cross { display: inline-flex; align-items: center; line-height: 1; color: var(--pink); }
+  .strip .row .cross svg { display: block; }
+
+  /* Single-column, stacked testimonial videos (Durran over Mike) */
+  .parent-video.stacked { grid-template-columns: 1fr; max-width: 420px; margin-left: auto; margin-right: auto; }
 </style>
 
 <script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
@@ -777,6 +900,8 @@ const Icon = {
   Shield: ({size=16}) => (<svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round"><path d="M12 3l8 3v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6z"/><path d="M8.5 12l2.5 2.5L15.5 10"/></svg>),
   Truck: ({size=16}) => (<svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round"><path d="M2 6h12v10H2zM14 10h5l3 3v3h-8"/><circle cx="6" cy="17" r="1.5"/><circle cx="18" cy="17" r="1.5"/></svg>),
   Play: ({size=18}) => (<svg width={size} height={size} viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>),
+  Cross: ({size=13}) => (<svg width={size} height={size} viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M6.4 0h3.2v6.4H16v3.2H9.6V16H6.4V9.6H0V6.4h6.4z"/></svg>),
+  ZoomIn: ({size=14}) => (<svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><circle cx="10.5" cy="10.5" r="6.5"/><path d="M20 20l-4.2-4.2M10.5 7.5v6M7.5 10.5h6"/></svg>),
 };
 
 const Stars = ({n=5, size=14}) => (
@@ -803,9 +928,9 @@ const FLAVORS = [
 ];
 
 const PROTEINS = [
-  { n: 'Whey Isolate', amt: '30 g', img: `${ASSETS}/ingredients/wheyisolate.jpg` },
-  { n: 'Micellar Casein', amt: '20 g', img: `${ASSETS}/ingredients/casein.jpg` },
-  { n: 'Beef Collagen', amt: '10 g', img: `${ASSETS}/ingredients/beef-collagen.jpg` },
+  { n: 'Grass-Fed Whey Isolate', amt: '30 g', img: `${ASSETS}/ingredients/wheyisolate.jpg` },
+  { n: 'Non-GMO Micellar Casein', amt: '20 g', img: `${ASSETS}/ingredients/casein.jpg` },
+  { n: 'Grass-Fed Beef Collagen', amt: '10 g', img: `${ASSETS}/ingredients/beef-collagen.jpg` },
 ];
 const CARBS = [
   { n: 'Brown Rice Maltodextrin', amt: '200 g', img: `${ASSETS}/ingredients/maltodextrin.jpg` },
@@ -822,13 +947,13 @@ const FUNCTIONAL = [
   { n: 'Amylase',     amt: '50 mg',  img: `${ASSETS}/ingredients/amylase.jpg` },
 ];
 
-const NO_LIST = [
-  'No Sucralose',
-  'No Artificial Sweeteners',
-  'No Soy',
-  'Gluten-Free',
-  'No Silicone Dioxide',
-  'Zero Junk',
+const NONE_LIST = [
+  'Sucralose',
+  'Soy',
+  'Artificial flavors / sweeteners / colors',
+  'Gluten',
+  'Silicone Dioxide',
+  'Cheap GMO corn for the carb source',
 ];
 
 const COMPARE_COLS = ['', 'Whey Maker', 'Serious Mass', 'Transparent Labs', 'Huel Black'];
@@ -847,10 +972,10 @@ const COMPARE_ROWS = [
 ];
 
 const ATHLETES = [
-  { src: `${ASSETS}/athletes/austin-alexander.jpg`, sport: 'Football · 2025 · 4★', meta: '215 → 247 lbs' },
-  { src: `${ASSETS}/athletes/ej-walker.jpg`, sport: 'South Carolina signee', meta: '211 → 245 lbs' },
-  { src: `${ASSETS}/athletes/cam-thomas.jpg`, sport: 'Football · LB · 2026', meta: '205 → 217 lbs' },
-  { src: `${ASSETS}/athletes/nevels-fitness.jpg`, sport: 'Nevels Fitness', meta: '214 → 242 lbs' },
+  { src: `${ASSETS}/athletes/ej-walker.jpg`, name: 'EJ Walker', cred: '4★ South Carolina signee' },
+  { src: `${ASSETS}/athletes/cam-thomas.jpg`, name: 'Cam Thomas', cred: 'All-American · Illinois Football LB' },
+  { src: `${ASSETS}/athletes/austin-alexander.jpg`, name: 'Austin Alexander', cred: '4★ · 215 → 247 lbs' },
+  { src: `${ASSETS}/athletes/nevels-fitness.jpg`, name: 'Trained at Nevels', cred: 'Real food. Real results.' },
 ];
 
 const FAQS = [
@@ -858,9 +983,7 @@ const FAQS = [
   ['When and how should they take it?', 'One shake per day, typically post-training or between meals. Mix with 16 oz of whole milk or water. The goal is addition, not replacement — extra calories on top of real meals.'],
   ['Will they just get fat?', 'Paired with training, no. The 60 g of multi-phase protein and organic carb blend are dosed to drive muscle synthesis and replenish glycogen, not just spike body fat. Athletes in the test group gained lean mass at roughly a 3:1 ratio.'],
   ['Can I mix it with milk?', 'Yes — we recommend it. 4 scoops + 16 oz whole milk ≈ 1,550 calories and 70 g protein.'],
-  ['What if the flavor is off?', '30-day full-bag guarantee. Send it back (even half-empty) for a full refund.'],
-  ['How does the subscription work?', 'Ships every 30, 45, or 60 days — your pick. Skip, pause, or cancel anytime. No minimums.'],
-  ['Is it third-party tested?', 'Every batch. Heavy metals, pesticides, and protein content are verified by Eurofins Labs. NSF Certified for Sport — safe for collegiate and professional athletes.'],
+  ['Is it third-party tested?', 'Whey Maker is rigorously and thoroughly tested by NSF Certified for Sport to ensure it’s safe for everyone from middle school athletes to superstar professional athletes.'],
 ];
 
 const REVIEWS = [
@@ -875,6 +998,9 @@ function MinimalPDP() {
   const [qty, setQty] = React.useState(1);
   const [openFaq, setOpenFaq] = React.useState(0);
   const [thumb, setThumb] = React.useState(0);
+  const [lightbox, setLightbox] = React.useState(false);
+  const [zoom, setZoom] = React.useState(false);
+  const [origin, setOrigin] = React.useState({ x: 50, y: 50 });
 
   const price = 120;
 
@@ -889,6 +1015,38 @@ function MinimalPDP() {
   ];
   const current = thumbs[thumb];
 
+  // Lightbox — open large, click image to zoom, cursor pans the zoom.
+  const swipedRef = React.useRef(false);
+  const openLightbox = () => {
+    if (swipedRef.current) { swipedRef.current = false; return; } // ignore the click that follows a swipe
+    setZoom(false); setLightbox(true);
+  };
+  const closeLightbox = () => { setLightbox(false); setZoom(false); };
+  const stepThumb = (d) => {
+    setZoom(false);
+    setThumb((t) => (t + d + thumbs.length) % thumbs.length);
+  };
+  const onZoomMove = (e) => {
+    if (!zoom) return;
+    const r = e.currentTarget.getBoundingClientRect();
+    setOrigin({
+      x: ((e.clientX - r.left) / r.width) * 100,
+      y: ((e.clientY - r.top) / r.height) * 100,
+    });
+  };
+  React.useEffect(() => {
+    if (!lightbox) return;
+    const onKey = (e) => {
+      if (e.key === 'Escape') closeLightbox();
+      if (e.key === 'ArrowRight') stepThumb(1);
+      if (e.key === 'ArrowLeft') stepThumb(-1);
+    };
+    window.addEventListener('keydown', onKey);
+    const prevOverflow = document.body.style.overflow;
+    document.body.style.overflow = 'hidden';
+    return () => { window.removeEventListener('keydown', onKey); document.body.style.overflow = prevOverflow; };
+  }, [lightbox, thumbs.length]);
+
   // Swipe — cycle the main image.
   const touchStart = React.useRef(null);
   const onTouchStart = (e) => { touchStart.current = e.touches[0].clientX; };
@@ -897,6 +1055,7 @@ function MinimalPDP() {
     const dx = e.changedTouches[0].clientX - touchStart.current;
     touchStart.current = null;
     if (Math.abs(dx) < 40) return;
+    swipedRef.current = true;
     if (dx < 0 && thumb < thumbs.length - 1) setThumb(thumb + 1);
     if (dx > 0 && thumb > 0) setThumb(thumb - 1);
   };
@@ -910,7 +1069,7 @@ function MinimalPDP() {
   return (
     <>
       <nav className="nav">
-        <div className="logo">NEVELS<span className="pink">.</span>NUTRITION</div>
+        <img className="logo-img" src={`${ASSETS}/whey-maker-logo.svg`} alt="Whey Maker — Nevels Nutrition"/>
         <div className="links">
           <a>Shop</a><a>Science</a><a>Athletes</a><a>Mission</a><a>FAQ</a>
         </div>
@@ -934,24 +1093,23 @@ function MinimalPDP() {
         </div>
 
         <div className="gallery">
-          <div className="main" onTouchStart={onTouchStart} onTouchEnd={onTouchEnd}>
+          <div className="main" onClick={openLightbox} onTouchStart={onTouchStart} onTouchEnd={onTouchEnd}>
             <img className={current.contain ? 'contain' : 'cover'} src={current.src} alt={current.alt} draggable={false}/>
+            <span className="zoom-hint"><Icon.ZoomIn/> Tap to zoom</span>
           </div>
         </div>
 
         <div className="buy">
-          <h1 className="display">
-            <span className="pink">Whey</span> <span className="blue">Maker</span>
-          </h1>
+          <h1 className="display">Whey Maker</h1>
 
           <div className="macro-tiles">
-            <div className="tile"><div className="n">1,250</div><div className="l">Calories</div></div>
+            <div className="tile"><div className="n">1250</div><div className="l">Calories</div></div>
             <div className="tile"><div className="n">60{' '}g</div><div className="l">Protein</div></div>
             <div className="tile"><div className="n">238{' '}g</div><div className="l">Organic Carbs</div></div>
           </div>
 
           <p className="lede">
-            <b>Built for athletes by one of the top sports performance experts in the country.</b> A complete meal in a shake — real organic whole-food carbs, three-phase protein, full transparency.
+            <b>Built for athletes by one of the top sports performance coaches in the country.</b> A complete meal in a shake featuring real organic whole-food carbs, three-phase protein from grass-fed and non-GMO sources, organic fruits and vegetables, full transparency with every single ingredient.
           </p>
 
           <div className="review-line">
@@ -973,10 +1131,10 @@ function MinimalPDP() {
           <div className="price-block">
             <div>
               <div className="display">${price}.00</div>
-              <div className="desc">One-time purchase · 16 servings per bag</div>
+              <div className="desc">One-time purchase · 32 servings per bag</div>
             </div>
             <div style={{textAlign:'right'}}>
-              <div className="mono" style={{color:'var(--blue-2)',fontSize:12}}>$7.50 / serving</div>
+              <div className="mono" style={{color:'var(--ink)',fontSize:13,fontWeight:600}}>$3.75 / serving</div>
             </div>
           </div>
 
@@ -986,12 +1144,12 @@ function MinimalPDP() {
               <span>{qty}</span>
               <button onClick={()=>setQty(qty+1)}><Icon.Plus/></button>
             </div>
-            <button className="btn btn-lg" style={{flex:1}}>Add to cart — ${(price*qty).toFixed(2)}</button>
+            <button className="btn btn-lg btn-dark" style={{flex:1}}>Add to cart — ${(price*qty).toFixed(2)}</button>
           </div>
 
           <div className="trust-bullets">
             <div><Icon.Truck/> Ships in 1–2 days</div>
-            <div><Icon.Shield/> 30-day returns</div>
+            <div><Icon.Leaf/> No Sucralose / No Soy</div>
             <div><Icon.Flask/> NSF Certified for Sport</div>
             <div><Icon.Leaf/> No artificial anything</div>
           </div>
@@ -1003,12 +1161,13 @@ function MinimalPDP() {
         <div className="row">
           {Array.from({length:2}).map((_, k) => (
             <span key={k}>
-              <span className="pink star"><Icon.Star size={12}/></span> Grass-Fed Whey Isolate &amp; Beef Collagen
-              <span className="dot">·</span> Non-GMO Casein
-              <span className="blue star"><Icon.Star size={12}/></span> NSF Certified for Sport
-              <span className="dot">·</span> Zero sucralose, soy, artificial flavors
-              <span className="pink star"><Icon.Star size={12}/></span> Full transparency. Real food. Real ingredients. Full dosages.
-              <span className="dot">·</span> "I am the way." — John 14:6
+              Grass-fed Whey Isolate and Beef Collagen
+              <span className="cross"><Icon.Cross size={12}/></span> Non-GMO Micellar Casein
+              <span className="cross"><Icon.Cross size={12}/></span> Real Food. Real Ingredients.
+              <span className="cross"><Icon.Cross size={12}/></span> No sucralose, soy, artificial anything
+              <span className="cross"><Icon.Cross size={12}/></span> NSF Certified for Sport
+              <span className="cross"><Icon.Cross size={12}/></span> Isaiah 40:31 "I am the WAY"
+              <span className="cross"><Icon.Cross size={12}/></span>
             </span>
           ))}
         </div>
@@ -1019,10 +1178,10 @@ function MinimalPDP() {
         <div className="bound" style={{paddingTop:120, paddingBottom:120}}>
           <div className="meal">
             <div>
-              <h2 className="display"><span className="pink">A meal</span><br/><span className="blue">in a shake</span>.</h2>
-              <p className="lede">Most "protein shakes" leave an athlete 800 calories short. Whey Maker is built as a full meal — <b>five organic carb sources, three protein phases, organic fruits, organic vegetables, and digestive enzymes.</b> Everything an athlete needs to gain lean mass, in one bag.</p>
+              <h2 className="display">A meal<br/>in a shake.</h2>
+              <p className="lede">Typical “protein shakes” leave an athlete 800 calories short of what they need to build the body they desire. They can drink protein all day, but without the supporting carbs and fats in the correct ratios providing significantly high calories, they will never grow. Whey Maker is built to be a full meal in a bag that is convenient and quick to consume on the go. <b>Seven organic carb sources, the three highest-quality forms of protein, organic fruits, organic vegetables, and digestive enzymes.</b> Everything an athlete needs to gain lean muscle inside of one bag.</p>
               <div className="macro-tiles macro-tiles-lg">
-                <div className="tile"><div className="n">1,250</div><div className="l">Calories</div></div>
+                <div className="tile"><div className="n">1250</div><div className="l">Calories</div></div>
                 <div className="tile"><div className="n">60 g</div><div className="l">Protein</div></div>
                 <div className="tile"><div className="n">238 g</div><div className="l">Organic Carbs</div></div>
               </div>
@@ -1045,8 +1204,7 @@ function MinimalPDP() {
             <img src={`${ASSETS}/nsf-badge.png`} alt="NSF Certified for Sport"/>
           </div>
           <div>
-            <span className="call">Calling all college &amp; pro athletes · Strength &amp; dietary coaches</span>
-            <h2>Safe for collegiate &amp; professional athletes.</h2>
+            <h2>Tested safe for all collegiate &amp; professional athletes.</h2>
             <p>NSF Certified for Sport is the gold standard. Every Whey Maker batch is independently screened against 280+ banned substances, verified for label accuracy, and audited for contaminants — the same protocol the NFL, MLB, NHL, NBA, and PGA require their athletes to look for.</p>
             <div className="check-list">
               <div><span className="pip">✓</span> Banned-substance tested</div>
@@ -1062,7 +1220,7 @@ function MinimalPDP() {
       <section className="section ings">
         <div className="bound">
           <div className="head">
-            <h2 className="display"><span className="pink">Rolls Royce-level</span> <span className="blue">premium ingredients</span>.</h2>
+            <h2 className="display"><span className="pink">Rolls Royce-level</span> premium ingredients.</h2>
             <p>Every ingredient, every milligram. Real food. Full dosages.</p>
           </div>
 
@@ -1088,7 +1246,7 @@ function MinimalPDP() {
           {/* CARBS */}
           <div className="ing-block">
             <div className="ing-block-head">
-              <div className="h">Organic <span className="pink">carb</span> sources</div>
+              <div className="h">Organic and Non-GMO <span className="pink">carb</span> sources</div>
               <div className="t"><span className="pink">260 g</span> per serving</div>
             </div>
             <div className="ing-tiles">
@@ -1161,14 +1319,17 @@ function MinimalPDP() {
 
           {/* NuFlow one-liner */}
           <div className="nuflow-note">
-            <b>NuFlow®</b> instead of silicone dioxide — premium anti-caking from organic rice hulls. Most brands cheap out on the anti-caking agent. We didn't.
+            <b>Nu-Flow</b> instead of cheap silicone dioxide. We use premium organic rice hulls. Because you deserve premium, even down to the anti-caking ingredient.
           </div>
 
-          {/* "No" list */}
-          <div className="no-band">
-            {NO_LIST.map(n => (
-              <div key={n} className="pill-no"><span className="x">✕</span> {n.replace(/^No /, '')}</div>
-            ))}
+          {/* None-of-this list (replaces the ✕ pills) */}
+          <div className="none-block">
+            <h3 className="none-head">None of this found in Whey Maker.</h3>
+            <ul className="none-list">
+              {NONE_LIST.map(n => (
+                <li key={n}><span className="x">✕</span> {n}</li>
+              ))}
+            </ul>
           </div>
         </div>
       </section>
@@ -1177,8 +1338,8 @@ function MinimalPDP() {
       <section className="section">
         <div className="bound">
           <div className="head">
-            <h2 className="display"><span className="pink">How we</span> <span className="blue">stack up</span>.</h2>
-            <p>Head-to-head against every other mass gainer trying to put weight on an athlete.</p>
+            <h2 className="display">How we <span className="blue">stack up</span>.</h2>
+            <p>See how we compare to other popular mass gainers on the market. The difference is in the quality ingredients.</p>
           </div>
           <div className="compare">
             <div className="us-bg" aria-hidden="true"></div>
@@ -1200,8 +1361,8 @@ function MinimalPDP() {
       <section className="section dark">
         <div className="bound">
           <div className="head">
-            <h2 className="display" style={{color:'var(--paper)'}}>Gaining weight is<br/>a <span className="pink">math problem</span>.</h2>
-            <p>"Just eat more" isn't a plan. Here's what one shake per day looks like over a month — and what 16 years of training kids tells us happens.</p>
+            <h2 className="display" style={{color:'var(--paper)'}}>Gaining weight is<br/><span className="pink">simple math</span>.</h2>
+            <p>Every athlete has heard, “Just eat more.” That’s not a plan, it’s lazy advice that leaves you the same size a year later. Here’s what one shake per day looks like over a month and what 16 years of results training athletes tells us will happen.</p>
           </div>
           <div className="math-grid">
             {[
@@ -1220,8 +1381,8 @@ function MinimalPDP() {
             ))}
           </div>
           <div className="math-payoff">
-            <h3 className="display"><span className="pink">7–10 lbs</span> of <span className="blue">lean mass</span> per month.</h3>
-            <p>From 16 years of training experience watching kids actually gain weight. Pair Whey Maker with real meals and a real lifting plan — that's what the typical athlete in our program is putting on.</p>
+            <h3 className="display"><span className="pink">7 to 10 lbs</span> of <span className="blue">lean mass</span>.</h3>
+            <p>From 16 years of developing over 10 All-Americans, hundreds of D1 athletes, and thousands of collegiate athletes at all levels, this is what happens when adding 37,500 additional calories above maintenance. Pair Whey Maker with real meals and a real training plan, and these are the typical results athletes in our program at Nevels experience.</p>
           </div>
         </div>
       </section>
@@ -1231,34 +1392,34 @@ function MinimalPDP() {
         <div className="bound">
           <div className="head" style={{display:'flex',justifyContent:'space-between',alignItems:'flex-end',gap:32,maxWidth:'none'}}>
             <div>
-              <h2 className="display"><span className="pink">Used by athletes.</span><br/><span className="blue">Trusted by parents.</span></h2>
+              <h2 className="display">Used by athletes.<br/><span className="blue">Trusted by parents.</span></h2>
             </div>
-            <p style={{maxWidth:300}}>Before-and-afters from Jordan's gym. Real kids, real timeframes, real food on the side.</p>
+            <p style={{maxWidth:340}}>Real transformations from athletes that train at Nevels. Real kids, real timeframes, all utilizing Whey Maker as their secret weapon.</p>
           </div>
           <div className="athletes">
             {ATHLETES.map((a, i) => (
               <div key={i} className="card">
-                <img src={a.src} alt="" loading="lazy"/>
-                <div className="cap"><span>{a.sport}</span><span className="v">{a.meta}</span></div>
+                <img src={a.src} alt={a.name} loading="lazy"/>
+                <div className="cap"><span className="nm">{a.name}</span><span className="v">{a.cred}</span></div>
               </div>
             ))}
           </div>
 
-          <div className="parent-video">
-            <div className="vid">
-              <iframe
-                src="https://player.vimeo.com/video/1195668846?dnt=1&title=0&byline=0&portrait=0"
-                allow="autoplay; fullscreen; picture-in-picture"
-                allowFullScreen
-                title="Parent testimonial"
-              />
-            </div>
+          <div className="parent-video stacked">
             <div className="vid">
               <iframe
                 src="https://player.vimeo.com/video/1195668848?dnt=1&title=0&byline=0&portrait=0"
                 allow="autoplay; fullscreen; picture-in-picture"
                 allowFullScreen
-                title="Parent testimonial"
+                title="Durran — parent testimonial"
+              />
+            </div>
+            <div className="vid">
+              <iframe
+                src="https://player.vimeo.com/video/1195668846?dnt=1&title=0&byline=0&portrait=0"
+                allow="autoplay; fullscreen; picture-in-picture"
+                allowFullScreen
+                title="Mike — parent testimonial"
               />
             </div>
           </div>
@@ -1268,15 +1429,14 @@ function MinimalPDP() {
       {/* FOUNDER */}
       <section className="section alt">
         <div className="bound founder">
-          <div className="portrait">Founder portrait<br/>Jordan Nevels</div>
+          <div className="portrait"><img src={`${ASSETS}/founder-gym.jpg`} alt="Athletes who train at Nevels Fitness" loading="lazy"/></div>
           <div>
-            <h2 className="display">"I made this because <span className="pink">nothing on the shelf</span> was <span className="blue">good enough</span> for my kids."</h2>
-            <p style={{color:'var(--muted)',fontSize:16,maxWidth:560}}>Jordan Nevels spent <b style={{color:'var(--ink)'}}>16 years</b> as an athletic trainer and strength coach watching middle schoolers, high schoolers, and college athletes try to gain weight on shakes full of maltodextrin, sucralose, and Yellow #5. So he built the one he wished existed.</p>
-            <div className="founder-quote">"Gain mass lean. Keep it clean. Live for the King."</div>
+            <h2 className="display" style={{fontSize:'clamp(26px, 3.2vw, 44px)'}}>"I developed Whey Maker because every parent of an athlete I train struggles with adding clean muscle on them. There was nothing on the shelf healthy or high-quality enough for my athletes, so I created my dream product."</h2>
+            <p style={{color:'var(--muted)',fontSize:16,maxWidth:560}}>Jordan Nevels is owner of Nevels Fitness, the premier sports performance facility in the country helping thousands of athletes get college scholarships and pro contracts. He watched kids trying to gain weight using shakes full of corn maltodextrin, sucralose, soy, and artificial flavors. Parents had no guidance on what they should actually give their children to gain muscle the right way, so he created the way, Whey Maker.</p>
+            <div className="founder-quote">"Gain mass lean. Keep it clean. Live for the KING."</div>
             <div className="credits">
-              <div><div className="display pink">16 yr</div><div className="eyebrow" style={{marginTop:4}}>Athletic training</div></div>
-              <div><div className="display blue">400+</div><div className="eyebrow" style={{marginTop:4}}>Athletes coached</div></div>
-              <div><div className="display">Pro+NCAA</div><div className="eyebrow" style={{marginTop:4}}>Strength &amp; performance</div></div>
+              <div><div className="display pink">16 YR</div><div className="eyebrow" style={{marginTop:4}}>Sports nutrition performance</div></div>
+              <div><div className="display blue">5000+</div><div className="eyebrow" style={{marginTop:4}}>Athletes trained</div></div>
             </div>
           </div>
         </div>
@@ -1284,17 +1444,11 @@ function MinimalPDP() {
 
       {/* FAITH MISSION (pink) */}
       <section className="mission">
-        <div className="bound inner">
-          <div>
-            <span className="ribbon">The Whey · The Way</span>
-            <h2>Built on a verse.<br/>Carried by a mission.</h2>
-            <p>The front of the bag is the Red Sea parting — God making a way where there was no way. Whey Maker exists to fuel athletes who want to gain mass without compromising what goes in their body, and to point people back to the One who makes a way.</p>
-            <p>That's why "Live for the King" is printed inside every bag.</p>
+        <div className="bound">
+          <div className="whey-way">
+            <h2>The Whey + The Way</h2>
+            <p>That’s why “LIVE FOR THE KING” is printed at the top of every bag.</p>
             <div className="verse">"I am the way, the truth, and the life." — John 14:6</div>
-          </div>
-          <div className="mission-side">
-            <div className="big">"Jesus saith unto him, I am the way, the truth, and the life: no man cometh unto the Father, but by me."</div>
-            <div className="lil">— John 14:6</div>
           </div>
         </div>
       </section>
@@ -1302,7 +1456,7 @@ function MinimalPDP() {
       {/* FAQ */}
       <section className="section faq">
         <div className="bound">
-          <h2 className="display"><span className="pink">Frequently</span> <span className="blue">asked questions</span>.</h2>
+          <h2 className="display">Frequently asked questions.</h2>
           <div className="faq-list">
             {FAQS.map(([q,a], i) => (
               <div key={i} className="faq-item">
@@ -1321,7 +1475,7 @@ function MinimalPDP() {
       <section className="section alt">
         <div className="bound reviews-grid">
           <div className="summary">
-            <h2 className="display"><span className="pink">Results.</span></h2>
+            <h2 className="display">Results.</h2>
             <p style={{color:'var(--muted)', fontSize:14, lineHeight:1.6, maxWidth:320}}>What parents and athletes are saying after switching.</p>
             <Stars n={5} size={20}/>
             <div className="review-distribution">
@@ -1361,8 +1515,8 @@ function MinimalPDP() {
       {/* FINAL CTA */}
       <section className="cta">
         <div className="verse">— Gain mass lean. Keep it clean. Live for the King.</div>
-        <h2 className="display"><span className="pink">Start</span> <span className="blue">gaining</span>.</h2>
-        <p>16 servings of real food per bag. Three proteins. Five organic carb sources. Twelve real fruits &amp; vegetables. NSF Certified for Sport.</p>
+        <h2 className="display">Gain <span className="pink">muscle</span> now.</h2>
+        <p>32 real-food meals per bag. 1250 calories, 60g protein, 238g organic carbs. NSF CERTIFIED FOR SPORT.</p>
         <button className="btn btn-light btn-lg">Add to cart — $120.00</button>
       </section>
 
@@ -1370,8 +1524,8 @@ function MinimalPDP() {
       <footer className="footer">
         <div className="cols">
           <div className="brand">
-            <div className="display">NEVELS<span className="pink">.</span><br/>NUTRITION</div>
-            <p>Real food. Real ingredients. Full dosages. Built for athletes who show up.</p>
+            <img className="logo-img" src={`${ASSETS}/whey-maker-logo.svg`} alt="Whey Maker — Nevels Nutrition"/>
+            <p>Real Food. Real Ingredients. Full dosages. Built for athletes who want the best.</p>
             <div className="verse">"I am the way." — John 14:6</div>
           </div>
           <div className="col">
@@ -1392,6 +1546,34 @@ function MinimalPDP() {
           <div>Shipping · Returns · Privacy · Terms</div>
         </div>
       </footer>
+
+      {/* PRODUCT PHOTO LIGHTBOX — large view + click-to-zoom */}
+      {lightbox && (
+        <div className="lightbox" onClick={closeLightbox}>
+          <button className="lb-close" aria-label="Close" onClick={closeLightbox}>×</button>
+          <button className="lb-nav prev" aria-label="Previous" onClick={(e)=>{e.stopPropagation();stepThumb(-1);}}>‹</button>
+          <div className="lb-stage" onClick={(e)=>e.stopPropagation()}>
+            <img
+              src={current.src}
+              alt={current.alt}
+              draggable={false}
+              className={zoom ? 'zoomed' : ''}
+              style={zoom ? {transformOrigin: `${origin.x}% ${origin.y}%`} : null}
+              onClick={()=>setZoom(z=>!z)}
+              onMouseMove={onZoomMove}
+            />
+          </div>
+          <button className="lb-nav next" aria-label="Next" onClick={(e)=>{e.stopPropagation();stepThumb(1);}}>›</button>
+          <div className="lb-hint">{zoom ? 'Click image to zoom out · ← → to browse' : 'Click image to zoom · ← → to browse · Esc to close'}</div>
+          <div className="lb-thumbs" onClick={(e)=>e.stopPropagation()}>
+            {thumbs.map((t, i) => (
+              <div key={i} className={`lb-thumb ${thumb===i?'active':''}`} onClick={()=>{setZoom(false);setThumb(i);}}>
+                <img src={t.src} alt={t.alt}/>
+              </div>
+            ))}
+          </div>
+        </div>
+      )}
     </>
   );
 }
