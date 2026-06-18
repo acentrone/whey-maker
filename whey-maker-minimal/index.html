@@ -176,12 +176,12 @@
     font-family: Impact, sans-serif;
     font-size: clamp(42px, 6.4vw, 66px);
     line-height: 0.9;
-    color: var(--pink);
+    color: var(--blue);
     white-space: nowrap;
   }
   .macro-tiles .tile .l {
     font-family: 'Inter', sans-serif; font-size: 13px;
-    color: var(--pink);
+    color: var(--blue);
     margin-top: 8px; font-weight: 600;
   }
   /* Larger variant for the meal section — numbers fill the black box
@@ -357,7 +357,7 @@
     font-family: Impact, sans-serif; font-weight: 400;
     font-size: clamp(40px, 5.5vw, 76px);
     line-height: 1.0;
-    margin: 0 0 18px; text-transform: uppercase; color: #fff;
+    margin: 0 0 18px; text-transform: uppercase; color: var(--blue);
   }
   .nsf-section p { font-size: 16px; max-width: 560px; color: rgba(255,255,255,0.92); line-height: 1.6; }
   .nsf-section .check-list {
@@ -391,12 +391,31 @@
   /* Labeled-shake diagram — image sits clean against the section
      with the same rounded corners as the other cards on the page. */
   .shake-diagram {
-    display: flex; align-items: center; justify-content: center;
-  }
-  .shake-diagram img {
-    width: 100%; height: auto;
+    background: #f3e6d3;
     border-radius: 20px;
-    display: block;
+    padding: 28px 30px;
+    display: grid; grid-template-columns: auto 1fr; gap: 22px; align-items: center;
+  }
+  .shake-diagram .glass { display: flex; align-items: center; justify-content: center; }
+  .shake-diagram .glass img { height: 480px; width: auto; display: block; }
+  .shake-diagram .ing-key { min-width: 0; }
+  .shake-diagram .ing-key .vb {
+    font-family: Impact, 'Haettenschweiler', 'Arial Narrow Bold', sans-serif;
+    font-weight: 400; text-transform: uppercase; line-height: 0.92;
+    color: var(--pink); font-size: clamp(26px, 3vw, 42px);
+    margin: 0 0 16px;
+  }
+  .shake-diagram .ing-key ul { list-style: none; margin: 0; padding: 0; }
+  .shake-diagram .ing-key li {
+    font-family: Impact, 'Haettenschweiler', 'Arial Narrow Bold', sans-serif;
+    font-weight: 400; text-transform: uppercase; letter-spacing: 0.01em;
+    color: #14110c; font-size: clamp(14px, 1.4vw, 19px);
+    line-height: 1.62; white-space: nowrap;
+  }
+  @media (max-width: 560px) {
+    .shake-diagram { grid-template-columns: 1fr; gap: 16px; padding: 22px; }
+    .shake-diagram .glass img { height: 340px; margin: 0 auto; }
+    .shake-diagram .ing-key li { white-space: normal; }
   }
 
   /* ── Rolls Royce ingredients section ─────────────────────────── */
@@ -592,7 +611,7 @@
   .founder-quote {
     margin-top: 20px;
     font-family: 'Caveat', cursive;
-    font-size: 28px; color: var(--ink); line-height: 1.2;
+    font-size: 28px; color: var(--pink); line-height: 1.2;
   }
 
   /* ── Faith mission section (pink) ───────────────────────────── */
@@ -850,7 +869,7 @@
   .whey-way h2 {
     font-family: Impact, 'Haettenschweiler', 'Arial Narrow Bold', sans-serif;
     font-weight: 400; text-transform: uppercase; line-height: 0.96;
-    font-size: clamp(52px, 8.4vw, 112px); margin: 0 0 22px; color: var(--ink);
+    font-size: clamp(52px, 8.4vw, 112px); margin: 0 0 22px; color: #fff;
   }
   .whey-way p {
     font-size: 18px; font-weight: 600; color: var(--ink);
@@ -957,6 +976,25 @@ const NONE_LIST = [
   'Cheap GMO corn for the carb source',
 ];
 
+// Ingredient key shown beside the Vanilla Buttercream glass (real HTML so it
+// stays editable — the old shake-stack.jpg had this list baked into the photo).
+const SHAKE_INGREDIENTS = [
+  'Grass-Fed Whey Isolate',
+  'Non-GMO Micellar Casein',
+  'Grass-Fed Beef Collagen',
+  'Cluster Dextrin',
+  'Organic Brown Rice',
+  'Organic Sweet Potato',
+  'Organic Oats',
+  'Organic Quinoa',
+  'Organic Amaranth',
+  'Organic Buckwheat',
+  'Organic Millet',
+  'Organic Chia',
+  'Organic Berries',
+  'Organic Veggies',
+];
+
 const COMPARE_COLS = ['', 'Whey Maker', 'Serious Mass', 'Transparent Labs', 'Huel Black'];
 const COMPARE_ROWS = [
   ['Calories / serving', '1,250', '1,250', '750', '400'],
@@ -976,7 +1014,7 @@ const ATHLETES = [
   { src: `${ASSETS}/athletes/ej-walker.jpg`, name: 'EJ Walker', cred: '4★ South Carolina signee' },
   { src: `${ASSETS}/athletes/cam-thomas.jpg`, name: 'Cam Thomas', cred: 'All-American · Illinois Football LB' },
   { src: `${ASSETS}/athletes/austin-alexander.jpg`, name: 'Austin Alexander', cred: '4★ · 215 → 247 lbs' },
-  { src: `${ASSETS}/athletes/nevels-fitness.jpg`, name: 'Trained at Nevels', cred: 'Real food. Real results.' },
+  { src: `${ASSETS}/athletes/nevels-fitness.jpg`, name: 'Willie Rodriguez Jr.', cred: 'All-SEC Tight End' },
 ];
 
 const FAQS = [
@@ -1101,7 +1139,7 @@ function MinimalPDP() {
         </div>
 
         <div className="buy">
-          <h1 className="display">Whey Maker</h1>
+          <h1 className="display"><span className="blue">Whey</span> Maker</h1>
 
           <div className="macro-tiles">
             <div className="tile"><div className="n">1250</div><div className="l">Calories</div></div>
@@ -1179,7 +1217,7 @@ function MinimalPDP() {
         <div className="bound" style={{paddingTop:120, paddingBottom:120}}>
           <div className="meal">
             <div>
-              <h2 className="display">A meal<br/>in a shake.</h2>
+              <h2 className="display"><span className="pink">A meal</span><br/>in a shake.</h2>
               <p className="lede">Typical “protein shakes” leave an athlete 800 calories short of what they need to build the body they desire. They can drink protein all day, but without the supporting carbs and fats in the correct ratios providing significantly high calories, they will never grow. Whey Maker is built to be a full meal in a bag that is convenient and quick to consume on the go. <b>Seven organic carb sources, the three highest-quality forms of protein, organic fruits, organic vegetables, and digestive enzymes.</b> Everything an athlete needs to gain lean muscle inside of one bag.</p>
               <div className="macro-tiles macro-tiles-lg">
                 <div className="tile"><div className="n">1250</div><div className="l">Calories</div></div>
@@ -1188,11 +1226,19 @@ function MinimalPDP() {
               </div>
             </div>
             <div className="shake-diagram">
-              <img
-                src={`${ASSETS}/lifestyle/shake-stack.jpg`}
-                alt="A tall glass packed top-to-bottom with every Whey Maker ingredient — vanilla beans, whey isolate, micellar casein, beef collagen, cluster dextrin, brown rice, sweet potato, oats, organic berries, organic vegetables, chia — labeled on the right as Vanilla Buttercream"
-                loading="lazy"
-              />
+              <div className="glass">
+                <img
+                  src={`${ASSETS}/lifestyle/shake-glass.jpg`}
+                  alt="A tall glass layered top-to-bottom with every Whey Maker ingredient — vanilla, whey isolate, quinoa, brown rice, sweet potato, oats, organic berries, organic vegetables, and chia"
+                  loading="lazy"
+                />
+              </div>
+              <div className="ing-key">
+                <div className="vb">Vanilla<br/>Buttercream</div>
+                <ul>
+                  {SHAKE_INGREDIENTS.map(n => <li key={n}>{n}</li>)}
+                </ul>
+              </div>
             </div>
           </div>
         </div>
@@ -1325,7 +1371,7 @@ function MinimalPDP() {
 
           {/* None-of-this list (replaces the ✕ pills) */}
           <div className="none-block">
-            <h3 className="none-head">None of this found in Whey Maker.</h3>
+            <h3 className="none-head"><span className="blue">None of this</span> is found in Whey Maker.</h3>
             <ul className="none-list">
               {NONE_LIST.map(n => (
                 <li key={n}><span className="x">✕</span> {n}</li>
