@@ -21,28 +21,28 @@
 -%}
 
 <div class="wm-pdp">
-  <section class="section">
-    <div class="bound">
-      <div class="head" style="display:flex;justify-content:space-between;align-items:flex-end;gap:32px;max-width:none">
+  <section class="wmk-section">
+    <div class="wmk-bound">
+      <div class="wmk-head" style="display:flex;justify-content:space-between;align-items:flex-end;gap:32px;max-width:none">
         <div>
-          <h2 class="display">{{ section.settings.head_black }}<br><span class="blue">{{ section.settings.head_blue }}</span></h2>
+          <h2 class="wmk-display">{{ section.settings.head_black }}<br><span class="wmk-blue">{{ section.settings.head_blue }}</span></h2>
         </div>
         <p style="max-width:340px">{{ section.settings.subhead }}</p>
       </div>
-      <div class="athletes">
-        <div class="card"><img src="{{ img1 }}" alt="{{ section.settings.a1_name | escape }}" loading="lazy"><div class="cap"><span class="nm">{{ section.settings.a1_name }}</span><span class="v">{{ section.settings.a1_cred }}</span></div></div>
-        <div class="card"><img src="{{ img2 }}" alt="{{ section.settings.a2_name | escape }}" loading="lazy"><div class="cap"><span class="nm">{{ section.settings.a2_name }}</span><span class="v">{{ section.settings.a2_cred }}</span></div></div>
-        <div class="card"><img src="{{ img3 }}" alt="{{ section.settings.a3_name | escape }}" loading="lazy"><div class="cap"><span class="nm">{{ section.settings.a3_name }}</span><span class="v">{{ section.settings.a3_cred }}</span></div></div>
-        <div class="card"><img src="{{ img4 }}" alt="{{ section.settings.a4_name | escape }}" loading="lazy"><div class="cap"><span class="nm">{{ section.settings.a4_name }}</span><span class="v">{{ section.settings.a4_cred }}</span></div></div>
+      <div class="wmk-athletes">
+        <div class="wmk-card"><img src="{{ img1 }}" alt="{{ section.settings.a1_name | escape }}" loading="lazy"><div class="wmk-cap"><span class="wmk-nm">{{ section.settings.a1_name }}</span><span class="wmk-v">{{ section.settings.a1_cred }}</span></div></div>
+        <div class="wmk-card"><img src="{{ img2 }}" alt="{{ section.settings.a2_name | escape }}" loading="lazy"><div class="wmk-cap"><span class="wmk-nm">{{ section.settings.a2_name }}</span><span class="wmk-v">{{ section.settings.a2_cred }}</span></div></div>
+        <div class="wmk-card"><img src="{{ img3 }}" alt="{{ section.settings.a3_name | escape }}" loading="lazy"><div class="wmk-cap"><span class="wmk-nm">{{ section.settings.a3_name }}</span><span class="wmk-v">{{ section.settings.a3_cred }}</span></div></div>
+        <div class="wmk-card"><img src="{{ img4 }}" alt="{{ section.settings.a4_name | escape }}" loading="lazy"><div class="wmk-cap"><span class="wmk-nm">{{ section.settings.a4_name }}</span><span class="wmk-v">{{ section.settings.a4_cred }}</span></div></div>
       </div>
 
       {%- if section.settings.video_1 != blank or section.settings.video_2 != blank -%}
-        <div class="parent-video stacked">
+        <div class="wmk-parent-video wmk-stacked">
           {%- if section.settings.video_1 != blank -%}
-            <div class="vid"><iframe src="https://player.vimeo.com/video/{{ section.settings.video_1 }}?dnt=1&amp;title=0&amp;byline=0&amp;portrait=0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen title="{{ section.settings.video_1_title | escape }}"></iframe></div>
+            <div class="wmk-vid"><iframe src="https://player.vimeo.com/video/{{ section.settings.video_1 }}?dnt=1&amp;title=0&amp;byline=0&amp;portrait=0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen title="{{ section.settings.video_1_title | escape }}"></iframe></div>
           {%- endif -%}
           {%- if section.settings.video_2 != blank -%}
-            <div class="vid"><iframe src="https://player.vimeo.com/video/{{ section.settings.video_2 }}?dnt=1&amp;title=0&amp;byline=0&amp;portrait=0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen title="{{ section.settings.video_2_title | escape }}"></iframe></div>
+            <div class="wmk-vid"><iframe src="https://player.vimeo.com/video/{{ section.settings.video_2 }}?dnt=1&amp;title=0&amp;byline=0&amp;portrait=0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen title="{{ section.settings.video_2_title | escape }}"></iframe></div>
           {%- endif -%}
         </div>
       {%- endif -%}

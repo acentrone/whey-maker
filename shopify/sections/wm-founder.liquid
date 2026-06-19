@@ -8,16 +8,16 @@
 {%- endif -%}
 
 <div class="wm-pdp">
-  <section class="section alt">
-    <div class="bound founder">
-      <div class="portrait"><img src="{{ portrait_src }}" alt="{{ section.settings.portrait_alt | escape }}" loading="lazy"></div>
+  <section class="wmk-section wmk-alt">
+    <div class="wmk-bound wmk-founder">
+      <div class="wmk-portrait"><img src="{{ portrait_src }}" alt="{{ section.settings.portrait_alt | escape }}" loading="lazy"></div>
       <div>
-        <h2 class="display" style="font-size:clamp(26px, 3.2vw, 44px)">{{ section.settings.quote }}</h2>
+        <h2 class="wmk-display" style="font-size:clamp(26px, 3.2vw, 44px)">{{ section.settings.quote }}</h2>
         <div style="color:var(--muted);font-size:16px;max-width:560px">{{ section.settings.bio }}</div>
-        <div class="founder-quote">{{ section.settings.mantra }}</div>
-        <div class="credits">
-          <div><div class="display pink">{{ section.settings.stat1_num }}</div><div class="eyebrow" style="margin-top:4px">{{ section.settings.stat1_label }}</div></div>
-          <div><div class="display blue">{{ section.settings.stat2_num }}</div><div class="eyebrow" style="margin-top:4px">{{ section.settings.stat2_label }}</div></div>
+        <div class="wmk-founder-quote">{{ section.settings.mantra }}</div>
+        <div class="wmk-credits">
+          <div><div class="wmk-display wmk-pink">{{ section.settings.stat1_num }}</div><div class="wmk-eyebrow" style="margin-top:4px">{{ section.settings.stat1_label }}</div></div>
+          <div><div class="wmk-display wmk-blue">{{ section.settings.stat2_num }}</div><div class="wmk-eyebrow" style="margin-top:4px">{{ section.settings.stat2_label }}</div></div>
         </div>
       </div>
     </div>

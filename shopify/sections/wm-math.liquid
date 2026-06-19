@@ -2,21 +2,21 @@
 {% render 'wm-assets' %}
 
 <div class="wm-pdp">
-  <section class="section dark">
-    <div class="bound">
-      <div class="head">
-        <h2 class="display" style="color:var(--paper)">{{ section.settings.head_top }}<br>{% if section.settings.head_pink != blank %}<span class="pink">{{ section.settings.head_pink }}</span>{% endif %}.</h2>
+  <section class="wmk-section wmk-dark">
+    <div class="wmk-bound">
+      <div class="wmk-head">
+        <h2 class="wmk-display" style="color:var(--paper)">{{ section.settings.head_top }}<br>{% if section.settings.head_pink != blank %}<span class="wmk-pink">{{ section.settings.head_pink }}</span>{% endif %}.</h2>
         <p>{{ section.settings.body }}</p>
       </div>
-      <div class="math-grid">
-        <div class="card"><div class="lbl">{{ section.settings.c1_label }}</div><div class="num" style="color:var(--pink)">{{ section.settings.c1_num }}</div><div class="u">{{ section.settings.c1_unit }}</div></div>
-        <div class="op">&times;</div>
-        <div class="card"><div class="lbl">{{ section.settings.c2_label }}</div><div class="num" style="color:var(--paper)">{{ section.settings.c2_num }}</div><div class="u">{{ section.settings.c2_unit }}</div></div>
-        <div class="op">=</div>
-        <div class="card"><div class="lbl">{{ section.settings.c3_label }}</div><div class="num" style="color:var(--blue)">{{ section.settings.c3_num }}</div><div class="u">{{ section.settings.c3_unit }}</div></div>
+      <div class="wmk-math-grid">
+        <div class="wmk-card"><div class="wmk-lbl">{{ section.settings.c1_label }}</div><div class="wmk-num" style="color:var(--pink)">{{ section.settings.c1_num }}</div><div class="wmk-u">{{ section.settings.c1_unit }}</div></div>
+        <div class="wmk-op">&times;</div>
+        <div class="wmk-card"><div class="wmk-lbl">{{ section.settings.c2_label }}</div><div class="wmk-num" style="color:var(--paper)">{{ section.settings.c2_num }}</div><div class="wmk-u">{{ section.settings.c2_unit }}</div></div>
+        <div class="wmk-op">=</div>
+        <div class="wmk-card"><div class="wmk-lbl">{{ section.settings.c3_label }}</div><div class="wmk-num" style="color:var(--blue)">{{ section.settings.c3_num }}</div><div class="wmk-u">{{ section.settings.c3_unit }}</div></div>
       </div>
-      <div class="math-payoff">
-        <h3 class="display"><span class="pink">{{ section.settings.payoff_pink }}</span> of <span class="blue">{{ section.settings.payoff_blue }}</span>.</h3>
+      <div class="wmk-math-payoff">
+        <h3 class="wmk-display"><span class="wmk-pink">{{ section.settings.payoff_pink }}</span> of <span class="wmk-blue">{{ section.settings.payoff_blue }}</span>.</h3>
         <p>{{ section.settings.payoff_body }}</p>
       </div>
     </div>

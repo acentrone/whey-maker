@@ -3,18 +3,18 @@
 
 {%- assign lines = section.settings.lines | newline_to_br | split: '<br />' -%}
 <div class="wm-pdp">
-  <div class="strip">
-    <div class="row">
+  <div class="wmk-strip">
+    <div class="wmk-row">
       {%- for k in (1..2) -%}
         <span>
           {%- for line in lines -%}
             {%- assign t = line | strip -%}
             {%- if t != blank -%}
-              {%- unless forloop.first -%}<span class="cross">{% render 'wm-icon', icon: 'cross', size: 12 %}</span>{%- endunless -%}
+              {%- unless forloop.first -%}<span class="wmk-cross">{% render 'wm-icon', icon: 'cross', size: 12 %}</span>{%- endunless -%}
               {{ t }}
             {%- endif -%}
           {%- endfor -%}
-          <span class="cross">{% render 'wm-icon', icon: 'cross', size: 12 %}</span>
+          <span class="wmk-cross">{% render 'wm-icon', icon: 'cross', size: 12 %}</span>
         </span>
       {%- endfor -%}
     </div>

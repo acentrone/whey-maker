@@ -10,25 +10,25 @@
 {%- assign rows = "Calories / serving;1,250;1,250;750;400|Protein;60 g;50 g;30 g;40 g|Grass-fed protein sources;yes;no;yes;no|Organic carb sources;yes;no;no;no|Cluster dextrin;yes;no;no;no|Organic ModCarb (6 whole grains);yes;no;no;no|Organic fruit & vegetable blend;yes;no;no;no|Sucralose;no;yes;no;no|NSF Certified for Sport;yes;no;no;no|Built for athletes 11+;yes;no;no;no|Price / meal;$3.75;$2.10;$4.80;$3.90" | split: "|" -%}
 
 <div class="wm-pdp">
-  <section class="section">
-    <div class="bound">
-      <div class="head">
-        <h2 class="display">{{ section.settings.head_black }} <span class="blue">{{ section.settings.head_blue }}</span>.</h2>
+  <section class="wmk-section">
+    <div class="wmk-bound">
+      <div class="wmk-head">
+        <h2 class="wmk-display">{{ section.settings.head_black }} <span class="wmk-blue">{{ section.settings.head_blue }}</span>.</h2>
         <p>{{ section.settings.subhead }}</p>
       </div>
-      <div class="compare">
-        <div class="us-bg" aria-hidden="true"></div>
-        <div class="cell head lbl"></div>
+      <div class="wmk-compare">
+        <div class="wmk-us-bg" aria-hidden="true"></div>
+        <div class="wmk-cell wmk-head wmk-lbl"></div>
         {%- for c in cols -%}
-          <div class="cell head {% if forloop.first %}us{% endif %}">{{ c }}</div>
+          <div class="wmk-cell wmk-head {% if forloop.first %}wmk-us{% endif %}">{{ c }}</div>
         {%- endfor -%}
         {%- for row in rows -%}
           {%- assign r = row | split: ";" -%}
-          <div class="cell lbl">{{ r[0] }}</div>
+          <div class="wmk-cell wmk-lbl">{{ r[0] }}</div>
           {%- for i in (1..4) -%}
             {%- assign val = r[i] -%}
             {%- assign is_us = false -%}{%- if i == 1 -%}{%- assign is_us = true -%}{%- endif -%}
-            <div class="cell {% if is_us %}us{% endif %}">
+            <div class="wmk-cell {% if is_us %}wmk-us{% endif %}">
               {%- if val == "yes" -%}{% if is_us %}{{ chk_inv }}{% else %}{{ chk_normal }}{% endif %}
               {%- elsif val == "no" -%}{% if is_us %}{{ x_inv }}{% else %}{{ x_normal }}{% endif %}
               {%- else -%}{{ val }}{%- endif -%}

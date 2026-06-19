@@ -4,16 +4,16 @@
 {%- assign cv = product.selected_or_first_available_variant -%}
 
 <div class="wm-pdp">
-  <section class="cta">
-    {%- if section.settings.verse != blank -%}<div class="verse">{{ section.settings.verse }}</div>{%- endif -%}
-    <h2 class="display">{{ section.settings.head_before }} <span class="pink">{{ section.settings.head_pink }}</span> {{ section.settings.head_after }}</h2>
+  <section class="wmk-cta">
+    {%- if section.settings.verse != blank -%}<div class="wmk-verse">{{ section.settings.verse }}</div>{%- endif -%}
+    <h2 class="wmk-display">{{ section.settings.head_before }} <span class="wmk-pink">{{ section.settings.head_pink }}</span> {{ section.settings.head_after }}</h2>
     <p>{{ section.settings.body }}</p>
     {%- if product != blank and product.available -%}
-      <a class="btn btn-light btn-lg" href="{{ routes.cart_add_url }}?id={{ cv.id }}&quantity=1">{{ section.settings.button_label }} — {{ cv.price | money }}</a>
+      <a class="wmk-btn wmk-btn-light wmk-btn-lg" href="{{ routes.cart_add_url }}?id={{ cv.id }}&quantity=1">{{ section.settings.button_label }} — {{ cv.price | money }}</a>
     {%- elsif product != blank -%}
-      <a class="btn btn-light btn-lg" href="{{ product.url }}">{{ section.settings.button_label }}</a>
+      <a class="wmk-btn wmk-btn-light wmk-btn-lg" href="{{ product.url }}">{{ section.settings.button_label }}</a>
     {%- else -%}
-      <a class="btn btn-light btn-lg" href="{{ section.settings.button_link }}">{{ section.settings.button_label }}</a>
+      <a class="wmk-btn wmk-btn-light wmk-btn-lg" href="{{ section.settings.button_link }}">{{ section.settings.button_label }}</a>
     {%- endif -%}
   </section>
 </div>

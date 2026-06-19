@@ -2,28 +2,27 @@
 {% render 'wm-assets' %}
 
 <div class="wm-pdp">
-  <section class="section alt">
-    <div class="bound reviews-grid">
-      <div class="summary">
-        <h2 class="display">{{ section.settings.heading }}</h2>
+  <section class="wmk-section wmk-alt">
+    <div class="wmk-bound wmk-reviews-grid">
+      <div class="wmk-summary">
+        <h2 class="wmk-display">{{ section.settings.heading }}</h2>
         <p style="color:var(--muted);font-size:14px;line-height:1.6;max-width:320px">{{ section.settings.subhead }}</p>
-        <span class="stars">{% for i in (1..5) %}{% render 'wm-icon', icon: 'star', size: 20 %}{% endfor %}</span>
-        <div class="review-distribution">
+        <span class="wmk-stars">{% for i in (1..5) %}{% render 'wm-icon', icon: 'star', size: 20 %}{% endfor %}</span>
+        <div class="wmk-review-distribution">
           {%- assign dist = "216,24,5,2,1" | split: "," -%}
           {%- assign total = 248 -%}
           {%- for d in dist -%}
             {%- assign star = 5 | minus: forloop.index0 -%}
-            <div class="bar-row">
+            <div class="wmk-bar-row">
               <span style="width:16px">{{ star }}★</span>
-              <div class="bar"><div style="width:{{ d | times: 100 | divided_by: total }}%"></div></div>
+              <div class="wmk-bar"><div style="width:{{ d | times: 100 | divided_by: total }}%"></div></div>
               <span style="width:30px;text-align:right;color:var(--muted)">{{ d }}</span>
             </div>
           {%- endfor -%}
         </div>
-        <button class="btn btn-outline btn-full" style="margin-top:16px" type="button">{{ section.settings.button_label }}</button>
       </div>
 
-      <div class="review-cards">
+      <div class="wmk-review-cards">
         {%- for i in (1..4) -%}
           {%- assign tk = 'r' | append: i | append: '_title' -%}
           {%- assign bk = 'r' | append: i | append: '_body' -%}
@@ -36,15 +35,15 @@
             {%- assign parts = rname | split: ' ' -%}
             {%- capture initials -%}{{ parts[0] | slice: 0 }}{% if parts.size > 1 %}{{ parts[1] | slice: 0 }}{% endif %}{%- endcapture -%}
             {%- assign nstars = section.settings[sk] | default: 5 -%}
-            <div class="card">
+            <div class="wmk-card">
               <div style="display:flex;justify-content:space-between;align-items:center">
-                <span class="stars">{% for s in (1..nstars) %}{% render 'wm-icon', icon: 'star', size: 14 %}{% endfor %}</span>
-                <span class="mono" style="font-size:10px">{{ section.settings[wk] }}</span>
+                <span class="wmk-stars">{% for s in (1..nstars) %}{% render 'wm-icon', icon: 'star', size: 14 %}{% endfor %}</span>
+                <span class="wmk-mono" style="font-size:10px">{{ section.settings[wk] }}</span>
               </div>
-              <div class="display">{{ section.settings[tk] }}</div>
-              <div class="body">{{ section.settings[bk] }}</div>
-              <div class="meta">
-                <span class="who"><span class="avatar">{{ initials }}</span>{{ rname }}</span>
+              <div class="wmk-display">{{ section.settings[tk] }}</div>
+              <div class="wmk-body">{{ section.settings[bk] }}</div>
+              <div class="wmk-meta">
+                <span class="wmk-who"><span class="wmk-avatar">{{ initials }}</span>{{ rname }}</span>
                 <span>{{ section.settings[gk] }}</span>
               </div>
             </div>
@@ -63,7 +62,6 @@
   "settings": [
     { "type": "text", "id": "heading", "label": "Heading", "default": "Results." },
     { "type": "text", "id": "subhead", "label": "Sub-headline", "default": "What parents and athletes are saying after switching." },
-    { "type": "text", "id": "button_label", "label": "Button label", "default": "Share your results" },
     { "type": "header", "content": "Review 1" },
     { "type": "text", "id": "r1_name", "label": "Name", "default": "Marissa C." },
     { "type": "text", "id": "r1_when", "label": "When", "default": "2 wks ago" },

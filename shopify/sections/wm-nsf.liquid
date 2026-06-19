@@ -9,17 +9,17 @@
 {%- assign checks = section.settings.checklist | newline_to_br | split: '<br />' -%}
 
 <div class="wm-pdp">
-  <section class="nsf-section">
-    <div class="bound inner">
-      <div class="badge">
+  <section class="wmk-nsf-section">
+    <div class="wmk-bound wmk-inner">
+      <div class="wmk-badge">
         <img src="{{ badge_src }}" alt="NSF Certified for Sport">
       </div>
       <div>
         <h2>{{ section.settings.heading }}</h2>
-        <div class="nsf-body">{{ section.settings.body }}</div>
-        <div class="check-list">
+        <div class="wmk-nsf-body">{{ section.settings.body }}</div>
+        <div class="wmk-check-list">
           {%- for c in checks -%}{%- assign t = c | strip -%}{%- if t != blank -%}
-            <div><span class="pip">&#10003;</span> {{ t }}</div>
+            <div><span class="wmk-pip">&#10003;</span> {{ t }}</div>
           {%- endif -%}{%- endfor -%}
         </div>
       </div>

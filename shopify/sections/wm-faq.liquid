@@ -5,20 +5,20 @@
 {%- capture ic_minus -%}{% render 'wm-icon', icon: 'minus' %}{%- endcapture -%}
 
 <div class="wm-pdp">
-  <section class="section faq">
-    <div class="bound">
-      <h2 class="display">{{ section.settings.heading }}</h2>
-      <div class="faq-list">
+  <section class="wmk-section wmk-faq">
+    <div class="wmk-bound">
+      <h2 class="wmk-display">{{ section.settings.heading }}</h2>
+      <div class="wmk-faq-list">
         {%- for i in (1..6) -%}
           {%- assign qk = 'q' | append: i -%}{%- assign ak = 'a' | append: i -%}
           {%- assign q = section.settings[qk] -%}{%- assign a = section.settings[ak] -%}
           {%- if q != blank -%}
-            <div class="faq-item{% if forloop.first %} open{% endif %}">
+            <div class="wmk-faq-item{% if forloop.first %} wmk-open{% endif %}">
               <button type="button">
-                <span class="q">{{ q }}</span>
-                <span class="pm">{% if forloop.first %}{{ ic_minus }}{% else %}{{ ic_plus }}{% endif %}</span>
+                <span class="wmk-q">{{ q }}</span>
+                <span class="wmk-pm">{% if forloop.first %}{{ ic_minus }}{% else %}{{ ic_plus }}{% endif %}</span>
               </button>
-              <div class="a"{% unless forloop.first %} hidden{% endunless %}>{{ a }}</div>
+              <div class="wmk-a"{% unless forloop.first %} hidden{% endunless %}>{{ a }}</div>
             </div>
           {%- endif -%}
         {%- endfor -%}

@@ -1,36 +1,27 @@
-{%- comment -%} Whey Maker — "A meal in a shake" + glass diagram with editable ingredient key. {%- endcomment -%}
+{%- comment -%} Whey Maker — "A meal in a shake" + single labeled diagram image. {%- endcomment -%}
 {% render 'wm-assets' %}
 
-{%- assign ingredients = section.settings.ingredients | newline_to_br | split: '<br />' -%}
-{%- if section.settings.glass_image -%}
-  {%- assign glass_src = section.settings.glass_image | image_url: width: 700 -%}
+{%- if section.settings.diagram_image -%}
+  {%- assign diagram_src = section.settings.diagram_image | image_url: width: 1450 -%}
 {%- else -%}
-  {%- assign glass_src = 'shake-glass.jpg' | asset_url -%}
+  {%- assign diagram_src = 'shake-stack-full.jpg' | asset_url -%}
 {%- endif -%}
 
 <div class="wm-pdp">
-  <section class="meal-section">
-    <div class="bound" style="padding-top:120px;padding-bottom:120px">
-      <div class="meal">
+  <section class="wmk-meal-section">
+    <div class="wmk-bound" style="padding-top:120px;padding-bottom:120px">
+      <div class="wmk-meal">
         <div>
-          <h2 class="display"><span class="pink">{{ section.settings.title_pink }}</span><br>{{ section.settings.title_rest }}</h2>
-          <div class="lede">{{ section.settings.body }}</div>
-          <div class="macro-tiles macro-tiles-lg">
-            <div class="tile"><div class="n">{{ section.settings.macro1_value }}</div><div class="l">{{ section.settings.macro1_label }}</div></div>
-            <div class="tile"><div class="n">{{ section.settings.macro2_value }}</div><div class="l">{{ section.settings.macro2_label }}</div></div>
-            <div class="tile"><div class="n">{{ section.settings.macro3_value }}</div><div class="l">{{ section.settings.macro3_label }}</div></div>
+          <h2 class="wmk-display"><span class="wmk-pink">{{ section.settings.title_pink }}</span><br>{{ section.settings.title_rest }}</h2>
+          <div class="wmk-lede">{{ section.settings.body }}</div>
+          <div class="wmk-macro-tiles wmk-macro-tiles-lg">
+            <div class="wmk-tile"><div class="wmk-n">{{ section.settings.macro1_value }}</div><div class="wmk-l">{{ section.settings.macro1_label }}</div></div>
+            <div class="wmk-tile"><div class="wmk-n">{{ section.settings.macro2_value }}</div><div class="wmk-l">{{ section.settings.macro2_label }}</div></div>
+            <div class="wmk-tile"><div class="wmk-n">{{ section.settings.macro3_value }}</div><div class="wmk-l">{{ section.settings.macro3_label }}</div></div>
           </div>
         </div>
-        <div class="shake-diagram">
-          <div class="glass">
-            <img src="{{ glass_src }}" alt="{{ section.settings.glass_alt | escape }}" loading="lazy">
-          </div>
-          <div class="ing-key">
-            <div class="vb">{{ section.settings.flavor_name }}</div>
-            <ul>
-              {%- for ing in ingredients -%}{%- assign t = ing | strip -%}{%- if t != blank -%}<li>{{ t }}</li>{%- endif -%}{%- endfor -%}
-            </ul>
-          </div>
+        <div class="wmk-shake-solo">
+          <img src="{{ diagram_src }}" alt="{{ section.settings.diagram_alt | escape }}" loading="lazy">
         </div>
       </div>
     </div>
@@ -53,11 +44,9 @@
     { "type": "text", "id": "macro2_label", "label": "Box 2 label", "default": "Protein" },
     { "type": "text", "id": "macro3_value", "label": "Box 3 number", "default": "238 g" },
     { "type": "text", "id": "macro3_label", "label": "Box 3 label", "default": "Organic Carbs" },
-    { "type": "header", "content": "Glass diagram" },
-    { "type": "image_picker", "id": "glass_image", "label": "Glass image (defaults to shake-glass.jpg)" },
-    { "type": "text", "id": "glass_alt", "label": "Glass image alt", "default": "A tall glass layered with every Whey Maker ingredient" },
-    { "type": "text", "id": "flavor_name", "label": "Flavor name (pink heading)", "default": "Vanilla Buttercream" },
-    { "type": "textarea", "id": "ingredients", "label": "Ingredient list (one per line)", "default": "Grass-Fed Whey Isolate\nNon-GMO Micellar Casein\nGrass-Fed Beef Collagen\nCluster Dextrin\nOrganic Brown Rice\nOrganic Sweet Potato\nOrganic Oats\nOrganic Quinoa\nOrganic Amaranth\nOrganic Buckwheat\nOrganic Millet\nOrganic Chia\nOrganic Berries\nOrganic Veggies" }
+    { "type": "header", "content": "Diagram image" },
+    { "type": "image_picker", "id": "diagram_image", "label": "Labeled diagram (defaults to shake-stack-full.jpg)" },
+    { "type": "text", "id": "diagram_alt", "label": "Diagram alt", "default": "Vanilla Buttercream — a tall glass layered with every Whey Maker ingredient, labeled" }
   ],
   "presets": [{ "name": "WM · Meal in a shake" }]
 }
