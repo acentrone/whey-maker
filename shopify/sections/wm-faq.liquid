@@ -1,0 +1,52 @@
+{%- comment -%} Whey Maker — FAQ accordion (first item open; JS in wm-pdp.js). {%- endcomment -%}
+{% render 'wm-assets' %}
+
+{%- capture ic_plus -%}{% render 'wm-icon', icon: 'plus' %}{%- endcapture -%}
+{%- capture ic_minus -%}{% render 'wm-icon', icon: 'minus' %}{%- endcapture -%}
+
+<div class="wm-pdp">
+  <section class="section faq">
+    <div class="bound">
+      <h2 class="display">{{ section.settings.heading }}</h2>
+      <div class="faq-list">
+        {%- for i in (1..6) -%}
+          {%- assign qk = 'q' | append: i -%}{%- assign ak = 'a' | append: i -%}
+          {%- assign q = section.settings[qk] -%}{%- assign a = section.settings[ak] -%}
+          {%- if q != blank -%}
+            <div class="faq-item{% if forloop.first %} open{% endif %}">
+              <button type="button">
+                <span class="q">{{ q }}</span>
+                <span class="pm">{% if forloop.first %}{{ ic_minus }}{% else %}{{ ic_plus }}{% endif %}</span>
+              </button>
+              <div class="a"{% unless forloop.first %} hidden{% endunless %}>{{ a }}</div>
+            </div>
+          {%- endif -%}
+        {%- endfor -%}
+      </div>
+    </div>
+  </section>
+</div>
+
+{% schema %}
+{
+  "name": "WM · FAQ",
+  "tag": "section",
+  "class": "wm-section",
+  "settings": [
+    { "type": "text", "id": "heading", "label": "Heading", "default": "Frequently asked questions." },
+    { "type": "text", "id": "q1", "label": "Q1", "default": "Is this safe for my 13-year-old?" },
+    { "type": "textarea", "id": "a1", "label": "A1", "default": "Yes. Whey Maker is formulated to be a food-first mass gainer — protein and carb sources are the same whole foods your kid already eats, just concentrated and convenient. No stimulants, no proprietary blends, no banned substances. NSF Certified for Sport tested on every batch. That said: consult your pediatrician before any supplement." },
+    { "type": "text", "id": "q2", "label": "Q2", "default": "When and how should they take it?" },
+    { "type": "textarea", "id": "a2", "label": "A2", "default": "One shake per day, typically post-training or between meals. Mix with 16 oz of whole milk or water. The goal is addition, not replacement — extra calories on top of real meals." },
+    { "type": "text", "id": "q3", "label": "Q3", "default": "Will they just get fat?" },
+    { "type": "textarea", "id": "a3", "label": "A3", "default": "Paired with training, no. The 60 g of multi-phase protein and organic carb blend are dosed to drive muscle synthesis and replenish glycogen, not just spike body fat. Athletes in the test group gained lean mass at roughly a 3:1 ratio." },
+    { "type": "text", "id": "q4", "label": "Q4", "default": "Can I mix it with milk?" },
+    { "type": "textarea", "id": "a4", "label": "A4", "default": "Yes — we recommend it. 4 scoops + 16 oz whole milk ≈ 1,550 calories and 70 g protein." },
+    { "type": "text", "id": "q5", "label": "Q5", "default": "Is it third-party tested?" },
+    { "type": "textarea", "id": "a5", "label": "A5", "default": "Whey Maker is rigorously and thoroughly tested by NSF Certified for Sport to ensure it’s safe for everyone from middle school athletes to superstar professional athletes." },
+    { "type": "text", "id": "q6", "label": "Q6 (optional)" },
+    { "type": "textarea", "id": "a6", "label": "A6 (optional)" }
+  ],
+  "presets": [{ "name": "WM · FAQ" }]
+}
+{% endschema %}

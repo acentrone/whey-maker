@@ -1,0 +1,32 @@
+{
+  "sections": {
+    "hero": { "type": "wm-hero", "settings": {} },
+    "marquee": { "type": "wm-marquee", "settings": {} },
+    "meal": { "type": "wm-meal", "settings": {} },
+    "nsf": { "type": "wm-nsf", "settings": {} },
+    "ingredients": { "type": "wm-ingredients", "settings": {} },
+    "compare": { "type": "wm-compare", "settings": {} },
+    "math": { "type": "wm-math", "settings": {} },
+    "athletes": { "type": "wm-athletes", "settings": {} },
+    "founder": { "type": "wm-founder", "settings": {} },
+    "whey_way": { "type": "wm-whey-way", "settings": {} },
+    "faq": { "type": "wm-faq", "settings": {} },
+    "results": { "type": "wm-results", "settings": {} },
+    "cta": { "type": "wm-cta", "settings": {} }
+  },
+  "order": [
+    "hero",
+    "marquee",
+    "meal",
+    "nsf",
+    "ingredients",
+    "compare",
+    "math",
+    "athletes",
+    "founder",
+    "whey_way",
+    "faq",
+    "results",
+    "cta"
+  ]
+}

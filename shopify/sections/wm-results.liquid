@@ -1,0 +1,98 @@
+{%- comment -%} Whey Maker — Results / reviews. {%- endcomment -%}
+{% render 'wm-assets' %}
+
+<div class="wm-pdp">
+  <section class="section alt">
+    <div class="bound reviews-grid">
+      <div class="summary">
+        <h2 class="display">{{ section.settings.heading }}</h2>
+        <p style="color:var(--muted);font-size:14px;line-height:1.6;max-width:320px">{{ section.settings.subhead }}</p>
+        <span class="stars">{% for i in (1..5) %}{% render 'wm-icon', icon: 'star', size: 20 %}{% endfor %}</span>
+        <div class="review-distribution">
+          {%- assign dist = "216,24,5,2,1" | split: "," -%}
+          {%- assign total = 248 -%}
+          {%- for d in dist -%}
+            {%- assign star = 5 | minus: forloop.index0 -%}
+            <div class="bar-row">
+              <span style="width:16px">{{ star }}★</span>
+              <div class="bar"><div style="width:{{ d | times: 100 | divided_by: total }}%"></div></div>
+              <span style="width:30px;text-align:right;color:var(--muted)">{{ d }}</span>
+            </div>
+          {%- endfor -%}
+        </div>
+        <button class="btn btn-outline btn-full" style="margin-top:16px" type="button">{{ section.settings.button_label }}</button>
+      </div>
+
+      <div class="review-cards">
+        {%- for i in (1..4) -%}
+          {%- assign tk = 'r' | append: i | append: '_title' -%}
+          {%- assign bk = 'r' | append: i | append: '_body' -%}
+          {%- assign nk = 'r' | append: i | append: '_name' -%}
+          {%- assign wk = 'r' | append: i | append: '_when' -%}
+          {%- assign gk = 'r' | append: i | append: '_tag' -%}
+          {%- assign sk = 'r' | append: i | append: '_stars' -%}
+          {%- assign rname = section.settings[nk] -%}
+          {%- if rname != blank -%}
+            {%- assign parts = rname | split: ' ' -%}
+            {%- capture initials -%}{{ parts[0] | slice: 0 }}{% if parts.size > 1 %}{{ parts[1] | slice: 0 }}{% endif %}{%- endcapture -%}
+            {%- assign nstars = section.settings[sk] | default: 5 -%}
+            <div class="card">
+              <div style="display:flex;justify-content:space-between;align-items:center">
+                <span class="stars">{% for s in (1..nstars) %}{% render 'wm-icon', icon: 'star', size: 14 %}{% endfor %}</span>
+                <span class="mono" style="font-size:10px">{{ section.settings[wk] }}</span>
+              </div>
+              <div class="display">{{ section.settings[tk] }}</div>
+              <div class="body">{{ section.settings[bk] }}</div>
+              <div class="meta">
+                <span class="who"><span class="avatar">{{ initials }}</span>{{ rname }}</span>
+                <span>{{ section.settings[gk] }}</span>
+              </div>
+            </div>
+          {%- endif -%}
+        {%- endfor -%}
+      </div>
+    </div>
+  </section>
+</div>
+
+{% schema %}
+{
+  "name": "WM · Results",
+  "tag": "section",
+  "class": "wm-section",
+  "settings": [
+    { "type": "text", "id": "heading", "label": "Heading", "default": "Results." },
+    { "type": "text", "id": "subhead", "label": "Sub-headline", "default": "What parents and athletes are saying after switching." },
+    { "type": "text", "id": "button_label", "label": "Button label", "default": "Share your results" },
+    { "type": "header", "content": "Review 1" },
+    { "type": "text", "id": "r1_name", "label": "Name", "default": "Marissa C." },
+    { "type": "text", "id": "r1_when", "label": "When", "default": "2 wks ago" },
+    { "type": "text", "id": "r1_title", "label": "Title", "default": "My kid finally hit 160" },
+    { "type": "textarea", "id": "r1_body", "label": "Body", "default": "He's a freshman wrestler who couldn't break 140. Three months on Whey Maker + real lunches and he's at 162 — his coach asked what changed." },
+    { "type": "text", "id": "r1_tag", "label": "Tag", "default": "Verified buyer" },
+    { "type": "range", "id": "r1_stars", "label": "Stars", "min": 1, "max": 5, "step": 1, "default": 5 },
+    { "type": "header", "content": "Review 2" },
+    { "type": "text", "id": "r2_name", "label": "Name", "default": "Tony R." },
+    { "type": "text", "id": "r2_when", "label": "When", "default": "1 mo ago" },
+    { "type": "text", "id": "r2_title", "label": "Title", "default": "Actually tastes like vanilla" },
+    { "type": "textarea", "id": "r2_body", "label": "Body", "default": "I've been through every mass gainer on the market. This one doesn't taste like chalk and Splenda. Mixes clean in the shaker." },
+    { "type": "text", "id": "r2_tag", "label": "Tag", "default": "Repeat customer" },
+    { "type": "range", "id": "r2_stars", "label": "Stars", "min": 1, "max": 5, "step": 1, "default": 5 },
+    { "type": "header", "content": "Review 3" },
+    { "type": "text", "id": "r3_name", "label": "Name", "default": "Kimberly D." },
+    { "type": "text", "id": "r3_when", "label": "When", "default": "1 mo ago" },
+    { "type": "text", "id": "r3_title", "label": "Title", "default": "Worth every penny for real food" },
+    { "type": "textarea", "id": "r3_body", "label": "Body", "default": "Paying $30 for Serious Mass and giving up on what was in it. $120 for actually-clean ingredients is the right trade for my son." },
+    { "type": "text", "id": "r3_tag", "label": "Tag", "default": "Parent" },
+    { "type": "range", "id": "r3_stars", "label": "Stars", "min": 1, "max": 5, "step": 1, "default": 5 },
+    { "type": "header", "content": "Review 4" },
+    { "type": "text", "id": "r4_name", "label": "Name", "default": "Chris W." },
+    { "type": "text", "id": "r4_when", "label": "When", "default": "2 mo ago" },
+    { "type": "text", "id": "r4_title", "label": "Title", "default": "Ships fast, settles clean" },
+    { "type": "textarea", "id": "r4_body", "label": "Body", "default": "Ordered Tuesday, here Thursday. Doesn't foam up overnight in the fridge. Only knock: want a chocolate-peanut-butter flavor." },
+    { "type": "text", "id": "r4_tag", "label": "Tag", "default": "Verified buyer" },
+    { "type": "range", "id": "r4_stars", "label": "Stars", "min": 1, "max": 5, "step": 1, "default": 4 }
+  ],
+  "presets": [{ "name": "WM · Results" }]
+}
+{% endschema %}

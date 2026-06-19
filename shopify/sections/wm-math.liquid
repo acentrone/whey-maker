@@ -1,0 +1,54 @@
+{%- comment -%} Whey Maker — "Gaining weight is simple math" (dark). {%- endcomment -%}
+{% render 'wm-assets' %}
+
+<div class="wm-pdp">
+  <section class="section dark">
+    <div class="bound">
+      <div class="head">
+        <h2 class="display" style="color:var(--paper)">{{ section.settings.head_top }}<br>{% if section.settings.head_pink != blank %}<span class="pink">{{ section.settings.head_pink }}</span>{% endif %}.</h2>
+        <p>{{ section.settings.body }}</p>
+      </div>
+      <div class="math-grid">
+        <div class="card"><div class="lbl">{{ section.settings.c1_label }}</div><div class="num" style="color:var(--pink)">{{ section.settings.c1_num }}</div><div class="u">{{ section.settings.c1_unit }}</div></div>
+        <div class="op">&times;</div>
+        <div class="card"><div class="lbl">{{ section.settings.c2_label }}</div><div class="num" style="color:var(--paper)">{{ section.settings.c2_num }}</div><div class="u">{{ section.settings.c2_unit }}</div></div>
+        <div class="op">=</div>
+        <div class="card"><div class="lbl">{{ section.settings.c3_label }}</div><div class="num" style="color:var(--blue)">{{ section.settings.c3_num }}</div><div class="u">{{ section.settings.c3_unit }}</div></div>
+      </div>
+      <div class="math-payoff">
+        <h3 class="display"><span class="pink">{{ section.settings.payoff_pink }}</span> of <span class="blue">{{ section.settings.payoff_blue }}</span>.</h3>
+        <p>{{ section.settings.payoff_body }}</p>
+      </div>
+    </div>
+  </section>
+</div>
+
+{% schema %}
+{
+  "name": "WM · Weight-gain math",
+  "tag": "section",
+  "class": "wm-section",
+  "settings": [
+    { "type": "text", "id": "head_top", "label": "Headline line 1", "default": "Gaining weight is" },
+    { "type": "text", "id": "head_pink", "label": "Headline line 2 (pink)", "default": "simple math" },
+    { "type": "richtext", "id": "body", "label": "Paragraph", "default": "<p>Every athlete has heard, “Just eat more.” That’s not a plan, it’s lazy advice that leaves you the same size a year later. Here’s what one shake per day looks like over a month and what 16 years of results training athletes tells us will happen.</p>" },
+    { "type": "header", "content": "Card 1" },
+    { "type": "text", "id": "c1_label", "label": "Label", "default": "Whey Maker" },
+    { "type": "text", "id": "c1_num", "label": "Number", "default": "1,250" },
+    { "type": "text", "id": "c1_unit", "label": "Unit", "default": "cal / day" },
+    { "type": "header", "content": "Card 2" },
+    { "type": "text", "id": "c2_label", "label": "Label", "default": "Thirty days" },
+    { "type": "text", "id": "c2_num", "label": "Number", "default": "30" },
+    { "type": "text", "id": "c2_unit", "label": "Unit", "default": "days" },
+    { "type": "header", "content": "Card 3" },
+    { "type": "text", "id": "c3_label", "label": "Label", "default": "Surplus" },
+    { "type": "text", "id": "c3_num", "label": "Number", "default": "37,500" },
+    { "type": "text", "id": "c3_unit", "label": "Unit", "default": "cal / month" },
+    { "type": "header", "content": "Payoff" },
+    { "type": "text", "id": "payoff_pink", "label": "Payoff (pink)", "default": "7 to 10 lbs" },
+    { "type": "text", "id": "payoff_blue", "label": "Payoff (blue)", "default": "lean mass" },
+    { "type": "richtext", "id": "payoff_body", "label": "Payoff paragraph", "default": "<p>From 16 years of developing over 10 All-Americans, hundreds of D1 athletes, and thousands of collegiate athletes at all levels, this is what happens when adding 37,500 additional calories above maintenance. Pair Whey Maker with real meals and a real training plan, and these are the typical results athletes in our program at Nevels experience.</p>" }
+  ],
+  "presets": [{ "name": "WM · Weight-gain math" }]
+}
+{% endschema %}

@@ -1,0 +1,64 @@
+{%- comment -%} Whey Maker — "A meal in a shake" + glass diagram with editable ingredient key. {%- endcomment -%}
+{% render 'wm-assets' %}
+
+{%- assign ingredients = section.settings.ingredients | newline_to_br | split: '<br />' -%}
+{%- if section.settings.glass_image -%}
+  {%- assign glass_src = section.settings.glass_image | image_url: width: 700 -%}
+{%- else -%}
+  {%- assign glass_src = 'shake-glass.jpg' | asset_url -%}
+{%- endif -%}
+
+<div class="wm-pdp">
+  <section class="meal-section">
+    <div class="bound" style="padding-top:120px;padding-bottom:120px">
+      <div class="meal">
+        <div>
+          <h2 class="display"><span class="pink">{{ section.settings.title_pink }}</span><br>{{ section.settings.title_rest }}</h2>
+          <div class="lede">{{ section.settings.body }}</div>
+          <div class="macro-tiles macro-tiles-lg">
+            <div class="tile"><div class="n">{{ section.settings.macro1_value }}</div><div class="l">{{ section.settings.macro1_label }}</div></div>
+            <div class="tile"><div class="n">{{ section.settings.macro2_value }}</div><div class="l">{{ section.settings.macro2_label }}</div></div>
+            <div class="tile"><div class="n">{{ section.settings.macro3_value }}</div><div class="l">{{ section.settings.macro3_label }}</div></div>
+          </div>
+        </div>
+        <div class="shake-diagram">
+          <div class="glass">
+            <img src="{{ glass_src }}" alt="{{ section.settings.glass_alt | escape }}" loading="lazy">
+          </div>
+          <div class="ing-key">
+            <div class="vb">{{ section.settings.flavor_name }}</div>
+            <ul>
+              {%- for ing in ingredients -%}{%- assign t = ing | strip -%}{%- if t != blank -%}<li>{{ t }}</li>{%- endif -%}{%- endfor -%}
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+{% schema %}
+{
+  "name": "WM · Meal in a shake",
+  "tag": "section",
+  "class": "wm-section",
+  "settings": [
+    { "type": "text", "id": "title_pink", "label": "Headline (pink)", "default": "A meal" },
+    { "type": "text", "id": "title_rest", "label": "Headline (black)", "default": "in a shake." },
+    { "type": "richtext", "id": "body", "label": "Paragraph", "default": "<p>Typical “protein shakes” leave an athlete 800 calories short of what they need to build the body they desire. They can drink protein all day, but without the supporting carbs and fats in the correct ratios providing significantly high calories, they will never grow. Whey Maker is built to be a full meal in a bag that is convenient and quick to consume on the go. <strong>Seven organic carb sources, the three highest-quality forms of protein, organic fruits, organic vegetables, and digestive enzymes.</strong> Everything an athlete needs to gain lean muscle inside of one bag.</p>" },
+    { "type": "header", "content": "Macro boxes" },
+    { "type": "text", "id": "macro1_value", "label": "Box 1 number", "default": "1250" },
+    { "type": "text", "id": "macro1_label", "label": "Box 1 label", "default": "Calories" },
+    { "type": "text", "id": "macro2_value", "label": "Box 2 number", "default": "60 g" },
+    { "type": "text", "id": "macro2_label", "label": "Box 2 label", "default": "Protein" },
+    { "type": "text", "id": "macro3_value", "label": "Box 3 number", "default": "238 g" },
+    { "type": "text", "id": "macro3_label", "label": "Box 3 label", "default": "Organic Carbs" },
+    { "type": "header", "content": "Glass diagram" },
+    { "type": "image_picker", "id": "glass_image", "label": "Glass image (defaults to shake-glass.jpg)" },
+    { "type": "text", "id": "glass_alt", "label": "Glass image alt", "default": "A tall glass layered with every Whey Maker ingredient" },
+    { "type": "text", "id": "flavor_name", "label": "Flavor name (pink heading)", "default": "Vanilla Buttercream" },
+    { "type": "textarea", "id": "ingredients", "label": "Ingredient list (one per line)", "default": "Grass-Fed Whey Isolate\nNon-GMO Micellar Casein\nGrass-Fed Beef Collagen\nCluster Dextrin\nOrganic Brown Rice\nOrganic Sweet Potato\nOrganic Oats\nOrganic Quinoa\nOrganic Amaranth\nOrganic Buckwheat\nOrganic Millet\nOrganic Chia\nOrganic Berries\nOrganic Veggies" }
+  ],
+  "presets": [{ "name": "WM · Meal in a shake" }]
+}
+{% endschema %}

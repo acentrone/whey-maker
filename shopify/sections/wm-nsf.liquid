@@ -1,0 +1,43 @@
+{%- comment -%} Whey Maker — NSF Certified for Sport (black section, blue headline). {%- endcomment -%}
+{% render 'wm-assets' %}
+
+{%- if section.settings.badge_image -%}
+  {%- assign badge_src = section.settings.badge_image | image_url: width: 640 -%}
+{%- else -%}
+  {%- assign badge_src = 'nsf-badge.png' | asset_url -%}
+{%- endif -%}
+{%- assign checks = section.settings.checklist | newline_to_br | split: '<br />' -%}
+
+<div class="wm-pdp">
+  <section class="nsf-section">
+    <div class="bound inner">
+      <div class="badge">
+        <img src="{{ badge_src }}" alt="NSF Certified for Sport">
+      </div>
+      <div>
+        <h2>{{ section.settings.heading }}</h2>
+        <div class="nsf-body">{{ section.settings.body }}</div>
+        <div class="check-list">
+          {%- for c in checks -%}{%- assign t = c | strip -%}{%- if t != blank -%}
+            <div><span class="pip">&#10003;</span> {{ t }}</div>
+          {%- endif -%}{%- endfor -%}
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+{% schema %}
+{
+  "name": "WM · NSF Certified",
+  "tag": "section",
+  "class": "wm-section",
+  "settings": [
+    { "type": "image_picker", "id": "badge_image", "label": "NSF badge (defaults to nsf-badge.png)" },
+    { "type": "text", "id": "heading", "label": "Headline", "default": "Tested safe for all collegiate & professional athletes." },
+    { "type": "richtext", "id": "body", "label": "Paragraph", "default": "<p>NSF Certified for Sport is the gold standard. Every Whey Maker batch is independently screened against 280+ banned substances, verified for label accuracy, and audited for contaminants — the same protocol the NFL, MLB, NHL, NBA, and PGA require their athletes to look for.</p>" },
+    { "type": "textarea", "id": "checklist", "label": "Check list (one per line)", "default": "Banned-substance tested\nLabel accuracy audited\nContaminant-free verified\nEvery batch, no exceptions" }
+  ],
+  "presets": [{ "name": "WM · NSF Certified" }]
+}
+{% endschema %}

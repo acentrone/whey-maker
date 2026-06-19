@@ -1,0 +1,182 @@
+{%- comment -%}
+  Whey Maker — Hero / product buy box.
+  Pulls title, description, price, variants and gallery from the native product.
+  Place this on a product template (it contains the product add-to-cart form).
+{%- endcomment -%}
+{% render 'wm-assets' %}
+
+{%- liquid
+  assign cv = product.selected_or_first_available_variant
+  assign title_parts = product.title | split: ' '
+  assign first_word = title_parts | first
+  assign rest_title = product.title | remove_first: first_word | strip
+-%}
+
+<div class="wm-pdp wm-hero-root">
+  {%- if section.settings.show_breadcrumb -%}
+    <div class="breadcrumb mono">{{ section.settings.breadcrumb_prefix }} / <span style="color:var(--ink)">{{ product.title }}</span></div>
+  {%- endif -%}
+
+  <section class="hero">
+    {%- comment -%} Thumbnails {%- endcomment -%}
+    <div class="thumbs">
+      {%- for image in product.images -%}
+        <div class="thumb contain {% if forloop.first %}active{% endif %}" data-idx="{{ forloop.index0 }}" data-full="{{ image | image_url: width: 1600 }}">
+          <img src="{{ image | image_url: width: 200 }}" alt="{{ image.alt | escape }}" loading="lazy" width="200" height="200">
+        </div>
+      {%- else -%}
+        <div class="thumb contain active" data-idx="0" data-full="{{ product.featured_image | image_url: width: 1600 }}">
+          <img src="{{ product.featured_image | image_url: width: 200 }}" alt="{{ product.title | escape }}">
+        </div>
+      {%- endfor -%}
+    </div>
+
+    {%- comment -%} Main gallery image {%- endcomment -%}
+    <div class="gallery">
+      <div class="main">
+        {%- if product.images.size > 0 -%}
+          <img class="contain" src="{{ product.images.first | image_url: width: 1600 }}" alt="{{ product.images.first.alt | escape }}" draggable="false">
+        {%- else -%}
+          {{ 'product-1' | placeholder_svg_tag: 'contain' }}
+        {%- endif -%}
+        <span class="zoom-hint">{% render 'wm-icon', icon: 'zoom', size: 14 %} Tap to zoom</span>
+      </div>
+    </div>
+
+    {%- comment -%} Buy box {%- endcomment -%}
+    <div class="buy">
+      <h1 class="display">
+        {%- if section.settings.highlight_first_word and rest_title != blank -%}
+          <span class="blue">{{ first_word }}</span> {{ rest_title }}
+        {%- else -%}
+          {{ product.title }}
+        {%- endif -%}
+      </h1>
+
+      <div class="macro-tiles">
+        <div class="tile"><div class="n">{{ section.settings.macro1_value }}</div><div class="l">{{ section.settings.macro1_label }}</div></div>
+        <div class="tile"><div class="n">{{ section.settings.macro2_value }}</div><div class="l">{{ section.settings.macro2_label }}</div></div>
+        <div class="tile"><div class="n">{{ section.settings.macro3_value }}</div><div class="l">{{ section.settings.macro3_label }}</div></div>
+      </div>
+
+      {%- if product.description != blank -%}
+        <div class="lede">{{ product.description }}</div>
+      {%- endif -%}
+
+      {%- if section.settings.show_reviews_line -%}
+        <div class="review-line">
+          <span class="stars">{% for i in (1..5) %}{% render 'wm-icon', icon: 'star', size: 14 %}{% endfor %}</span>
+          <u>{{ section.settings.reviews_text }}</u>
+        </div>
+      {%- endif -%}
+
+      {%- comment -%} Flavor / variant chips {%- endcomment -%}
+      {%- if product.variants.size > 0 -%}
+        <div class="field">
+          <div class="label"><span class="eyebrow">{{ section.settings.flavor_label }}</span><span class="name">{{ cv.title }}</span></div>
+          <div class="flavor-row">
+            {%- for v in product.variants -%}
+              <button type="button"
+                class="flavor-chip {% if v.id == cv.id %}selected{% endif %}"
+                data-variant-id="{{ v.id }}"
+                data-price="{{ v.price }}"
+                data-available="{{ v.available }}">
+                <span class="swatch" style="background:{{ section.settings.swatch_color }}"></span>
+                <span>{{ v.title }}</span>
+              </button>
+            {%- endfor -%}
+          </div>
+        </div>
+      {%- endif -%}
+
+      <div class="price-block">
+        <div>
+          <div class="display" data-wm-price>{{ cv.price | money }}</div>
+          <div class="desc">{{ section.settings.purchase_text }} · {{ section.settings.servings_text }}</div>
+        </div>
+        <div style="text-align:right">
+          <div class="mono" style="color:var(--ink);font-weight:600;font-size:13px">{{ section.settings.per_serving_text }}</div>
+        </div>
+      </div>
+
+      {%- form 'product', product, novalidate: 'novalidate' -%}
+        <input type="hidden" name="id" value="{{ cv.id }}" data-wm-variant-id>
+        <input type="hidden" name="quantity" value="1" data-wm-qty-input>
+        <div class="qty-atc">
+          <div class="qty">
+            <button type="button" data-wm-qty="-1" aria-label="Decrease quantity">{% render 'wm-icon', icon: 'minus' %}</button>
+            <span data-wm-qty-val>1</span>
+            <button type="button" data-wm-qty="1" aria-label="Increase quantity">{% render 'wm-icon', icon: 'plus' %}</button>
+          </div>
+          <button type="submit" class="btn btn-lg btn-dark" style="flex:1" data-wm-atc data-price="{{ cv.price }}"
+            {% unless product.available %}disabled{% endunless %}>
+            {%- if product.available -%}Add to cart — {{ cv.price | money }}{%- else -%}Sold out{%- endif -%}
+          </button>
+        </div>
+      {%- endform -%}
+
+      <div class="trust-bullets">
+        <div>{% render 'wm-icon', icon: 'truck' %} {{ section.settings.trust_1 }}</div>
+        <div>{% render 'wm-icon', icon: 'leaf' %} {{ section.settings.trust_2 }}</div>
+        <div>{% render 'wm-icon', icon: 'flask' %} {{ section.settings.trust_3 }}</div>
+        <div>{% render 'wm-icon', icon: 'leaf' %} {{ section.settings.trust_4 }}</div>
+      </div>
+    </div>
+  </section>
+
+  {%- comment -%} Zoom lightbox {%- endcomment -%}
+  <div class="lightbox" hidden>
+    <button class="lb-close" type="button" aria-label="Close">&times;</button>
+    <button class="lb-nav prev" type="button" aria-label="Previous">&lsaquo;</button>
+    <div class="lb-stage">
+      <img src="{{ product.images.first | image_url: width: 2048 }}" alt="{{ product.images.first.alt | escape }}" draggable="false">
+    </div>
+    <button class="lb-nav next" type="button" aria-label="Next">&rsaquo;</button>
+    <div class="lb-hint">Click image to zoom · &larr; &rarr; to browse · Esc to close</div>
+    <div class="lb-thumbs">
+      {%- for image in product.images -%}
+        <div class="lb-thumb {% if forloop.first %}active{% endif %}" data-idx="{{ forloop.index0 }}">
+          <img src="{{ image | image_url: width: 160 }}" alt="{{ image.alt | escape }}" loading="lazy">
+        </div>
+      {%- endfor -%}
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "WM · Hero / Buy box",
+  "tag": "section",
+  "class": "wm-section",
+  "settings": [
+    { "type": "header", "content": "Breadcrumb" },
+    { "type": "checkbox", "id": "show_breadcrumb", "label": "Show breadcrumb", "default": true },
+    { "type": "text", "id": "breadcrumb_prefix", "label": "Breadcrumb prefix", "default": "Shop / Mass Gainers" },
+    { "type": "header", "content": "Title" },
+    { "type": "checkbox", "id": "highlight_first_word", "label": "Color the first word of the product title blue", "default": true },
+    { "type": "header", "content": "Macro boxes" },
+    { "type": "text", "id": "macro1_value", "label": "Box 1 number", "default": "1250" },
+    { "type": "text", "id": "macro1_label", "label": "Box 1 label", "default": "Calories" },
+    { "type": "text", "id": "macro2_value", "label": "Box 2 number", "default": "60 g" },
+    { "type": "text", "id": "macro2_label", "label": "Box 2 label", "default": "Protein" },
+    { "type": "text", "id": "macro3_value", "label": "Box 3 number", "default": "238 g" },
+    { "type": "text", "id": "macro3_label", "label": "Box 3 label", "default": "Organic Carbs" },
+    { "type": "header", "content": "Reviews line" },
+    { "type": "checkbox", "id": "show_reviews_line", "label": "Show 5-star reviews line", "default": true },
+    { "type": "text", "id": "reviews_text", "label": "Reviews link text", "default": "Verified reviews" },
+    { "type": "header", "content": "Flavor / variants" },
+    { "type": "text", "id": "flavor_label", "label": "Variant label", "default": "Flavor" },
+    { "type": "color", "id": "swatch_color", "label": "Flavor swatch color", "default": "#f7e8c8" },
+    { "type": "header", "content": "Price block" },
+    { "type": "text", "id": "purchase_text", "label": "Purchase type", "default": "One-time purchase" },
+    { "type": "text", "id": "servings_text", "label": "Servings", "default": "32 servings per bag" },
+    { "type": "text", "id": "per_serving_text", "label": "Per-serving price", "default": "$3.75 / serving" },
+    { "type": "header", "content": "Trust bullets" },
+    { "type": "text", "id": "trust_1", "label": "Bullet 1", "default": "Ships in 1–2 days" },
+    { "type": "text", "id": "trust_2", "label": "Bullet 2", "default": "No Sucralose / No Soy" },
+    { "type": "text", "id": "trust_3", "label": "Bullet 3", "default": "NSF Certified for Sport" },
+    { "type": "text", "id": "trust_4", "label": "Bullet 4", "default": "No artificial anything" }
+  ],
+  "presets": [{ "name": "WM · Hero / Buy box" }]
+}
+{% endschema %}

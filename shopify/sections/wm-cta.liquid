@@ -1,0 +1,37 @@
+{%- comment -%} Whey Maker — final CTA (dark). {%- endcomment -%}
+{% render 'wm-assets' %}
+
+{%- assign cv = product.selected_or_first_available_variant -%}
+
+<div class="wm-pdp">
+  <section class="cta">
+    {%- if section.settings.verse != blank -%}<div class="verse">{{ section.settings.verse }}</div>{%- endif -%}
+    <h2 class="display">{{ section.settings.head_before }} <span class="pink">{{ section.settings.head_pink }}</span> {{ section.settings.head_after }}</h2>
+    <p>{{ section.settings.body }}</p>
+    {%- if product != blank and product.available -%}
+      <a class="btn btn-light btn-lg" href="{{ routes.cart_add_url }}?id={{ cv.id }}&quantity=1">{{ section.settings.button_label }} — {{ cv.price | money }}</a>
+    {%- elsif product != blank -%}
+      <a class="btn btn-light btn-lg" href="{{ product.url }}">{{ section.settings.button_label }}</a>
+    {%- else -%}
+      <a class="btn btn-light btn-lg" href="{{ section.settings.button_link }}">{{ section.settings.button_label }}</a>
+    {%- endif -%}
+  </section>
+</div>
+
+{% schema %}
+{
+  "name": "WM · Final CTA",
+  "tag": "section",
+  "class": "wm-section",
+  "settings": [
+    { "type": "text", "id": "verse", "label": "Verse (script, optional)", "default": "— Gain mass lean. Keep it clean. Live for the King." },
+    { "type": "text", "id": "head_before", "label": "Headline before", "default": "Gain" },
+    { "type": "text", "id": "head_pink", "label": "Headline (pink)", "default": "muscle" },
+    { "type": "text", "id": "head_after", "label": "Headline after", "default": "now." },
+    { "type": "richtext", "id": "body", "label": "Paragraph", "default": "<p>32 real-food meals per bag. 1250 calories, 60g protein, 238g organic carbs. NSF CERTIFIED FOR SPORT.</p>" },
+    { "type": "text", "id": "button_label", "label": "Button label", "default": "Add to cart" },
+    { "type": "url", "id": "button_link", "label": "Button link (used only off-product pages)" }
+  ],
+  "presets": [{ "name": "WM · Final CTA" }]
+}
+{% endschema %}

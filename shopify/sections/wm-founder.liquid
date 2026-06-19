@@ -1,0 +1,45 @@
+{%- comment -%} Whey Maker — founder section. {%- endcomment -%}
+{% render 'wm-assets' %}
+
+{%- if section.settings.portrait -%}
+  {%- assign portrait_src = section.settings.portrait | image_url: width: 1200 -%}
+{%- else -%}
+  {%- assign portrait_src = 'founder-gym.jpg' | asset_url -%}
+{%- endif -%}
+
+<div class="wm-pdp">
+  <section class="section alt">
+    <div class="bound founder">
+      <div class="portrait"><img src="{{ portrait_src }}" alt="{{ section.settings.portrait_alt | escape }}" loading="lazy"></div>
+      <div>
+        <h2 class="display" style="font-size:clamp(26px, 3.2vw, 44px)">{{ section.settings.quote }}</h2>
+        <div style="color:var(--muted);font-size:16px;max-width:560px">{{ section.settings.bio }}</div>
+        <div class="founder-quote">{{ section.settings.mantra }}</div>
+        <div class="credits">
+          <div><div class="display pink">{{ section.settings.stat1_num }}</div><div class="eyebrow" style="margin-top:4px">{{ section.settings.stat1_label }}</div></div>
+          <div><div class="display blue">{{ section.settings.stat2_num }}</div><div class="eyebrow" style="margin-top:4px">{{ section.settings.stat2_label }}</div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+{% schema %}
+{
+  "name": "WM · Founder",
+  "tag": "section",
+  "class": "wm-section",
+  "settings": [
+    { "type": "image_picker", "id": "portrait", "label": "Portrait (default founder-gym.jpg)" },
+    { "type": "text", "id": "portrait_alt", "label": "Portrait alt", "default": "Athletes who train at Nevels Fitness" },
+    { "type": "text", "id": "quote", "label": "Headline quote", "default": "\"I developed Whey Maker because every parent of an athlete I train struggles with adding clean muscle on them. There was nothing on the shelf healthy or high-quality enough for my athletes, so I created my dream product.\"" },
+    { "type": "richtext", "id": "bio", "label": "Bio", "default": "<p>Jordan Nevels is owner of Nevels Fitness, the premier sports performance facility in the country helping thousands of athletes get college scholarships and pro contracts. He watched kids trying to gain weight using shakes full of corn maltodextrin, sucralose, soy, and artificial flavors. Parents had no guidance on what they should actually give their children to gain muscle the right way, so he created the way, Whey Maker.</p>" },
+    { "type": "text", "id": "mantra", "label": "Mantra (pink script)", "default": "\"Gain mass lean. Keep it clean. Live for the KING.\"" },
+    { "type": "text", "id": "stat1_num", "label": "Stat 1 number", "default": "16 YR" },
+    { "type": "text", "id": "stat1_label", "label": "Stat 1 label", "default": "Sports nutrition performance" },
+    { "type": "text", "id": "stat2_num", "label": "Stat 2 number", "default": "5000+" },
+    { "type": "text", "id": "stat2_label", "label": "Stat 2 label", "default": "Athletes trained" }
+  ],
+  "presets": [{ "name": "WM · Founder" }]
+}
+{% endschema %}

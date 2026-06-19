@@ -1,0 +1,39 @@
+{%- comment -%} Whey Maker — black scrolling claims bar with cross separators. {%- endcomment -%}
+{% render 'wm-assets' %}
+
+{%- assign lines = section.settings.lines | newline_to_br | split: '<br />' -%}
+<div class="wm-pdp">
+  <div class="strip">
+    <div class="row">
+      {%- for k in (1..2) -%}
+        <span>
+          {%- for line in lines -%}
+            {%- assign t = line | strip -%}
+            {%- if t != blank -%}
+              {%- unless forloop.first -%}<span class="cross">{% render 'wm-icon', icon: 'cross', size: 12 %}</span>{%- endunless -%}
+              {{ t }}
+            {%- endif -%}
+          {%- endfor -%}
+          <span class="cross">{% render 'wm-icon', icon: 'cross', size: 12 %}</span>
+        </span>
+      {%- endfor -%}
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "WM · Claims bar",
+  "tag": "section",
+  "class": "wm-section",
+  "settings": [
+    {
+      "type": "textarea",
+      "id": "lines",
+      "label": "Bar items (one per line)",
+      "default": "Grass-fed Whey Isolate and Beef Collagen\nNon-GMO Micellar Casein\nReal Food. Real Ingredients.\nNo sucralose, soy, artificial anything\nNSF Certified for Sport\nIsaiah 40:31 \"I am the WAY\""
+    }
+  ],
+  "presets": [{ "name": "WM · Claims bar" }]
+}
+{% endschema %}

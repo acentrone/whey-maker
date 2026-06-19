@@ -1,0 +1,86 @@
+{%- comment -%} Whey Maker — athlete transformations + testimonial videos. {%- endcomment -%}
+{% render 'wm-assets' %}
+
+{%- liquid
+  assign img1 = 'ej-walker.jpg' | asset_url
+  if section.settings.a1_image
+    assign img1 = section.settings.a1_image | image_url: width: 700
+  endif
+  assign img2 = 'cam-thomas.jpg' | asset_url
+  if section.settings.a2_image
+    assign img2 = section.settings.a2_image | image_url: width: 700
+  endif
+  assign img3 = 'austin-alexander.jpg' | asset_url
+  if section.settings.a3_image
+    assign img3 = section.settings.a3_image | image_url: width: 700
+  endif
+  assign img4 = 'nevels-fitness.jpg' | asset_url
+  if section.settings.a4_image
+    assign img4 = section.settings.a4_image | image_url: width: 700
+  endif
+-%}
+
+<div class="wm-pdp">
+  <section class="section">
+    <div class="bound">
+      <div class="head" style="display:flex;justify-content:space-between;align-items:flex-end;gap:32px;max-width:none">
+        <div>
+          <h2 class="display">{{ section.settings.head_black }}<br><span class="blue">{{ section.settings.head_blue }}</span></h2>
+        </div>
+        <p style="max-width:340px">{{ section.settings.subhead }}</p>
+      </div>
+      <div class="athletes">
+        <div class="card"><img src="{{ img1 }}" alt="{{ section.settings.a1_name | escape }}" loading="lazy"><div class="cap"><span class="nm">{{ section.settings.a1_name }}</span><span class="v">{{ section.settings.a1_cred }}</span></div></div>
+        <div class="card"><img src="{{ img2 }}" alt="{{ section.settings.a2_name | escape }}" loading="lazy"><div class="cap"><span class="nm">{{ section.settings.a2_name }}</span><span class="v">{{ section.settings.a2_cred }}</span></div></div>
+        <div class="card"><img src="{{ img3 }}" alt="{{ section.settings.a3_name | escape }}" loading="lazy"><div class="cap"><span class="nm">{{ section.settings.a3_name }}</span><span class="v">{{ section.settings.a3_cred }}</span></div></div>
+        <div class="card"><img src="{{ img4 }}" alt="{{ section.settings.a4_name | escape }}" loading="lazy"><div class="cap"><span class="nm">{{ section.settings.a4_name }}</span><span class="v">{{ section.settings.a4_cred }}</span></div></div>
+      </div>
+
+      {%- if section.settings.video_1 != blank or section.settings.video_2 != blank -%}
+        <div class="parent-video stacked">
+          {%- if section.settings.video_1 != blank -%}
+            <div class="vid"><iframe src="https://player.vimeo.com/video/{{ section.settings.video_1 }}?dnt=1&amp;title=0&amp;byline=0&amp;portrait=0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen title="{{ section.settings.video_1_title | escape }}"></iframe></div>
+          {%- endif -%}
+          {%- if section.settings.video_2 != blank -%}
+            <div class="vid"><iframe src="https://player.vimeo.com/video/{{ section.settings.video_2 }}?dnt=1&amp;title=0&amp;byline=0&amp;portrait=0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen title="{{ section.settings.video_2_title | escape }}"></iframe></div>
+          {%- endif -%}
+        </div>
+      {%- endif -%}
+    </div>
+  </section>
+</div>
+
+{% schema %}
+{
+  "name": "WM · Athletes",
+  "tag": "section",
+  "class": "wm-section",
+  "settings": [
+    { "type": "text", "id": "head_black", "label": "Headline (black)", "default": "Used by athletes." },
+    { "type": "text", "id": "head_blue", "label": "Headline (blue)", "default": "Trusted by parents." },
+    { "type": "text", "id": "subhead", "label": "Sub-headline", "default": "Real transformations from athletes that train at Nevels. Real kids, real timeframes, all utilizing Whey Maker as their secret weapon." },
+    { "type": "header", "content": "Card 1" },
+    { "type": "image_picker", "id": "a1_image", "label": "Photo (default ej-walker.jpg)" },
+    { "type": "text", "id": "a1_name", "label": "Name", "default": "EJ Walker" },
+    { "type": "text", "id": "a1_cred", "label": "Credential", "default": "4★ South Carolina signee" },
+    { "type": "header", "content": "Card 2" },
+    { "type": "image_picker", "id": "a2_image", "label": "Photo (default cam-thomas.jpg)" },
+    { "type": "text", "id": "a2_name", "label": "Name", "default": "Cam Thomas" },
+    { "type": "text", "id": "a2_cred", "label": "Credential", "default": "All-American · Illinois Football LB" },
+    { "type": "header", "content": "Card 3" },
+    { "type": "image_picker", "id": "a3_image", "label": "Photo (default austin-alexander.jpg)" },
+    { "type": "text", "id": "a3_name", "label": "Name", "default": "Austin Alexander" },
+    { "type": "text", "id": "a3_cred", "label": "Credential", "default": "4★ · 215 → 247 lbs" },
+    { "type": "header", "content": "Card 4" },
+    { "type": "image_picker", "id": "a4_image", "label": "Photo (default nevels-fitness.jpg)" },
+    { "type": "text", "id": "a4_name", "label": "Name", "default": "Willie Rodriguez Jr." },
+    { "type": "text", "id": "a4_cred", "label": "Credential", "default": "All-SEC Tight End" },
+    { "type": "header", "content": "Testimonial videos (Vimeo IDs)" },
+    { "type": "text", "id": "video_1", "label": "Video 1 ID (top)", "default": "1195668848" },
+    { "type": "text", "id": "video_1_title", "label": "Video 1 title", "default": "Durran — parent testimonial" },
+    { "type": "text", "id": "video_2", "label": "Video 2 ID (bottom)", "default": "1195668846" },
+    { "type": "text", "id": "video_2_title", "label": "Video 2 title", "default": "Mike — parent testimonial" }
+  ],
+  "presets": [{ "name": "WM · Athletes" }]
+}
+{% endschema %}

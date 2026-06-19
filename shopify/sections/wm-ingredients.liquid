@@ -1,0 +1,97 @@
+{%- comment -%} Whey Maker — Rolls Royce premium ingredient tiles + NuFlow + "None of this". {%- endcomment -%}
+{% render 'wm-assets' %}
+
+{%- assign none_items = section.settings.none_items | newline_to_br | split: '<br />' -%}
+
+<div class="wm-pdp">
+  <section class="section ings">
+    <div class="bound">
+      <div class="head">
+        <h2 class="display"><span class="pink">{{ section.settings.head_pink }}</span> {{ section.settings.head_rest }}</h2>
+        <p>{{ section.settings.subhead }}</p>
+      </div>
+
+      {%- comment -%} PROTEINS {%- endcomment -%}
+      <div class="ing-block">
+        <div class="ing-block-head">
+          <div class="h">Multi-phase <span class="blue">protein</span> blend</div>
+          <div class="t"><span class="blue">60 g</span> per serving</div>
+        </div>
+        <div class="ing-tiles">
+          <div class="ing-tile"><div class="ph"><img src="{{ 'wheyisolate.jpg' | asset_url }}" alt="Grass-Fed Whey Isolate" loading="lazy"></div><div class="body"><div class="n">Grass-Fed Whey Isolate</div><div class="a blue">30 g</div></div></div>
+          <div class="ing-tile"><div class="ph"><img src="{{ 'casein.jpg' | asset_url }}" alt="Non-GMO Micellar Casein" loading="lazy"></div><div class="body"><div class="n">Non-GMO Micellar Casein</div><div class="a blue">20 g</div></div></div>
+          <div class="ing-tile"><div class="ph"><img src="{{ 'beef-collagen.jpg' | asset_url }}" alt="Grass-Fed Beef Collagen" loading="lazy"></div><div class="body"><div class="n">Grass-Fed Beef Collagen</div><div class="a blue">10 g</div></div></div>
+        </div>
+      </div>
+
+      {%- comment -%} CARBS {%- endcomment -%}
+      <div class="ing-block">
+        <div class="ing-block-head">
+          <div class="h">Organic and Non-GMO <span class="pink">carb</span> sources</div>
+          <div class="t"><span class="pink">260 g</span> per serving</div>
+        </div>
+        <div class="ing-tiles">
+          <div class="ing-tile"><div class="ph"><img src="{{ 'maltodextrin.jpg' | asset_url }}" alt="Brown Rice Maltodextrin" loading="lazy"></div><div class="body"><div class="n">Brown Rice Maltodextrin</div><div class="a">200 g</div></div></div>
+          <div class="ing-tile"><div class="ph"><img src="{{ 'clusterdex.jpg' | asset_url }}" alt="Cluster Dextrin" loading="lazy"><span class="tm pink">&reg;</span></div><div class="body"><div class="n">Cluster Dextrin</div><div class="a">20 g</div></div></div>
+          <div class="ing-tile"><div class="ph"><img src="{{ 'sweetpotato.jpg' | asset_url }}" alt="Sweet Potato" loading="lazy"></div><div class="body"><div class="n">Sweet Potato</div><div class="a">20 g</div></div></div>
+          <div class="ing-tile"><div class="ph"><img src="{{ 'oat-flour.jpg' | asset_url }}" alt="Oat Flour" loading="lazy"></div><div class="body"><div class="n">Oat Flour</div><div class="a">10 g</div></div></div>
+          <div class="ing-tile"><div class="ph"><img src="{{ 'modcarb.jpg' | asset_url }}" alt="ModCarb" loading="lazy"><span class="tm blue">&reg;</span></div><div class="body"><div class="n">ModCarb</div><div class="a">10 g</div><div class="sub">Oat bran · Amaranth · Quinoa · Buckwheat · Millet · Chia</div></div></div>
+        </div>
+      </div>
+
+      {%- comment -%} PRODUCE {%- endcomment -%}
+      <div class="ing-block">
+        <div class="ing-block-head">
+          <div class="h">Organic <span class="pink">fruit</span> &amp; <span class="blue">vegetable</span> blends</div>
+          <div class="t">12 real fruits &amp; vegetables</div>
+        </div>
+        <div class="ing-tiles" style="grid-template-columns:repeat(2, 1fr)">
+          <div class="ing-tile"><div class="ph"><img src="{{ 'vitaberry.jpg' | asset_url }}" alt="VitaBerry" loading="lazy"><span class="tm pink">&reg;</span></div><div class="body"><div class="n">VitaBerry</div><div class="a">1 g</div><div class="sub">Strawberry · Raspberry · Blueberry · Tart cherry · Elderberry · Cranberry</div></div></div>
+          <div class="ing-tile"><div class="ph"><img src="{{ 'vitaveggie.jpg' | asset_url }}" alt="VitaVeggie" loading="lazy"><span class="tm blue">&reg;</span></div><div class="body"><div class="n">VitaVeggie</div><div class="a blue">1 g</div><div class="sub">Broccoli · Sprouts · Tomato · Carrot · Spinach · Kale</div></div></div>
+        </div>
+      </div>
+
+      {%- comment -%} FUNCTIONAL {%- endcomment -%}
+      <div class="ing-block">
+        <div class="ing-block-head">
+          <div class="h">Digestive &amp; recovery</div>
+          <div class="t">2 enzymes + tart cherry</div>
+        </div>
+        <div class="ing-tiles" style="grid-template-columns:repeat(3, 1fr)">
+          <div class="ing-tile"><div class="ph"><img src="{{ 'tart-cherry-powder.jpg' | asset_url }}" alt="Tart Cherry" loading="lazy"></div><div class="body"><div class="n">Tart Cherry</div><div class="a">250 mg</div></div></div>
+          <div class="ing-tile"><div class="ph"><img src="{{ 'protease.jpg' | asset_url }}" alt="Protease" loading="lazy"></div><div class="body"><div class="n">Protease</div><div class="a">50 mg</div></div></div>
+          <div class="ing-tile"><div class="ph"><img src="{{ 'amylase.jpg' | asset_url }}" alt="Amylase" loading="lazy"></div><div class="body"><div class="n">Amylase</div><div class="a">50 mg</div></div></div>
+        </div>
+      </div>
+
+      <div class="nuflow-note">{{ section.settings.nuflow }}</div>
+
+      <div class="none-block">
+        <h3 class="none-head"><span class="blue">{{ section.settings.none_blue }}</span> {{ section.settings.none_rest }}</h3>
+        <ul class="none-list">
+          {%- for n in none_items -%}{%- assign t = n | strip -%}{%- if t != blank -%}<li><span class="x">&#10005;</span> {{ t }}</li>{%- endif -%}{%- endfor -%}
+        </ul>
+      </div>
+    </div>
+  </section>
+</div>
+
+{% schema %}
+{
+  "name": "WM · Ingredients",
+  "tag": "section",
+  "class": "wm-section",
+  "settings": [
+    { "type": "text", "id": "head_pink", "label": "Headline (pink)", "default": "Rolls Royce-level" },
+    { "type": "text", "id": "head_rest", "label": "Headline (black)", "default": "premium ingredients." },
+    { "type": "text", "id": "subhead", "label": "Sub-headline", "default": "Every ingredient, every milligram. Real food. Full dosages." },
+    { "type": "header", "content": "NuFlow note" },
+    { "type": "richtext", "id": "nuflow", "label": "NuFlow note", "default": "<p><strong>Nu-Flow</strong> instead of cheap silicone dioxide. We use premium organic rice hulls. Because you deserve premium, even down to the anti-caking ingredient.</p>" },
+    { "type": "header", "content": "None-of-this list" },
+    { "type": "text", "id": "none_blue", "label": "Headline (blue)", "default": "None of this" },
+    { "type": "text", "id": "none_rest", "label": "Headline (black)", "default": "is found in Whey Maker." },
+    { "type": "textarea", "id": "none_items", "label": "List (one per line)", "default": "Sucralose\nSoy\nArtificial flavors / sweeteners / colors\nGluten\nSilicone Dioxide\nCheap GMO corn for the carb source" }
+  ],
+  "presets": [{ "name": "WM · Ingredients" }]
+}
+{% endschema %}

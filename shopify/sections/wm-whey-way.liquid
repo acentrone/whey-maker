@@ -1,0 +1,29 @@
+{%- comment -%} Whey Maker — "The Whey + The Way" (pink section, white headline). {%- endcomment -%}
+{% render 'wm-assets' %}
+
+<div class="wm-pdp">
+  <section class="mission">
+    <div class="bound">
+      <div class="whey-way">
+        <h2>{{ section.settings.head_line1 }}<br>{{ section.settings.head_line2 }}</h2>
+        <p>{{ section.settings.body }}</p>
+        {%- if section.settings.verse != blank -%}<div class="verse">{{ section.settings.verse }}</div>{%- endif -%}
+      </div>
+    </div>
+  </section>
+</div>
+
+{% schema %}
+{
+  "name": "WM · The Whey + The Way",
+  "tag": "section",
+  "class": "wm-section",
+  "settings": [
+    { "type": "text", "id": "head_line1", "label": "Headline line 1", "default": "The Whey +" },
+    { "type": "text", "id": "head_line2", "label": "Headline line 2", "default": "The Way" },
+    { "type": "text", "id": "body", "label": "Supporting text", "default": "That’s why “LIVE FOR THE KING” is printed at the top of every bag." },
+    { "type": "text", "id": "verse", "label": "Verse (script)", "default": "\"I am the way, the truth, and the life.\" — John 14:6" }
+  ],
+  "presets": [{ "name": "WM · The Whey + The Way" }]
+}
+{% endschema %}

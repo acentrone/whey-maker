@@ -1,0 +1,55 @@
+{%- comment -%} Whey Maker — "How we stack up" comparison table. {%- endcomment -%}
+{% render 'wm-assets' %}
+
+{%- capture chk_normal -%}<svg width="28" height="28" viewBox="0 0 28 28"><circle cx="14" cy="14" r="13" fill="#ff2d7a"/><path d="M8 14l4 4 8-8" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>{%- endcapture -%}
+{%- capture chk_inv -%}<svg width="28" height="28" viewBox="0 0 28 28"><circle cx="14" cy="14" r="13" fill="#fff"/><path d="M8 14l4 4 8-8" fill="none" stroke="#ff2d7a" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>{%- endcapture -%}
+{%- capture x_normal -%}<svg width="28" height="28" viewBox="0 0 28 28"><circle cx="14" cy="14" r="13" fill="none" stroke="#cfcfcf" stroke-width="1.5"/><path d="M9 9l10 10M19 9l-10 10" stroke="#bcbcbc" stroke-width="1.8" stroke-linecap="round"/></svg>{%- endcapture -%}
+{%- capture x_inv -%}<svg width="28" height="28" viewBox="0 0 28 28"><circle cx="14" cy="14" r="13" fill="none" stroke="rgba(255,255,255,0.7)" stroke-width="1.5"/><path d="M9 9l10 10M19 9l-10 10" stroke="rgba(255,255,255,0.9)" stroke-width="1.8" stroke-linecap="round"/></svg>{%- endcapture -%}
+
+{%- assign cols = "Whey Maker;Serious Mass;Transparent Labs;Huel Black" | split: ";" -%}
+{%- assign rows = "Calories / serving;1,250;1,250;750;400|Protein;60 g;50 g;30 g;40 g|Grass-fed protein sources;yes;no;yes;no|Organic carb sources;yes;no;no;no|Cluster dextrin;yes;no;no;no|Organic ModCarb (6 whole grains);yes;no;no;no|Organic fruit & vegetable blend;yes;no;no;no|Sucralose;no;yes;no;no|NSF Certified for Sport;yes;no;no;no|Built for athletes 11+;yes;no;no;no|Price / meal;$3.75;$2.10;$4.80;$3.90" | split: "|" -%}
+
+<div class="wm-pdp">
+  <section class="section">
+    <div class="bound">
+      <div class="head">
+        <h2 class="display">{{ section.settings.head_black }} <span class="blue">{{ section.settings.head_blue }}</span>.</h2>
+        <p>{{ section.settings.subhead }}</p>
+      </div>
+      <div class="compare">
+        <div class="us-bg" aria-hidden="true"></div>
+        <div class="cell head lbl"></div>
+        {%- for c in cols -%}
+          <div class="cell head {% if forloop.first %}us{% endif %}">{{ c }}</div>
+        {%- endfor -%}
+        {%- for row in rows -%}
+          {%- assign r = row | split: ";" -%}
+          <div class="cell lbl">{{ r[0] }}</div>
+          {%- for i in (1..4) -%}
+            {%- assign val = r[i] -%}
+            {%- assign is_us = false -%}{%- if i == 1 -%}{%- assign is_us = true -%}{%- endif -%}
+            <div class="cell {% if is_us %}us{% endif %}">
+              {%- if val == "yes" -%}{% if is_us %}{{ chk_inv }}{% else %}{{ chk_normal }}{% endif %}
+              {%- elsif val == "no" -%}{% if is_us %}{{ x_inv }}{% else %}{{ x_normal }}{% endif %}
+              {%- else -%}{{ val }}{%- endif -%}
+            </div>
+          {%- endfor -%}
+        {%- endfor -%}
+      </div>
+    </div>
+  </section>
+</div>
+
+{% schema %}
+{
+  "name": "WM · Comparison",
+  "tag": "section",
+  "class": "wm-section",
+  "settings": [
+    { "type": "text", "id": "head_black", "label": "Headline (black)", "default": "How we" },
+    { "type": "text", "id": "head_blue", "label": "Headline (blue)", "default": "stack up" },
+    { "type": "text", "id": "subhead", "label": "Sub-headline", "default": "See how we compare to other popular mass gainers on the market. The difference is in the quality ingredients." }
+  ],
+  "presets": [{ "name": "WM · Comparison" }]
+}
+{% endschema %}
