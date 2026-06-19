@@ -911,3 +911,12 @@
 .wm-pdp .wmk-nsf-body > p:first-child,
 .wm-pdp .wmk-math-payoff p:first-child { margin-top: 0; }
 .wm-pdp .wmk-shake-solo img { width: 100%; height: auto; display: block; border-radius: 20px; }
+
+/* Mobile fix: let the meal grid + macro tiles shrink instead of forcing horizontal overflow */
+.wm-pdp .wmk-meal { min-width: 0; }
+.wm-pdp .wmk-meal > * { min-width: 0; }
+.wm-pdp .wmk-macro-tiles { min-width: 0; }
+.wm-pdp .wmk-macro-tiles .wmk-tile { min-width: 0; }
+@media (max-width: 600px) {
+  .wm-pdp .wmk-macro-tiles.wmk-macro-tiles-lg .wmk-tile .wmk-n { font-size: clamp(30px, 9vw, 50px); }
+}
