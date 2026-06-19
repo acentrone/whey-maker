@@ -920,3 +920,9 @@
 @media (max-width: 600px) {
   .wm-pdp .wmk-macro-tiles.wmk-macro-tiles-lg .wmk-tile .wmk-n { font-size: clamp(30px, 9vw, 50px); }
 }
+
+/* Size macro numbers to their BOX (container query units) so they fill it without overflowing,
+   at any viewport/column width. Replaces the viewport-based clamps above. */
+.wm-pdp .wmk-macro-tiles { container-type: inline-size; }
+.wm-pdp .wmk-macro-tiles .wmk-tile .wmk-n { font-size: clamp(22px, 13cqw, 60px); }
+.wm-pdp .wmk-macro-tiles.wmk-macro-tiles-lg .wmk-tile .wmk-n { font-size: clamp(26px, 13cqw, 76px); }
