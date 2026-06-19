@@ -62,3 +62,17 @@ templates/
   be overridden per-section with an image picker.
 - **Scriptural note carried over**: the claims bar reads `Isaiah 40:31 "I am the WAY"` exactly as
   provided — "I am the way" is John 14:6, so confirm the citation before launch.
+
+## Homepage redirect
+There's no standalone homepage — `/` redirects to the product page. This is done in
+`layout/theme.liquid` (Horizon's layout, not in this folder) with a `<head>` snippet:
+
+```liquid
+{%- if request.page_type == 'index' -%}
+  <script>window.location.replace("/products/whey-maker");</script>
+  <meta http-equiv="refresh" content="0; url=/products/whey-maker">
+{%- endif -%}
+```
+
+Shopify's admin URL-redirect tool can't redirect `/`, so this is the theme-level approach.
+To restore a real homepage later, remove that snippet.
