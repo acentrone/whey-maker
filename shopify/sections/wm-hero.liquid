@@ -47,7 +47,7 @@
     <div class="wmk-buy">
       <h1 class="wmk-display">
         {%- if section.settings.highlight_first_word and rest_title != blank -%}
-          <span class="wmk-blue">{{ first_word }}</span> {{ rest_title }}
+          <span class="wmk-pink">{{ first_word }}</span> {{ rest_title }}
         {%- else -%}
           {{ product.title }}
         {%- endif -%}
@@ -157,9 +157,9 @@
     { "type": "header", "content": "Macro boxes" },
     { "type": "text", "id": "macro1_value", "label": "Box 1 number", "default": "1250" },
     { "type": "text", "id": "macro1_label", "label": "Box 1 label", "default": "Calories" },
-    { "type": "text", "id": "macro2_value", "label": "Box 2 number", "default": "60 g" },
+    { "type": "text", "id": "macro2_value", "label": "Box 2 number", "default": "60g" },
     { "type": "text", "id": "macro2_label", "label": "Box 2 label", "default": "Protein" },
-    { "type": "text", "id": "macro3_value", "label": "Box 3 number", "default": "238 g" },
+    { "type": "text", "id": "macro3_value", "label": "Box 3 number", "default": "238g" },
     { "type": "text", "id": "macro3_label", "label": "Box 3 label", "default": "Organic Carbs" },
     { "type": "header", "content": "Reviews line" },
     { "type": "checkbox", "id": "show_reviews_line", "label": "Show 5-star reviews line", "default": true },
